@@ -337,7 +337,8 @@ app.post('/api/add-item', isLoggedIn, async (req, res) => {
             const expiry   = item.expiry_date || item.use_by;
             const source   = item.source     || (item.use_by ? 'camera' : 'manual');
             const quantity = item.quantity   || 1;
-            const unit     = item.unit       || '개';
+            // AI가 단위를 추출하지 못한 경우 '개'로 단정하지 않고 NULL로 남겨 사용자가 추후 직접 확인하게 한다
+            const unit     = item.unit       || null;
 
             const foodCategory = item.category_name || await guessCategory(name);
             await query('INSERT IGNORE INTO ingredients (name, emoji, category) VALUES (?, ?, ?)', [name, emoji, foodCategory]);
@@ -593,10 +594,12 @@ app.get('/api/push/status', isLoggedIn, async (req, res) => {
 
 // ── 관리자 콘솔 ───────────────────────────────────────────────
 let activeAdminSessionId = null; // 단일 세션 강제
+const ADMIN_ID       = process.env.ADMIN_ID;
+const ADMIN_PASSWORD = process.env.ADMIN_PASSWORD;
 
 app.post('/api/admin/console-login', (req, res) => {
     const { id, pw } = req.body;
-    if (id === 'admin' && pw === 'admin1234') {
+    if (id === ADMIN_ID && pw === ADMIN_PASSWORD) {
         if (activeAdminSessionId && activeAdminSessionId !== req.sessionID) {
             req.sessionStore.destroy(activeAdminSessionId, () => {});
         }
@@ -860,6 +863,16 @@ app.get('/api/admin/scan-logs', isAdminConsole, async (req, res) => {
         auditLog('admin', 'VIEW_SCAN_LOGS', null, null, req.ip);
         res.json(rows);
     } catch { res.status(500).json({ success: false }); }
+});
+
+// 스캔 로그 삭제
+app.delete('/api/admin/scan-logs/:id', isAdminConsole, async (req, res) => {
+    try {
+        const result = await query('DELETE FROM scan_logs WHERE id = ?', [req.params.id]);
+        if (!result.affectedRows) return res.status(404).json({ success: false, message: '로그를 찾을 수 없습니다.' });
+        auditLog('admin', 'DELETE_SCAN_LOG', `scan_log:${req.params.id}`, null, req.ip);
+        res.json({ success: true });
+    } catch (err) { console.error('스캔 로그 삭제 오류:', err.message); res.status(500).json({ success: false }); }
 });
 
 // 감사 로그 조회

@@ -15,7 +15,7 @@ try:
 except ImportError:
     PIL_AVAILABLE = False
 
-from pipeline_common import calculate_use_by
+from pipeline_common import calculate_use_by, resolve_package_unit
 
 OLLAMA_URL = "https://ollama.aikopo.net"
 MODEL = "gemma4:26b"
@@ -188,6 +188,18 @@ def build_food_prompt() -> str:
   냉장: 신선 육류, 생선, 우유, 달걀, 두부, 어묵, 채소류, 김치
   실온: 라면, 통조림, 즉석밥, 과자, 음료, 견과류, 과일, 양념류, 주류
 
+[unit 판별 규칙]
+식재료를 저장할 때 쓸 계량 단위를 "개", "g", "ml" 중 하나로 판단한다.
+- 라벨/포장에 무게나 용량이 보이면(예: "500g", "1L") 그 값을 qty로, 단위를 정규화해 unit으로 사용한다.
+  kg는 g로 환산(숫자 ×1000), L은 ml로 환산(숫자 ×1000)해서 unit은 항상 "g" 또는 "ml" 중 하나로 출력한다.
+  예) "고추장 500g" 라벨 → qty:500, unit:"g"
+  예) "식용유 1L" 라벨   → qty:1000, unit:"ml"
+- 라벨에 무게/용량 표기가 없어도:
+  · 통상 무게로 계량되는 식재료(고추장, 된장, 설탕, 쌀, 밀가루 등 가루/장류) → unit:"g", 합리적인 기본 qty 추정
+  · 통상 부피로 계량되는 식재료(식용유, 우유, 간장, 음료 등 액체) → unit:"ml", 합리적인 기본 qty 추정
+  · 오이, 양파, 계란, 사과처럼 개별로 세는 게 자연스러운 품목 → unit:"개", qty는 눈에 보이는 개수
+- 정말 판단이 불가능한 경우에만 unit:null로 출력한다.
+
 출력 스키마 (JSON만, 설명 없이):
 {
   "items": [
@@ -195,6 +207,7 @@ def build_food_prompt() -> str:
       "name": "식재료명 또는 식재료명(브랜드명)",
       "category_name": "11개 카테고리 중 하나",
       "qty": 1,
+      "unit": "개 | g | ml | null",
       "storage": "냉장 | 냉동 | 실온"
     }
   ]
@@ -257,12 +270,14 @@ def process_food_llm(img_path: str) -> dict:
             storage = "실온"
 
         use_by = calculate_use_by(name, storage, today)
-        print(f"  [{name}] category={category_name}, storage={storage} → use_by={use_by}")
+        qty, unit, name = resolve_package_unit(name, it.get("qty"), (it.get("unit") or "").strip())
+        print(f"  [{name}] category={category_name}, storage={storage}, unit={unit} → use_by={use_by}")
 
         items.append({
             "name": name,
             "category_name": category_name,
-            "qty": int(it.get("qty") or 1),
+            "qty": qty,
+            "unit": unit,
             "storage": storage,
             "use_by": use_by
         })

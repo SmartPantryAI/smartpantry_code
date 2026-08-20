@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { RefreshCw, X, CheckCircle, XCircle } from 'lucide-react';
+import { RefreshCw, X, CheckCircle, XCircle, Trash2 } from 'lucide-react';
 
 const MODE_LABEL = { food: '식재료', receipt: '영수증' };
 const MODE_COLOR = { food: 'bg-green-50 text-green-600 border-green-100', receipt: 'bg-blue-50 text-blue-600 border-blue-100' };
@@ -9,6 +9,7 @@ const ScanLogPage = () => {
   const [loading, setLoading]     = useState(true);
   const [selected, setSelected]   = useState(null);
   const [filter, setFilter]       = useState('전체');
+  const [deletingId, setDeletingId] = useState(null);
 
   const load = () => {
     setLoading(true);
@@ -19,6 +20,25 @@ const ScanLogPage = () => {
   };
 
   useEffect(load, []);
+
+  const handleDelete = async (id) => {
+    if (!window.confirm('이 스캔 로그를 삭제하시겠습니까?')) return;
+    setDeletingId(id);
+    try {
+      const res = await fetch(`/api/admin/scan-logs/${id}`, { method: 'DELETE', credentials: 'include' });
+      const data = await res.json();
+      if (data.success) {
+        setLogs(prev => prev.filter(l => l.id !== id));
+        setSelected(prev => (prev?.id === id ? null : prev));
+      } else {
+        alert(data.message || '삭제에 실패했습니다.');
+      }
+    } catch {
+      alert('삭제 중 오류가 발생했습니다.');
+    } finally {
+      setDeletingId(null);
+    }
+  };
 
   const filtered = logs.filter(l => {
     if (filter === '전체') return true;
@@ -67,8 +87,8 @@ const ScanLogPage = () => {
               <p className="text-center py-16 text-xs text-gray-300">로그가 없습니다</p>
             ) : (
               filtered.map(log => (
-                <button key={log.id} onClick={() => setSelected(selected?.id === log.id ? null : log)}
-                  className={`w-full flex items-center gap-3 px-4 py-3.5 border-b border-gray-50 transition-colors text-left
+                <div key={log.id} role="button" tabIndex={0} onClick={() => setSelected(selected?.id === log.id ? null : log)}
+                  className={`w-full flex items-center gap-3 px-4 py-3.5 border-b border-gray-50 transition-colors text-left cursor-pointer group
                     ${selected?.id === log.id ? 'bg-blue-50/40' : 'hover:bg-gray-50'}`}>
                   {/* 썸네일 */}
                   <div className="w-12 h-12 rounded-xl overflow-hidden bg-gray-100 shrink-0 flex items-center justify-center">
@@ -102,7 +122,16 @@ const ScanLogPage = () => {
                     <p className="text-sm font-black text-gray-900">{log.item_count}</p>
                     <p className="text-[10px] text-gray-400">개 인식</p>
                   </div>
-                </button>
+
+                  {/* 삭제 버튼 */}
+                  <button
+                    onClick={(e) => { e.stopPropagation(); handleDelete(log.id); }}
+                    disabled={deletingId === log.id}
+                    className="shrink-0 p-1.5 rounded-lg text-gray-300 opacity-0 group-hover:opacity-100 hover:bg-red-50 hover:text-red-500 transition-colors disabled:opacity-40"
+                    title="삭제">
+                    <Trash2 size={14} />
+                  </button>
+                </div>
               ))
             )}
           </div>
@@ -113,7 +142,13 @@ const ScanLogPage = () => {
           <div className="w-72 shrink-0 border-l border-gray-100 flex flex-col overflow-hidden">
             <div className="flex items-center justify-between px-4 py-3 border-b border-gray-100 shrink-0">
               <p className="text-sm font-black text-gray-900">스캔 상세</p>
-              <button onClick={() => setSelected(null)}><X size={16} className="text-gray-400" /></button>
+              <div className="flex items-center gap-1">
+                <button onClick={() => handleDelete(selected.id)} disabled={deletingId === selected.id}
+                  className="p-1.5 rounded-lg text-gray-400 hover:bg-red-50 hover:text-red-500 disabled:opacity-40" title="삭제">
+                  <Trash2 size={15} />
+                </button>
+                <button onClick={() => setSelected(null)}><X size={16} className="text-gray-400" /></button>
+              </div>
             </div>
 
             <div className="flex-1 overflow-y-auto px-4 py-4 space-y-4">

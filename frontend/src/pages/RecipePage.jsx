@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import { Clock, CheckCircle2, RefreshCw, ChevronDown, ChevronUp, AlertCircle, Heart, X } from 'lucide-react';
 import FoodIcon from '../components/FoodIcon';
+import { formatPantryQuantity, parseQuantityWithUnit } from '../utils/quantityFormat';
+import { convertQuantity } from '../utils/unitConvert';
 
 const FOOD_EMOJIS = [
   '🍳', '🥘', '🍲', '🥗', '🍜', '🍱', '🥙', '🫕',
@@ -43,18 +45,48 @@ const CookModal = ({ recipe, pantryItems, onClose, onConfirm }) => {
   const [usages, setUsages] = useState(() => {
     const found = [];
     for (const ing of (recipe.used_ingredients || [])) {
-      const parsedName = ing.trim().split(/[\s\d(（]/)[0];
+      const trimmedIng = ing.trim();
+      const parsedName = trimmedIng.split(/[\s\d(（]/)[0];
       const pantryItem = pantryItems.find(p =>
         p.item_name.includes(parsedName) || parsedName.includes(p.item_name)
       );
       if (!pantryItem) continue; // 저장고에 없는 재료는 제외
+
+      const maxQty = Number(pantryItem.quantity);
+      // 펜트리에 단위가 비어있는(레거시 데이터 등) 경우 '개'로 취급한다 - 화면 표시뿐 아니라
+      // 환산 기준 단위(targetUnit)도 이 값과 일치시켜야 convertQuantity가 null을 반환하지 않는다.
+      const pantryUnit = pantryItem.unit || '개';
+      // 레시피 문구에 명시된 사용량(예: "1/4개", "2큰술")을 참고해 기본값을 프리필.
+      // 재료명 뒤에 남는 "(적/황)" 같은 괄호 설명은 수량 파싱을 방해하므로 먼저 제거한다.
+      const rest = trimmedIng.slice(parsedName.length)
+        .replace(/[(（][^()（）]*[)）]/g, '')
+        .trim();
+      // "돼지고기 앞다리살 300g"처럼 이름과 수량 사이에 부위/설명어가 끼어 있으면 숫자가
+      // 맨 앞에 오지 않으므로, 처음 등장하는 숫자부터 잘라내 파싱한다.
+      const numIdx = rest.search(/\d/);
+      const qtyText = numIdx >= 0 ? rest.slice(numIdx) : rest;
+      const { qty: parsedQty, unit: parsedUnit } = parseQuantityWithUnit(qtyText);
+      // 단위 토큰이 없으면 펜트리 단위와 동일하다고 가정한다(기존 동작과 호환).
+      const convertedQty = (parsedQty !== null && Number.isFinite(parsedQty) && parsedQty > 0)
+        ? convertQuantity({
+            qty: parsedQty,
+            unit: parsedUnit || pantryUnit,
+            targetUnit: pantryUnit,
+            ingredientName: parsedName,
+          })
+        : null;
+      // 단위 환산이 불가능하면(예: 개수 ↔ 무게) 기존처럼 보유량 전체를 기본값으로 둔다.
+      const initialQty = (convertedQty !== null && Number.isFinite(convertedQty) && convertedQty > 0)
+        ? Math.min(convertedQty, maxQty)
+        : maxQty;
+
       found.push({
         label:          ing,
         name:           parsedName,
         pantry_item_id: pantryItem.id,
-        used_qty:       Number(pantryItem.quantity),
-        max_qty:        Number(pantryItem.quantity),
-        unit:           pantryItem.unit || '개',
+        used_qty:       initialQty,
+        max_qty:        maxQty,
+        unit:           pantryUnit,
       });
     }
     return found;
@@ -82,19 +114,20 @@ const CookModal = ({ recipe, pantryItems, onClose, onConfirm }) => {
             <div key={idx} className="p-4 rounded-2xl bg-gray-50 border border-gray-100 space-y-2.5">
               <div className="flex items-center justify-between">
                 <p className="text-sm font-bold text-gray-800">{u.label}</p>
-                <span className="text-[10px] text-gray-400 font-bold">보유 {u.max_qty}{u.unit}</span>
+                <span className="text-[10px] text-gray-400 font-bold">보유 {formatPantryQuantity(u.max_qty, u.unit)}</span>
               </div>
               <div className="flex items-center gap-2">
                 {/* 수량 입력 - 펜트리에 저장된 고유 단위(u.unit) 기준으로만 입력. 단위 환산은 하지 않음 */}
                 {u.unit === '개' ? (
                   <div className="flex items-center gap-2 flex-1">
                     <button
-                      onClick={() => setUsage(idx, 'used_qty', Math.max(1, u.used_qty - 1))}
-                      className="w-9 h-9 rounded-xl border border-gray-200 text-lg font-bold text-gray-600 bg-white hover:bg-gray-100 active:scale-95 transition-all"
+                      onClick={() => setUsage(idx, 'used_qty', Math.max(0.25, u.used_qty - 0.25))}
+                      disabled={u.used_qty <= 0.25}
+                      className="w-9 h-9 rounded-xl border border-gray-200 text-lg font-bold text-gray-600 bg-white hover:bg-gray-100 active:scale-95 transition-all disabled:opacity-30"
                     >−</button>
-                    <span className="flex-1 text-center text-base font-black text-gray-900">{u.used_qty}개</span>
+                    <span className="flex-1 text-center text-base font-black text-gray-900">{formatPantryQuantity(u.used_qty, u.unit)}</span>
                     <button
-                      onClick={() => setUsage(idx, 'used_qty', Math.min(u.max_qty, u.used_qty + 1))}
+                      onClick={() => setUsage(idx, 'used_qty', Math.min(u.max_qty, u.used_qty + 0.25))}
                       disabled={u.used_qty >= u.max_qty}
                       className="w-9 h-9 rounded-xl border border-gray-200 text-lg font-bold text-gray-600 bg-white hover:bg-gray-100 active:scale-95 transition-all disabled:opacity-30"
                     >+</button>

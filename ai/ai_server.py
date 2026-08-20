@@ -142,7 +142,8 @@ class ScanRequest(BaseModel):
 class ScanItem(BaseModel):
     name: str
     category_name: Optional[str] = None   # ← 추가: 식재료 카테고리명
-    qty: int
+    qty: float                            # 500g, 1.5kg 등 소수 가능하므로 int → float
+    unit: Optional[str] = None            # "개" | "g" | "ml" | None(판단 불가 시에만)
     storage: str
     use_by: str
     emoji: str
@@ -184,6 +185,7 @@ async def scan(req: ScanRequest):
             name=it["name"],
             category_name=it.get("category_name") or None,   # ← 추가
             qty=it["qty"],
+            unit=it.get("unit") or None,
             storage=it["storage"],
             use_by=it["use_by"],
             emoji=get_emoji(it["name"]),

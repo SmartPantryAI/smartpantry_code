@@ -14,6 +14,7 @@ MODEL      = os.getenv("OLLAMA_MODEL", "gemma4:26b")
 LLM_TIMEOUT = int(os.getenv("LLM_TIMEOUT", "120"))
 
 VALID_STORAGE = {"냉장", "냉동", "실온"}
+VALID_UNITS = {"개", "g", "ml"}
 DATE_RE = re.compile(r'^\d{4}-\d{2}-\d{2}$')
 
 
@@ -113,6 +114,198 @@ _MFDS_USE_BY: list[tuple[list[str], int]] = [
 
 # 식약처 매핑에 없을 때 storage별 기본값
 _STORAGE_DEFAULT_DAYS = {"냉동": 90, "냉장": 5, "실온": 90}
+
+
+# ══════════════════════════════════════════════════════════════
+# 단위(unit) 추정 휴리스틱
+#
+# LLM이 unit을 못 판단했을 때(None/유효하지 않은 값)의 2차 안전망.
+# 식재료명 키워드로 통상적인 계량 단위를 추정한다 - 여기에도 없으면
+# null을 유지해 프런트에서 사용자가 직접 단위를 선택하게 둔다.
+# ══════════════════════════════════════════════════════════════
+_DEFAULT_UNIT_BY_NAME: dict[str, str] = {
+    # ── 개수형 ──
+    "오이": "개", "양파": "개", "계란": "개", "달걀": "개", "감자": "개",
+    "고구마": "개", "당근": "개", "사과": "개", "배": "개", "바나나": "개",
+    "토마토": "개", "마늘": "개", "레몬": "개", "양배추": "개", "두부": "개",
+    "가지": "개", "호박": "개", "애호박": "개", "파프리카": "개", "피망": "개",
+
+    # ── 부피형(ml) ──
+    "우유": "ml", "두유": "ml", "식용유": "ml", "참기름": "ml", "들기름": "ml",
+    "올리브유": "ml", "주스": "ml", "생수": "ml", "물": "ml", "맥주": "ml",
+    "소주": "ml", "막걸리": "ml", "와인": "ml", "식초": "ml", "맛술": "ml",
+    "미림": "ml", "탄산음료": "ml", "콜라": "ml", "사이다": "ml",
+    "케찹": "ml", "마요네즈": "ml", "머스타드": "ml", "칠리소스": "ml",
+    "돈까스소스": "ml", "올리고당": "ml", "물엿": "ml",
+
+    # ── 무게형(g) ──
+    "고추장": "g", "된장": "g", "쌈장": "g", "춘장": "g", "설탕": "g",
+    "소금": "g", "쌀": "g", "현미": "g", "밀가루": "g", "고춧가루": "g",
+    "전분": "g", "버터": "g", "치즈": "g", "후추": "g",
+}
+
+# 길이가 긴(구체적인) 키워드부터 매칭해야 잘못된 부분 일치를 피할 수 있다.
+_SORTED_UNIT_KEYWORDS = sorted(_DEFAULT_UNIT_BY_NAME.items(), key=lambda kv: len(kv[0]), reverse=True)
+
+
+def _find_keyword(name: str, keywords) -> str | None:
+    """name(괄호 앞부분 우선, 그다음 전체)에서 가장 먼저 매칭되는 키워드를 찾는다."""
+    if not name:
+        return None
+    base = name.split("(")[0].strip()
+    for keyword in keywords:
+        if keyword in base:
+            return keyword
+    for keyword in keywords:
+        if keyword in name:
+            return keyword
+    return None
+
+
+def guess_unit(name: str, unit) -> str | None:
+    """LLM이 내려준 unit이 유효하면 그대로 쓰고, 없거나 무효하면 이름 키워드 기반으로 추정한다."""
+    if unit in VALID_UNITS:
+        return unit
+    keyword = _find_keyword(name, (kv[0] for kv in _SORTED_UNIT_KEYWORDS))
+    return _DEFAULT_UNIT_BY_NAME[keyword] if keyword else None
+
+
+# ══════════════════════════════════════════════════════════════
+# 포장단위(통/단/봉/마리 등) → 개/g 환산
+#
+# 펜트리 저장 단위는 개/g/ml 3종으로 고정이므로, 아래 포장단위들은 unit 자체가
+# 아니라 인식 시점에 qty를 보정하는 환산 계수로만 쓴다.
+#   - _PACKAGE_TO_COUNT: 결과 단위가 "개"가 되는 품목 (포장 안의 기준 낱개 수)
+#   - _PACKAGE_TO_WEIGHT_G: 결과 단위가 "g"이 되는 품목 (포장 1단위 ≈ 몇 g)
+# ══════════════════════════════════════════════════════════════
+_PACKAGE_TO_COUNT: dict[str, dict[str, float]] = {
+    "마늘":   {"통": 6, "쪽": 1},
+    "대파":   {"단": 6, "대": 1},
+    "파":     {"단": 6, "대": 1},
+    "쪽파":   {"단": 10, "대": 1},
+    "마늘쫑": {"단": 20, "줄기": 1},
+    "계란":   {"판": 30, "개": 1},
+    "달걀":   {"판": 30, "개": 1},
+    "두부":   {"모": 1},
+    "배추":   {"포기": 1},
+    "양배추": {"통": 1},
+    "양상추": {"포기": 1},
+    "브로콜리": {"송이": 1},
+    "바나나": {"송이": 6, "다": 6, "개": 1},
+    "다시마": {"장": 1},
+    "김":     {"봉": 10, "장": 1},
+    "고등어": {"마리": 1},
+    "갈치":   {"마리": 1},
+    "오징어": {"마리": 1},
+}
+
+_PACKAGE_TO_WEIGHT_G: dict[str, dict[str, float]] = {
+    "시금치":   {"단": 250},
+    "부추":     {"단": 200},
+    "미나리":   {"단": 200},
+    "깻잎":     {"봉": 100},
+    "콩나물":   {"봉": 300},
+    "숙주":     {"봉": 300},
+    "상추":     {"봉": 200},
+    "느타리버섯": {"봉": 150},
+    "팽이버섯": {"봉": 150},
+    "만가닥버섯": {"봉": 150},
+    "멸치":     {"봉": 150},
+    "어묵":     {"봉": 200},
+    "미역":     {"줌": 10},
+    "김치":     {"포기": 2500},
+    "한우": {"근": 600}, 
+    "돼지고기": {"근": 600}, 
+    "소고기": {"근": 600},
+}
+
+# "망"/"포대"/"포"는 상품마다 용량이 제각각이라 고정 평균값을 두지 않는다.
+# 무게 표기가 함께 있으면 그 숫자를 그대로 쓰고, 없으면 unit:null로 보류한다.
+_NO_DEFAULT_CONVERSION_PACKAGES = {"포대", "망", "포"}
+
+# 무게(g)는 알지만 펜트리 표시 단위가 "개"인 식재료(_DEFAULT_UNIT_BY_NAME 기준)를
+# 위해 개당 평균 중량으로 개수를 역산할 때 쓰는 2차 보강 테이블.
+_AVG_WEIGHT_G_PER_UNIT: dict[str, float] = {
+    "감자": 150, "당근": 120, "양파": 200, "고구마": 200,
+    "사과": 250, "배": 400, "양배추": 1200, "호박": 300,
+    "애호박": 300, "가지": 150, "파프리카": 180, "오이": 120,
+    "토마토": 150, "바나나": 120, "레몬": 100, "피망": 100,
+}
+
+_SORTED_PACKAGE_COUNT_KEYS  = sorted(_PACKAGE_TO_COUNT.keys(), key=len, reverse=True)
+_SORTED_PACKAGE_WEIGHT_KEYS = sorted(_PACKAGE_TO_WEIGHT_G.keys(), key=len, reverse=True)
+_SORTED_AVG_WEIGHT_KEYS     = sorted(_AVG_WEIGHT_G_PER_UNIT.keys(), key=len, reverse=True)
+
+# "숫자 + 포장단위" 패턴(예: "1통", "2단"). 뒤에 한글이 더 이어지면(예: "포기"의 "포"는
+# 제외) 매칭하지 않도록 같은 길이 그룹 안에서 긴 토큰을 먼저 시도한다.
+_PACKAGE_MULT_TOKENS = sorted(
+    {tok for sub in _PACKAGE_TO_COUNT.values() for tok in sub if tok != "개"}
+    | {tok for sub in _PACKAGE_TO_WEIGHT_G.values() for tok in sub},
+    key=len, reverse=True,
+)
+_PACKAGE_MULT_RE = re.compile(
+    r'(\d+(?:\.\d+)?)\s*(' + '|'.join(_PACKAGE_MULT_TOKENS) + r')(?![가-힣])'
+)
+
+# "망"/"포대"/"포"는 숫자 없이도(예: "3kg망") 등장할 수 있으므로 존재 여부만 본다.
+# 앞뒤로 다른 한글이 붙어있으면(예: "포기") 매칭하지 않는다.
+_NO_CONV_ALT = '|'.join(sorted(_NO_DEFAULT_CONVERSION_PACKAGES, key=len, reverse=True))
+_AMBIGUOUS_PACKAGE_RE = re.compile(r'(?<![가-힣])(' + _NO_CONV_ALT + r')(?![가-힣])')
+# name 정리용: "당근 1망"처럼 바로 앞에 붙은 숫자까지 함께 제거한다("감자 3kg망"의 "3kg"은
+# 이미 [unit/qty 추출 규칙]에서 제거되므로 여기서는 단순 숫자 접두만 신경 쓰면 된다).
+_STRIP_AMBIGUOUS_RE = re.compile(r'\d*(?:\.\d+)?\s*(?:' + _NO_CONV_ALT + r')(?![가-힣])')
+
+
+def _strip_package_tokens(name: str) -> str:
+    """qty/unit으로 이미 반영된 포장단위 표기는 식재료명에서 제거해 깔끔하게 만든다."""
+    name = _PACKAGE_MULT_RE.sub('', name)
+    name = _STRIP_AMBIGUOUS_RE.sub('', name)
+    return re.sub(r'\s+', ' ', name).strip()
+
+
+def resolve_package_unit(name: str, qty, unit) -> tuple[float, str | None, str]:
+    """
+    포장단위(통/단/봉/망 등)가 섞인 qty/unit을 펜트리 기준(개/g/ml)으로 보정한다.
+    (보정된 qty, unit, 포장단위 표기를 뗀 name) 튜플을 반환한다.
+
+    우선순위:
+      1. "망"/"포대"/"포"가 있고 무게(g/ml)가 함께 주어지지 않았으면 즉시 unit:None
+         (오차가 큰 고정 평균값을 두지 않기 위한 폴백 - 사용자가 직접 확인).
+      2. 식재료별 개수형 환산표(_PACKAGE_TO_COUNT) 매칭 → qty *= 배수, unit:"개".
+      3. 식재료별 무게형 환산표(_PACKAGE_TO_WEIGHT_G) 매칭 → qty = 배수, unit:"g".
+      4. 위에서 못 정하면 이름 기반 휴리스틱(guess_unit) 적용.
+      5. 그 결과가 "g"인데 펜트리 기본 단위가 "개"인 식재료라면 개당 평균 중량으로
+         개수를 역산한다(예: "감자 3kg망" → 3000g ÷ 150g/개 ≈ 20개).
+    """
+    qty = float(qty or 1)
+    resolved_unit = unit if unit in VALID_UNITS else None
+    has_ambiguous_pkg = bool(_AMBIGUOUS_PACKAGE_RE.search(name))
+
+    if has_ambiguous_pkg and resolved_unit not in ("g", "ml"):
+        return qty, None, _strip_package_tokens(name)
+
+    m = _PACKAGE_MULT_RE.search(name)
+    if m:
+        number, token = float(m.group(1)), m.group(2)
+        count_key = _find_keyword(name, _SORTED_PACKAGE_COUNT_KEYS)
+        if count_key and token in _PACKAGE_TO_COUNT[count_key]:
+            return number * _PACKAGE_TO_COUNT[count_key][token], "개", _strip_package_tokens(name)
+
+        weight_key = _find_keyword(name, _SORTED_PACKAGE_WEIGHT_KEYS)
+        if weight_key and token in _PACKAGE_TO_WEIGHT_G[weight_key]:
+            return number * _PACKAGE_TO_WEIGHT_G[weight_key][token], "g", _strip_package_tokens(name)
+
+    if resolved_unit is None:
+        resolved_unit = guess_unit(name, unit)
+
+    if resolved_unit == "g":
+        avg_key = _find_keyword(name, _SORTED_AVG_WEIGHT_KEYS)
+        if avg_key and guess_unit(name, None) == "개":
+            count = max(1, round(qty / _AVG_WEIGHT_G_PER_UNIT[avg_key]))
+            return count, "개", _strip_package_tokens(name)
+
+    cleaned_name = _strip_package_tokens(name) if (has_ambiguous_pkg or m) else name
+    return qty, resolved_unit, cleaned_name
 
 
 def is_valid_date(s: str) -> bool:
@@ -241,78 +434,78 @@ _PASS2_PROMPT = """너는 한국 식재료 정보 처리 전문가다. 생각하
 [중요] 입력 상품 목록에 없는 항목을 절대 추가하지 마라. 있는 것만 정규화한다.
 
 [영어 식재료 번역 규칙]
-apple → 사과, potato → 감자, egg → 달걀, tofu → 두부,
-carrot → 당근, onion → 양파, milk → 우유, banana → 바나나,
-strawberry → 딸기, watermelon → 수박, orange → 오렌지,
-peach → 복숭아, pear → 배, mango → 망고, kiwi → 키위,
-cherry → 체리, pineapple → 파인애플, sesame oil → 참기름,
-kimchi → 김치, seaweed → 김, spam → 스팸, canned tuna → 참치캔,
-green onion → 대파, chili powder → 고춧가루, doenjang → 된장
+apple→사과, potato→감자, egg→달걀, tofu→두부, carrot→당근, onion→양파,
+milk→우유, banana→바나나, strawberry→딸기, watermelon→수박, orange→오렌지,
+peach→복숭아, pear→배, mango→망고, kiwi→키위, cherry→체리, pineapple→파인애플,
+sesame oil→참기름, kimchi→김치, seaweed→김, spam→스팸, canned tuna→참치캔,
+green onion→대파, chili powder→고춧가루, doenjang→된장
 
-[OCR 오류 교정 규칙]
-  목 ↔ 묵  (어목사 → 어묵)
-  탕 ↔ 땅  (볶음탕 → 볶음땅)
-  보 ↔ 볶  (보음 → 볶음)
-  어 ↔ 여  (여묵 → 어묵)
-  알뜰어묵사 / 알부어목사 / 알보르묵사 / 알부어묵사 → "어묵"
-  볶음탕 → "볶음 땅콩"
-  자숙새구 → "자숙새우"
+[OCR 글자 교정 원칙]
+한국 영수증 OCR에서 아래 글자 혼동이 흔하다. 식재료명으로 자연스러운 방향으로만 교정한다:
+  목 ↔ 묵   (어목 → 어묵)
+  보 ↔ 볶   (보음 → 볶음)
+  어 ↔ 여   (여묵 → 어묵)
+  탕 ↔ 땅   (볶음탕 → 볶음땅)
+  ㅐ ↔ ㅔ   (햇잎/핫잎 → 깻잎)
+  받침 ㄱ↔ㅋ, ㄹ↔ㄴ 혼동도 흔하다.
+[환각 금지] 위 원칙으로도 명확히 식재료가 떠오르지 않으면, 추측으로 그럴듯한
+상품명을 지어내지 말고 원문을 그대로 둬라. 입력에 없던 브랜드/상품명을 만들지 마라.
 
-[영문 코드 → 식재료 변환 규칙]
-영수증에서 자주 나오는 코드를 아래와 같이 변환한다:
-  HMPIA우유 / HMP우유 / IA우유 → "우유"
-  HMP암란 / HMP달걀 / 암란 → "달걀"
-  HMP미니양배추 / HMP양배추 → "양배추"
-  HMP다이어트닭 / HMP닭가슴살 → "닭가슴살"
-  HMP베추 / HMP배추 → "배추"
-  HMP미니양배추 → "양배추"
-  오두기후레시햄 / 오두기햄 → "햄"
-  흠플러스흑은삼품 / 흑은삼품 → "흑삼"
-  GSI그라시아멜로 → "멜론"
-  흑마늘 → "흑마늘"
-  짜장분말 → "짜장분말"
-  볶음우엉 → "우엉볶음"
-  녹두돼지쪽개육 / 돼지쪽개육 → "돼지고기"
-  양다리훈합닭다리 / 훈합닭다리 → "훈제닭다리"
+[영문 코드 → 식재료 변환 원칙]
+영수증 코드 접두어(HMP, HMPIA, IA, GSI, B3 등)는 제거하고 뒤의 식재료명만 남긴다.
+  예) "HMPIA우유"   → "우유"
+  예) "HMP양배추"   → "양배추"
+  예) "GSI그라시아멜로" → "멜론"
+접두어를 떼도 식재료명이 불분명하면 원문 유지(지어내지 마라).
 
 [name 정규화 규칙]
 다음을 제거한다:
-- 브랜드명: CJ, 대림, 신라, 한성, 돌, 서울, 제주 삼다수, 풀무원, 오뚜기 등
-- 단순 원산지: 국산, 제주산, 부산 등 (단, 한우/한돈처럼 품종·등급 의미인 경우 유지)
+- 브랜드명: CJ, 대림, 신라, 한성, 돌, 서울, 풀무원, 오뚜기 등
+- 단순 원산지: 국산, 부산 등 (단, 한우/한돈처럼 품종·등급 의미면 유지)
 - 마케팅 수식어: ZERO, 클래식, 오리지널, 알뜰, 고당도, 박사, 특선 등
-- 크기 등급: (대), (소), (특) 단독 표기
+- 크기 등급 단독 표기: (대), (소), (특)
 - 상품코드 숫자 접두어
+- 상품명 뒤 단순 수량 숫자 (개수는 qty로 분리)
+  예) "깻잎 20" → name:"깻잎", qty:20
+  예) "사과 2입(소)" → name:"사과(소)", qty:2
+  예) "요플레(딸기)×4" → name:"요플레(딸기)", qty:4
+  예) "컵라면x3" → name:"컵라면", qty:3
 
 다음은 반드시 유지한다:
 - 조리/처리 상태: 냉동, 생물, 훈제, 건조, 볶음, 자숙
 - 품종/등급: 한우, 한돈, 무항생제, 특란, 저지방
 - 부위/종류: 국거리, 삼겹살, 가브리살, 목살 등
-- 무게/부피: g, kg, ml, mL, L (name 뒤에 공백 한 칸 후 표기)
+- 포장단위 표기: 통, 쪽, 단, 대, 판, 모, 포기, 마리, 봉, 송이, 줄기, 줌, 망, 포대, 근
+  — 숫자와 함께 그대로 둔다(다음 단계에서 개수·무게로 환산).
+  예) "마늘 1통" → name:"마늘 1통" (그대로)
+
+[unit/qty 추출 규칙]
+입력에 "unit"이 g/ml로 채워져 있으면 그 값과 qty를 유지(재계산 금지), name에서 무게/부피 표기 제거.
+입력에 unit이 없는데 name에 무게/부피 표기(g, kg, ml, mL, L)가 남아있으면:
+  숫자를 qty로, 단위를 정규화(kg→g ×1000, L→ml ×1000, mL→ml)해 unit에 채우고 name에서 제거.
+  예) "느타리버섯 200g" → name:"느타리버섯", qty:200, unit:"g"
+  예) "우유 1L" → name:"우유", qty:1000, unit:"ml"
+무게/부피 표기가 전혀 없으면 unit은 null(qty는 구매 수량 그대로).
 
 [qty 계산 규칙]
-qty = 전달받은 qty × 상품명에 표시된 묶음 수량
-- 묶음 단위(name에서 제거): 개입, 구, 봉, 봉지, 팩, 매, 장, 미, 송이, 입
-- 무게/부피(name에 포함): g, kg, ml, mL, L
+무게/부피가 추출된 상품은 위 규칙을 따른다.
+그 외 상품은 qty = 전달받은 qty × 상품명에 표시된 묶음 수량.
+- 묶음 단위(name에서 제거): 개입, 구, 봉지, 팩, 매, 미, 입
+  (통/쪽/단/대/판/모/포기/마리/봉/송이/줄기/줌/망/포대/근은 제외 — name에 유지)
+  예) "계란 15구 (중란)" → name:"계란(중란)", qty:15
+  예) "라면 5개입" → name:"라면", qty:5
+  예) "캔맥주 6캔" → name:"맥주", qty:6
 
 [storage 규칙]
 "냉동", "냉장", "실온" 중 하나:
-  냉동: 냉동 가공식품, 냉동만두, 냉동새우 등 냉동 표기 상품
-  냉장: 신선 육류, 생선·어패류, 우유·유제품, 달걀, 두부, 어묵, 채소류, 김치, 유부
+  냉동: 냉동 표기 가공식품, 냉동만두, 냉동새우 등
+  냉장: 신선 육류, 생선·어패류, 우유·유제품, 달걀, 두부, 어묵, 채소, 김치, 유부
   실온: 라면·면류, 통조림, 과자·스낵, 생수·음료, 쌀·잡곡, 견과류, 과일, 양념류
 
 [category_name 규칙]
-반드시 아래 11개 중 하나만 출력한다:
-  채소류      → 당근, 양파, 배추, 가지, 파프리카, 버섯, 콩나물 등 신선 채소
-  과일류      → 사과, 바나나, 딸기, 수박, 포도, 망고 등 신선 과일
-  육류        → 소고기, 돼지고기, 닭고기, 삼겹살, 베이컨, 스팸, 햄, 런천미트 등
-  수산물      → 고등어, 오징어, 새우, 참치, 어묵, 김, 미역 등
-  유제품·계란 → 우유, 치즈, 요거트, 버터, 달걀, 계란 등
-  두부·콩류   → 두부, 순두부, 두유, 콩, 콩나물 등
-  가공·즉석식품 → 라면, 즉석밥, 냉동만두, 통조림, 참치캔 등
-  음료·주류   → 생수, 주스, 사이다, 콜라, 맥주, 소주, 에너지드링크 등
-  양념·소스   → 간장, 고추장, 된장, 케첩, 마요네즈, 참기름, 고춧가루 등
-  곡류·면류   → 쌀, 밀가루, 국수, 식빵, 오트밀, 파스타 등
-  스낵·과자   → 과자, 아이스크림, 초콜릿, 젤리, 견과류 등
+반드시 아래 11개 중 하나만 출력:
+  채소류, 과일류, 육류, 수산물, 유제품·계란, 두부·콩류,
+  가공·즉석식품, 음료·주류, 양념·소스, 곡류·면류, 스낵·과자
 
 출력 스키마:
 {{
@@ -321,6 +514,7 @@ qty = 전달받은 qty × 상품명에 표시된 묶음 수량
       "name": "정규화된 식재료/음식명 (반드시 한국어)",
       "category_name": "11개 카테고리 중 하나",
       "qty": 1,
+      "unit": "g | ml | null",
       "storage": "냉장 | 냉동 | 실온"
     }}
   ]
@@ -375,14 +569,31 @@ def pass2_normalize(purchase_date: str, raw_items: list, fallback_date: str) -> 
             "유제품·계란", "두부·콩류", "가공·즉석식품",
             "음료·주류", "양념·소스", "곡류·면류", "스낵·과자"
         }
+                # 자주 틀리는 브랜드 보정
+        BRAND_FIX = {
+    "너티버섯": "느타리버섯", "너타리버섯": "느타리버섯",
+    "햇잎": "깻잎", "핫잎": "깻잎",
+    "베이비 덩기패": "비비고 된장찌개", "베이비덩기": "비비고 된장찌개",
+    "고해밥스테이크": "고메함박스테이크", "고메밥스": "고메함박스테이크",
+    "양반죽순": "양반죽", "양반죽쉬": "양반죽",
+    "오두기밥": "즉석밥(오뚜기)", "오뚜기밥": "즉석밥(오뚜기)",
+    "불가리수": "불가리스", "자숙새구": "자숙새우",
+}
+        for wrong, correct in BRAND_FIX.items():
+            if wrong in name:
+                name = name.replace(wrong, correct)
+                break
         category_name = (it.get("category_name") or "").strip()
         if category_name not in VALID_CATEGORIES:
             category_name = None  # 유효하지 않으면 None
-            
+
+        qty, unit, name = resolve_package_unit(name, it.get("qty"), (it.get("unit") or "").strip())
+
         items.append({
             "name": name,
             "category_name": category_name,   # ← 추가
-            "qty": int(it.get("qty") or 1),
+            "qty": qty,
+            "unit": unit,
             "storage": storage,
             "use_by": use_by,
         })

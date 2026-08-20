@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Plus, X, Minus, Trash2, CheckCircle2, Circle, Pencil } from 'lucide-react';
 import FoodIcon from '../components/FoodIcon';
+import { formatPantryQuantity } from '../utils/quantityFormat';
 
 const MainPage = () => {
   const [activeTab, setActiveTab]         = useState('전체');
@@ -286,7 +287,7 @@ const MainPage = () => {
                   {/* 2줄: 갯수 · 카테고리 · 보관방법 */}
                   <div className="flex items-center gap-1.5 flex-wrap mb-1">
                     <span className="px-2 py-0.5 rounded-md text-[10px] font-black bg-gray-100 text-gray-600 shrink-0">
-                      {item.quantity}{item.unit}
+                      {formatPantryQuantity(item.quantity, item.unit)}
                     </span>
                     {item.foodCategory && (
                       <span className="px-2 py-0.5 rounded-md text-[10px] font-bold border bg-green-50 text-green-600 border-green-200 shrink-0">
@@ -402,7 +403,7 @@ const MainPage = () => {
                 <div className="flex items-center gap-3">
                   <div className="flex items-center gap-3 bg-gray-50 rounded-2xl px-4 py-2.5 flex-1">
                     <button
-                      onClick={() => setDeleteCount(c => Math.max(1, c - 1))}
+                      onClick={() => setDeleteCount(c => c <= 1 ? Math.round(editItem.quantity) : c - 1)}
                       className="w-8 h-8 rounded-full bg-white shadow flex items-center justify-center text-gray-600 active:scale-90 transition-all"
                     >
                       <Minus size={14} />

@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { PlusCircle, Loader2, RefreshCw, RotateCcw, Pencil, X, Check } from 'lucide-react';
 import FoodIcon from '../components/FoodIcon';
+import { formatPantryQuantity } from '../utils/quantityFormat';
 
 const STORAGE_STYLE = {
   냉장: "bg-blue-100 text-blue-700",
@@ -31,7 +32,7 @@ const EditModal = ({ item, onClose, onSave }) => {
   const [useBy,        setUseBy]        = useState(item.use_by);
   const [storage,      setStorage]      = useState(item.storage);
   const [qty,          setQty]          = useState(item.qty);
-  const [unit,         setUnit]         = useState(item.unit || '개');
+  const [unit,         setUnit]         = useState(item.unit || null);
   const [emoji,        setEmoji]        = useState(item.emoji);
   const [categoryName, setCategoryName] = useState(item.category_name || null);
   const [showEmoji,    setShowEmoji]    = useState(false);
@@ -39,6 +40,7 @@ const EditModal = ({ item, onClose, onSave }) => {
   const handleSave = () => {
     if (!name.trim()) { alert('식재료 이름을 입력해주세요.'); return; }
     if (!useBy)       { alert('소비기한을 입력해주세요.'); return; }
+    if (!unit)        { alert('단위를 선택해주세요.'); return; }
     onSave(item.id, { name: name.trim(), use_by: useBy, storage, qty, unit, emoji, category_name: categoryName });
     onClose();
   };
@@ -153,7 +155,11 @@ const EditModal = ({ item, onClose, onSave }) => {
               ))}
             </div>
           </div>
-          {unit === '개' ? (
+          {!unit ? (
+            <p className="text-xs font-bold text-amber-600 bg-amber-50 rounded-2xl px-4 py-3">
+              ⚠️ 위에서 단위(개/g/ml)를 먼저 선택해주세요
+            </p>
+          ) : unit === '개' ? (
             <div className="flex items-center gap-3">
               <button onClick={() => setQty(q => Math.max(1, q - 1))} className="w-12 h-12 rounded-2xl border border-gray-200 text-xl font-bold text-gray-600 hover:bg-gray-100 active:scale-95 transition-all">−</button>
               <span className="flex-1 text-center text-lg font-black text-gray-900">{qty}개</span>
@@ -209,11 +215,18 @@ const ScanResultPage = ({ capturedImg, onBack, onNavigate, scanMode = 'food' }) 
   const [errorMsg, setErrorMsg] = useState('');
   const [editItem, setEditItem] = useState(null);
   const isRunning = useRef(false);
+  const resultsRef = useRef(null);
 
   useEffect(() => {
     if (!capturedImg) return;
     runScan();
   }, [capturedImg]);
+
+  useEffect(() => {
+    if (status === 'done') {
+      resultsRef.current?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+  }, [status]);
 
   const runScan = async () => {
     if (isRunning.current) return;
@@ -238,7 +251,7 @@ const ScanResultPage = ({ capturedImg, onBack, onNavigate, scanMode = 'food' }) 
         storage:       it.storage || '냉장',
         use_by:        it.use_by,
         qty:           it.qty     || 1,
-        unit:          it.unit    || '개',
+        unit:          it.unit    || null,
         failed:        false,
       })));
       setSource(data.source);
@@ -308,9 +321,9 @@ const ScanResultPage = ({ capturedImg, onBack, onNavigate, scanMode = 'food' }) 
 
       <div className="p-5 space-y-5 animate-in fade-in duration-500 pb-32">
 
-        <div className="w-full aspect-square rounded-[36px] overflow-hidden bg-gray-100 border border-gray-200 shadow-inner flex items-center justify-center">
+        <div className="w-full rounded-[36px] overflow-hidden bg-gray-100 border border-gray-200 shadow-inner">
           {capturedImg
-            ? <img src={capturedImg} alt="촬영 이미지" className="w-full h-full object-cover" />
+            ? <img src={capturedImg} alt="촬영 이미지" className="w-full h-auto object-contain" />
             : <span className="text-gray-400 text-sm font-bold">이미지 없음</span>
           }
         </div>
@@ -336,7 +349,7 @@ const ScanResultPage = ({ capturedImg, onBack, onNavigate, scanMode = 'food' }) 
         )}
 
         {(status === 'done' || status === 'saving') && (
-          <div className="bg-white rounded-[28px] border border-gray-100 p-6 shadow-sm space-y-5">
+          <div ref={resultsRef} className="bg-white rounded-[28px] border border-gray-100 p-6 shadow-sm space-y-5">
             <div>
               <h2 className="text-xl font-black text-gray-950">
                 {items.length > 0 ? `${items.length}개 식재료 인식됨 🎉` : '인식된 식재료가 없어요'}
@@ -367,7 +380,15 @@ const ScanResultPage = ({ capturedImg, onBack, onNavigate, scanMode = 'food' }) 
                           )}
                           <Pencil size={11} className="text-gray-300 shrink-0" />
                         </div>
-                        <p className="text-xs text-gray-400">소비기한 {it.use_by} · {it.qty}{it.unit || '개'}</p>
+                        {/* 단위 없으면 '개'로 기본값 처리 */}
+                        <div className="flex flex-col gap-0.5 mt-0.5">
+                          <p className="text-xs text-gray-400 whitespace-nowrap">
+                            소비기한 {it.use_by}
+                          </p>
+                          <p className="text-xs text-gray-500 font-medium">
+                            수량 {formatPantryQuantity(it.qty, it.unit || '개')}
+                          </p>
+                        </div>
                       </div>
                       <span
                         onClick={() => setEditItem(it)}
