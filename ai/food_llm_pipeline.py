@@ -17,8 +17,8 @@ except ImportError:
 
 from pipeline_common import calculate_use_by, resolve_package_unit
 
-OLLAMA_URL = "https://ollama.aikopo.net"
-MODEL = "gemma4:26b"
+OLLAMA_URL = "https://code.aikopo.net"
+MODEL = "qwen3-27b"
 
 VALID_STORAGE = {"냉장", "냉동", "실온"}
 VALID_CATEGORIES = {
@@ -49,14 +49,26 @@ def fix_exif_rotation(img_path: str) -> np.ndarray:
         return cv2.imread(img_path)
 
 
-def encode_image(img: np.ndarray, max_width: int = 1500) -> str:
+def encode_image(img: np.ndarray, max_width: int = 1500, max_b64_bytes: int = 900_000) -> str:
+    # code.aikopo.net(vLLM 게이트웨이)의 요청 본문 제한이 약 1MB라, 고해상도 사진을 base64
+    # 인코딩하면 이 한도를 넘어 413으로 거부되고 "0개 인식"으로 조용히 실패하는 문제가 있다
+    # (pipeline_common.py의 encode_image와 동일한 원인/해결책 - receipt_pipeline.py에서 확인됨).
+    # 품질을 낮춰도 부족하면 해상도까지 단계적으로 줄여서 항상 한도 아래로 맞춘다.
     h, w = img.shape[:2]
     if w > max_width:
         scale = max_width / w
         img = cv2.resize(img, (int(w * scale), int(h * scale)),
                          interpolation=cv2.INTER_AREA)
-    _, buf = cv2.imencode(".jpg", img, [cv2.IMWRITE_JPEG_QUALITY, 85])
-    return base64.b64encode(buf).decode("utf-8")
+
+    for _ in range(6):
+        for quality in (85, 70, 55, 40):
+            _, buf = cv2.imencode(".jpg", img, [cv2.IMWRITE_JPEG_QUALITY, quality])
+            b64 = base64.b64encode(buf).decode("utf-8")
+            if len(b64) <= max_b64_bytes:
+                return b64
+        h, w = img.shape[:2]
+        img = cv2.resize(img, (int(w * 0.8), int(h * 0.8)), interpolation=cv2.INTER_AREA)
+    return b64
 
 
 def is_valid_date(s: str) -> bool:
@@ -100,16 +112,29 @@ def parse_llm_json(text: str) -> dict:
 
 
 def stream_llm(payload: dict) -> str:
-    resp = requests.post(f"{OLLAMA_URL}/api/chat",
-                         json=payload, stream=True, timeout=300)
-    resp.raise_for_status()
+    # LLM 서빙이 Ollama에서 vLLM(OpenAI 호환 API)으로 바뀌었다 - 엔드포인트는 /v1/chat/completions이고
+    # 스트리밍 응답은 Ollama의 NDJSON(줄마다 완결된 JSON, message.content/done 필드)이 아니라
+    # OpenAI 스타일 SSE("data: {...}" 줄, choices[0].delta.content, 종료는 "data: [DONE]")다.
+    # 요청 실패(예: 게이트웨이 413/502)를 그냥 두면 예외가 그대로 올라가 /scan 전체가 500으로
+    # 죽는다(pipeline_common.py의 stream_llm은 이미 이렇게 방어돼 있었음) - 여기도 맞춰서
+    # 실패 시 빈 문자열을 반환해 "0개 인식"으로 안전하게 실패하도록 한다.
+    try:
+        resp = requests.post(f"{OLLAMA_URL}/v1/chat/completions",
+                             json=payload, stream=True, timeout=300)
+        resp.raise_for_status()
+    except requests.RequestException as e:
+        print(f"[LLM 오류] {e}")
+        return ""
     content_buf = ""
-    for line in resp.iter_lines():
-        if line:
-            chunk = json.loads(line)
-            content_buf += chunk.get("message", {}).get("content", "")
-            if chunk.get("done"):
-                break
+    for line in resp.iter_lines(decode_unicode=True):
+        if not line or not line.startswith("data:"):
+            continue
+        data = line[len("data:"):].strip()
+        if data == "[DONE]":
+            break
+        chunk = json.loads(data)
+        delta = chunk.get("choices", [{}])[0].get("delta", {})
+        content_buf += delta.get("content") or ""
     return content_buf.strip()
 
 
@@ -224,18 +249,27 @@ def process_food_llm(img_path: str) -> dict:
 
     payload = {
         "model": MODEL,
-        "think": False,
+        # think(Ollama) → chat_template_kwargs.enable_thinking(vLLM/Qwen3) - reasoning 텍스트가
+        # content에 섞여 나오는 것을 막는다.
+        "chat_template_kwargs": {"enable_thinking": False},
         "messages": [
             {"role": "system", "content": build_food_prompt()},
             {
                 "role": "user",
-                "content": "이 이미지에서 식재료를 인식해줘.",
-                "images": [img_b64]
+                # Ollama의 "content"(문자열) + "images"(리스트) 분리 필드 대신, OpenAI 호환
+                # vision 포맷은 content를 배열로 만들어 텍스트/이미지 블록을 함께 넣는다.
+                "content": [
+                    {"type": "text", "text": "이 이미지에서 식재료를 인식해줘."},
+                    {"type": "image_url", "image_url": {"url": f"data:image/jpeg;base64,{img_b64}"}},
+                ],
             }
         ],
-        "format": "json",
+        # format:"json"(Ollama) → response_format(OpenAI 호환)
+        "response_format": {"type": "json_object"},
         "stream": True,
-        "options": {"temperature": 0, "num_predict": 2048}
+        # options.num_predict(Ollama) → top-level temperature/max_tokens(OpenAI 호환)
+        "temperature": 0,
+        "max_tokens": 2048,
     }
 
     raw_text = stream_llm(payload)
@@ -269,9 +303,9 @@ def process_food_llm(img_path: str) -> dict:
         if storage not in VALID_STORAGE:
             storage = "실온"
 
-        use_by = calculate_use_by(name, storage, today)
+        use_by, use_by_evidence = calculate_use_by(name, storage, today, category_name=category_name)
         qty, unit, name = resolve_package_unit(name, it.get("qty"), (it.get("unit") or "").strip())
-        print(f"  [{name}] category={category_name}, storage={storage}, unit={unit} → use_by={use_by}")
+        print(f"  [{name}] category={category_name}, storage={storage}, unit={unit} → use_by={use_by} ({use_by_evidence.get('basis')})")
 
         items.append({
             "name": name,
@@ -279,7 +313,10 @@ def process_food_llm(img_path: str) -> dict:
             "qty": qty,
             "unit": unit,
             "storage": storage,
-            "use_by": use_by
+            "use_by": use_by,
+            "use_by_source": use_by_evidence.get("source"),
+            "use_by_basis": use_by_evidence.get("basis"),
+            "use_by_confidence": use_by_evidence.get("confidence"),
         })
 
     print(f"[LLM Vision] 인식 완료: {len(items)}개")

@@ -147,6 +147,9 @@ class ScanItem(BaseModel):
     storage: str
     use_by: str
     emoji: str
+    use_by_source: Optional[str] = None    # 소비기한 산출 근거 (RAG-B 매칭 항목 등)
+    use_by_basis: Optional[str] = None     # "rag" | "hardcoded_table" | "storage_default"
+    use_by_confidence: Optional[float] = None  # RAG 매칭 신뢰도(0~1), RAG 미사용 시 None
 
 
 class ScanResponse(BaseModel):
@@ -189,6 +192,9 @@ async def scan(req: ScanRequest):
             storage=it["storage"],
             use_by=it["use_by"],
             emoji=get_emoji(it["name"]),
+            use_by_source=it.get("use_by_source"),
+            use_by_basis=it.get("use_by_basis"),
+            use_by_confidence=it.get("use_by_confidence"),
         )
         for it in result.get("items", [])
     ]

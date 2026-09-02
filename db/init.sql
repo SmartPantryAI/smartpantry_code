@@ -67,7 +67,12 @@ CREATE TABLE IF NOT EXISTS recipes (
     cooking_time INT,
     difficulty   ENUM('easy','normal','hard') DEFAULT 'easy',
     image_url    VARCHAR(500),
-    created_at   DATETIME DEFAULT CURRENT_TIMESTAMP
+    dish_type    VARCHAR(50), -- mafra TY_NM 원문(예: '밥','국','밑반찬/김치') - is_main_dish 백필에만 쓰이는 mafra 전용 원본값
+    is_main_dish TINYINT(1), -- 소스 무관 메인요리 판정(1=메인, 0=디저트/사이드 등) - buildRecipeCandidates 필터링에 사용
+    source_api   VARCHAR(20) NOT NULL DEFAULT 'mafra', -- 'mafra' | 'themealdb'
+    external_id  VARCHAR(50) NULL, -- 외부 API 원본 id (mafra 데이터는 NULL) - 재실행 시 중복 import 방지
+    created_at   DATETIME DEFAULT CURRENT_TIMESTAMP,
+    UNIQUE KEY uq_recipes_source (source_api, external_id)
 );
 
 CREATE TABLE IF NOT EXISTS recipe_ingredients (
@@ -80,6 +85,43 @@ CREATE TABLE IF NOT EXISTS recipe_ingredients (
     FOREIGN KEY (recipe_id)     REFERENCES recipes(id) ON DELETE CASCADE,
     FOREIGN KEY (ingredient_id) REFERENCES ingredients(id)
 );
+
+-- 펜트리 상품명(브랜드/가공식품명)을 레시피 매칭용 표준 재료명으로 잇는 별칭 테이블.
+-- alias_name과 원재료명이 문자열로 겹치지 않는 경우만 사용(겹치면 기존 부분 문자열 매칭으로 충분).
+-- 하나의 alias_name이 여러 canonical_ingredient에 대응할 수 있다(예: 햇반은 "밥"이 필요한 레시피와
+-- "쌀"이 필요한 레시피 양쪽에 다 대응돼야 함) - 그래서 UNIQUE를 alias_name 단독이 아니라
+-- (alias_name, canonical_ingredient) 조합에 건다.
+CREATE TABLE IF NOT EXISTS ingredient_aliases (
+    id                   BIGINT AUTO_INCREMENT PRIMARY KEY,
+    alias_name           VARCHAR(200) NOT NULL,
+    canonical_ingredient VARCHAR(200) NOT NULL,
+    source               ENUM('manual','llm') NOT NULL DEFAULT 'llm',
+    created_at           DATETIME DEFAULT CURRENT_TIMESTAMP,
+    UNIQUE KEY uq_alias_canonical (alias_name, canonical_ingredient)
+);
+
+-- 수동 시드: 실제 pantry.item_name 전수 조사 + canonical_ingredient가 recipe_ingredients에서
+-- 실제로 쓰이는 재료명인지 확인 후 추가함(예: '어묵'→'연육'은 '연육'이 recipe_ingredients에 없어서 제외,
+-- '어묵' 자체가 이미 재료명으로 존재해 별칭 없이도 직접 매칭됨).
+INSERT IGNORE INTO ingredient_aliases (alias_name, canonical_ingredient, source) VALUES
+('햇반', '쌀', 'manual'),
+('햇반', '밥', 'manual'),
+('즉석밥', '쌀', 'manual'),
+('즉석밥', '밥', 'manual'),
+('오뚜기밥', '쌀', 'manual'),
+('오뚜기밥', '밥', 'manual'),
+('스팸', '햄', 'manual'),
+('런천미트', '햄', 'manual'),
+('진미채', '오징어', 'manual'),
+('맛살', '게살', 'manual'),
+('메추리알', '계란', 'manual'),
+('달걀', '계란', 'manual'),
+('특란', '계란', 'manual'),
+('유정란', '계란', 'manual'),
+-- 두반장/쌈장은 '고추장'/'된장'과 문자열이 전혀 겹치지 않아 별칭이 필요하다(둘 다 실사용 있음: 고추장 71건, 된장 30건).
+-- 국간장/진간장/맛간장은 이미 '간장'을 부분 문자열로 포함해 기존 매칭으로 충분하므로 추가하지 않음.
+('두반장', '고추장', 'manual'),
+('쌈장', '된장', 'manual');
 
 CREATE TABLE IF NOT EXISTS recommendation_logs (
     id                  BIGINT AUTO_INCREMENT PRIMARY KEY,

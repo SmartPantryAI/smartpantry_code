@@ -259,8 +259,8 @@ const FOOD_CATEGORIES = [
 const guessCategory = async (name) => {
   if (!name) return null;
   try {
-    const { data } = await axios.post('http://ollama.aikopo.net/api/chat', {
-      model: 'gemma4:26b',
+    const { data } = await axios.post('http://code.aikopo.net/v1/chat/completions', {
+      model: 'qwen3-27b',
       messages: [
         {
           role: 'system',
@@ -282,15 +282,62 @@ const guessCategory = async (name) => {
         { role: 'user', content: name },
       ],
       stream: false,
-      think: false,
-      options: { temperature: 0, num_predict: 20 },
-    }, { timeout: 10000 });
+      temperature: 0,
+      max_tokens: 20,
+      chat_template_kwargs: { enable_thinking: false },
+    }, { timeout: 30000 });
 
-    const result = (data?.message?.content || '').trim();
+    const result = (data?.choices?.[0]?.message?.content || '').trim();
     const matched = FOOD_CATEGORIES.find(cat => result.includes(cat));
     return matched || null;
   } catch (err) {
     console.error('카테고리 추정 LLM 오류:', err.message);
+    return null;
+  }
+};
+
+// 브랜드/가공식품 상품명(예: "오뚜기 진라면")을 레시피 매칭용 표준 재료명으로 변환해
+// ingredient_aliases에 캐싱한다. 이미 별칭이 있거나 그 자체로 표준 재료명이면 LLM을 부르지 않는다.
+const classifyCanonicalIngredient = async (itemName) => {
+  if (!itemName) return null;
+
+  const existing = await query(
+    'SELECT canonical_ingredient FROM ingredient_aliases WHERE alias_name = ?',
+    [itemName]
+  );
+  if (existing.length > 0) return existing[0].canonical_ingredient;
+
+  const directMatch = await query('SELECT id FROM ingredients WHERE name = ?', [itemName]);
+  if (directMatch.length > 0) return null;
+
+  try {
+    const { data } = await axios.post('http://code.aikopo.net/v1/chat/completions', {
+      model: 'qwen3-27b',
+      messages: [
+        {
+          role: 'system',
+          content: '너는 식재료 변환 AI다. 주어진 식료품 상품명이 조리 레시피에서 흔히 쓰이는 표준 재료명으로 변환 가능하면 그 표준 재료명 한 단어만 출력한다(예: 햇반→쌀, 스팸→돼지고기). 이미 표준 재료명이거나 변환할 명확한 재료가 없으면 NONE이라고만 출력한다. 다른 텍스트는 절대 출력하지 않는다.',
+        },
+        { role: 'user', content: itemName },
+      ],
+      stream: false,
+      temperature: 0,
+      max_tokens: 20,
+      chat_template_kwargs: { enable_thinking: false },
+    }, { timeout: 30000 });
+
+    const canonical = (data?.choices?.[0]?.message?.content || '').trim();
+    if (canonical && canonical !== 'NONE' && canonical !== itemName) {
+      await query(
+        `INSERT INTO ingredient_aliases (alias_name, canonical_ingredient, source) VALUES (?, ?, 'llm')
+         ON DUPLICATE KEY UPDATE canonical_ingredient = VALUES(canonical_ingredient)`,
+        [itemName, canonical]
+      );
+      return canonical;
+    }
+    return null;
+  } catch (err) {
+    console.error('재료 별칭 분류 LLM 오류:', err.message);
     return null;
   }
 };
@@ -341,6 +388,9 @@ app.post('/api/add-item', isLoggedIn, async (req, res) => {
             const unit     = item.unit       || null;
 
             const foodCategory = item.category_name || await guessCategory(name);
+            // 펜트리 등록을 막지 않도록 별칭 분류는 fire-and-forget으로 호출한다.
+            // 결과는 ingredient_aliases에 캐싱되며 다음 /api/recommend 호출부터 반영된다.
+            classifyCanonicalIngredient(name).catch(err => console.error('별칭 분류 오류:', err.message));
             await query('INSERT IGNORE INTO ingredients (name, emoji, category) VALUES (?, ?, ?)', [name, emoji, foodCategory]);
             await query('UPDATE ingredients SET category = ? WHERE name = ? AND category IS NULL', [foodCategory, name]);
             const [ing] = await query('SELECT id FROM ingredients WHERE name = ?', [name]);
@@ -451,40 +501,23 @@ app.post('/api/scan', isLoggedIn, async (req, res) => {
     }
 });
 
-// ── 레시피 추천 (LLM) ─────────────────────────────────────────
-const RECIPE_PROMPT = `너는 창의적인 한국 요리 레시피 추천 API다. 반드시 순수 JSON만 출력한다. 마크다운, 설명, 코드블럭, 주석을 절대 출력하지 않는다.
-
-출력 형식:
-{
-  "recipes": [
-    {
-      "name": "요리명",
-      "servings": "2인분",
-      "used_ingredients": ["양파 1개 (채 썰기)", "돼지고기 300g"],
-      "missing_ingredients": ["참기름 1큰술"],
-      "steps": ["1단계 상세 설명", "2단계 상세 설명"],
-      "tips": ["핵심 팁"],
-      "time": "30분",
-      "difficulty": "쉬움"
-    }
-  ]
-}
-
-규칙:
-- recipes 정확히 2개, 서로 다른 종류 (예: 국물 + 볶음)
-- 앞쪽 재료일수록 유통기한 임박 → 우선 활용
-- used_ingredients: 분량 포함, steps: 5~7개 구체적 설명, tips: 1~2개
-- difficulty: "쉬움"|"보통"|"어려움", 모든 값 한국어
-- JSON만 출력`;
-
-const isValidRecipe = (r) =>
-    r && typeof r.name === 'string' && r.name.trim() &&
-    Array.isArray(r.steps) && r.steps.length > 0;
-
-// Ollama가 간헐적으로 타임아웃/네트워크 오류를 내므로 1회 재시도한다
+// ── 레시피 추천 (DB 커버리지 매칭 → 상위 후보만 LLM으로 서술 다듬기) ──────
+// LLM 서빙이 Ollama에서 vLLM(OpenAI 호환 API)으로 바뀌었다 - 엔드포인트는 /v1/chat/completions,
+// 응답은 choices[0].message.content 형태다(Ollama의 message.content와 다름). 이 함수를 호출하는
+// polishRecipesWithLLM/generateLLMRecipe의 payload도 Ollama 전용 필드(think, options.num_predict)
+// 대신 top-level temperature/max_tokens + chat_template_kwargs.enable_thinking(Qwen3 reasoning
+// 끄기, Ollama의 think:false에 대응)를 쓰도록 맞춰야 한다.
+// 응답이 간헐적으로 타임아웃/네트워크 오류를 내므로 1회 재시도한다.
+// 타임아웃은 60초 - vLLM(qwen3-27b) 전환 후 실측해보니 정상 응답도 폴리시 27초/자유생성 40초
+// 정도 걸려서(기존 Ollama+gemma4:26b보다 느림), 예전에 "서버 다운 시 빨리 포기"용으로 잡았던
+// 15초는 정상적으로 느린 응답까지 실패로 처리해버리는 역효과가 있었다. 반대로 서버가 완전히
+// 다운된 경우(Cloudflare 502 등)는 응답 자체가 즉시(1초 이내) 에러로 오므로 타임아웃 값을 늘려도
+// "다운 시 오래 기다리는" 문제는 생기지 않는다 - 타임아웃은 오직 "응답이 아예 안 오는" 경우에만
+// 개입한다. polishRecipesWithLLM/generateLLMRecipe가 Promise.all로 병렬 실행되므로 전체
+// 대기시간은 둘 중 느린 쪽(약 40초) 수준이고, nginx proxy_read_timeout(130초)보다 여유있게 짧다.
 async function callOllamaWithRetry(payload, retries = 1) {
     try {
-        return await axios.post('http://ollama.aikopo.net/api/chat', payload, { timeout: 120000 });
+        return await axios.post('http://code.aikopo.net/v1/chat/completions', payload, { timeout: 60000 });
     } catch (err) {
         if (retries > 0) {
             console.warn('⚠️ Ollama 호출 실패, 재시도:', err.message);
@@ -494,59 +527,374 @@ async function callOllamaWithRetry(payload, retries = 1) {
     }
 }
 
+const DIFFICULTY_KO = { easy: '쉬움', normal: '보통', hard: '어려움' };
+
+// 부분 문자열로는 겹치지만 실제로는 완전히 다른 가공품/부위/종인 예외 목록.
+// ingredient_aliases의 canonical_ingredient처럼 짧고 일반적인 표준 재료명이 부분 문자열
+// 매칭 때문에 전혀 다른 식재료까지 "보유 재료"로 잘못 인정하는 문제를 막는다.
+// 실사용 중 발견: 햇반(→쌀 별칭)이 있으면 "쌀국수"가 필요한 레시피도 보유 재료로 잘못 표시됐다
+// (nameMatches가 "쌀".includes("쌀국수")는 false여도 "쌀국수".includes("쌀")은 true라 매칭됨).
+const SUBSTRING_FALSE_POSITIVES = {
+    '쌀': ['쌀국수', '쌀가루', '쌀식초', '쌀 식초', '쌀뜨물', '멥쌀가루', '찹쌀가루'],
+    '감자': ['감자 전분', '감자전분', '돼지감자'],
+    '고구마': ['고구마잎', '고구마줄기'],
+    '닭고기': ['닭고기 육수'],
+    '멸치': ['멸치액젓', '멸치젓'],
+    '새우': ['새우젓', '새우젓국'],
+    '오징어': ['갑오징어'],
+};
+
+const isSubstringFalsePositive = (shortName, longName) => {
+    const badWords = SUBSTRING_FALSE_POSITIVES[shortName];
+    return badWords ? badWords.some(w => longName.includes(w)) : false;
+};
+
+// pantry/CookModal/pantry-cook에서 쓰는 것과 동일한 양방향 부분 문자열 매칭
+const nameMatches = (pantryName, ingredientName) => {
+    if (isSubstringFalsePositive(pantryName, ingredientName) || isSubstringFalsePositive(ingredientName, pantryName)) {
+        return false;
+    }
+    return pantryName.includes(ingredientName) || ingredientName.includes(pantryName);
+};
+
+const isMatchedByPantry = (ingredientName, pantryNames) =>
+    pantryNames.some(p => nameMatches(p, ingredientName));
+
+// 브랜드/가공식품 상품명(예: "햇반")을 표준 재료명(예: "쌀")으로 잇는 별칭 테이블.
+// isMatchedByPantry 자체는 건드리지 않고, 그 앞단에서 입력 이름 목록만 넓힌다.
+const loadAliasRows = () =>
+    query('SELECT alias_name, canonical_ingredient FROM ingredient_aliases');
+
+const expandWithAliases = (names, aliasRows) => {
+    const expanded = new Set(names);
+    for (const name of names) {
+        const trimmed = name.trim();
+        // 하나의 alias_name이 여러 표준 재료명에 대응할 수 있다(예: "햇반"은 즉석 조리된 밥이라
+        // "밥"이 필요한 레시피와 "쌀"이 필요한 레시피 양쪽에 다 대응돼야 한다) - 첫 매칭 하나만
+        // 쓰면 나머지 canonical_ingredient가 무시돼 보유 재료로 안 잡히는 문제가 있었다.
+        const hits = aliasRows.filter(a =>
+            trimmed.includes(a.alias_name) || a.alias_name.includes(trimmed)
+        );
+        for (const hit of hits) expanded.add(hit.canonical_ingredient);
+    }
+    return [...expanded];
+};
+
+const CANDIDATE_POOL_SIZE = 20;
+const DATASET_RECIPE_COUNT = 2;
+const RECENT_RECOMMENDATION_PENALTY = 30;
+const RECENT_RECOMMENDATION_WINDOW_DAYS = 3;
+
+// 소금/후추/설탕/식용유/물처럼 거의 모든 집에 이미 있다고 가정할 수 있는 범용 조미료.
+// "부족해서 사야 하는 재료" 판정(costGap)에서만 제외한다 - used_ingredients/missing_ingredients
+// 표시 자체는 그대로 두고(실제 레시피 구성 정보이므로), 후보 필터링 판정에서만 이미 있다고 가정해
+// 불필요하게 후보 풀을 줄이지 않게 한다.
+// 원래는 ingredients.category(양념·소스/육류/수산물 등)로 재료별 "비용"을 세분화하려 했으나,
+// 실제 recipe_ingredients에 쓰이는 재료 1353종 중 category가 채워진 건 67종(5%)뿐이라
+// (mafra/themealdb 일괄 import는 category를 채우지 않음 - 펜트리 등록 시 guessCategory를 타는
+// 재료만 채워짐) 지금은 적용 불가. 대신 "범용 조미료면 비용 0, 아니면 비용 1(필수/양념 구분 없이 동일)"
+// 이라는 더 단순한 근사치를 쓴다.
+const UNIVERSAL_STAPLE_INGREDIENTS = ['소금', '후추', '후춧가루', '통후추', '설탕', '식용유', '물'];
+const isUniversalStaple = (ingredientName) => UNIVERSAL_STAPLE_INGREDIENTS.some(s => ingredientName.includes(s));
+
+// "필수재료 비율/개수"만 보고 양념 부족은 필터에서 아예 안 보던 이전 설계는, 필수재료는 조금
+// 부족해도 양념이 왕창(4~5개) 없는 레시피를 걸러내지 못했다(실사용 중 발견: 모듬초밥/두부알찜처럼
+// 보유 3개인데 부족 6개인 레시피가 상위로 올라옴). 필수/양념을 분리하지 않고 "범용 조미료가 아닌
+// 재료" 전체를 하나로 묶어 보유 개수 vs 부족 개수를 직접 비교한다(costGap = 부족 - 보유).
+// costGap <= 0 이 원래 요구사항("보유보다 필요가 더 많으면 안 된다")의 가장 직접적인 번역이다.
+// 다만 pantry가 아주 작으면 costGap<=0만으로는 후보가 1~2건뿐일 수 있어(실측: 4~16개 pantry
+// 유저 5명 중 1명은 gap<=0에서 1건) 단계적으로 완화한다. 완화 목표는 CANDIDATE_POOL_SIZE(20)가
+// 아니라 더 작은 MIN_ACCEPTABLE_POOL로 잡아 "개수 채우려고 품질 기준을 과도하게 낮추는" 문제를
+// 피한다 - 실측 결과 gap<=1에서 전원 7건 이상, gap<=2에서 전원 20건 이상 확보됐다.
+const COST_GAP_TIERS = [0, 1, 2, 3, 5];
+const MIN_ACCEPTABLE_POOL = 10;
+
+// 1단계: SQL/코드 기반 결정론적 커버리지 계산 (LLM 미사용)
+// is_main_dish는 소스 무관(mafra dish_type / TheMealDB strCategory 백필 결과) 공통 컬럼이다.
+// 판정 기준: scripts/migrate_recipe_source_schema.mjs(mafra 백필), scripts/import_themealdb_recipes.mjs(신규 import) 참고.
+const buildRecipeCandidates = async (pantryNames, priorityNames, userId) => {
+    const rows = await query(`
+        SELECT r.id AS recipe_id, r.title, r.description, r.cooking_time, r.difficulty,
+               ing.name AS ingredient_name, ri.amount, ri.unit, ri.is_required
+        FROM recipes r
+        JOIN recipe_ingredients ri ON ri.recipe_id = r.id
+        JOIN ingredients ing ON ing.id = ri.ingredient_id
+        WHERE r.is_main_dish = 1
+    `);
+
+    const byRecipe = new Map();
+    for (const row of rows) {
+        if (!byRecipe.has(row.recipe_id)) {
+            byRecipe.set(row.recipe_id, {
+                id: row.recipe_id,
+                title: row.title,
+                description: row.description,
+                cooking_time: row.cooking_time,
+                difficulty: row.difficulty,
+                ingredients: [],
+            });
+        }
+        byRecipe.get(row.recipe_id).ingredients.push({
+            name: row.ingredient_name,
+            amount: row.amount === null ? null : Number(row.amount),
+            unit: row.unit,
+            is_required: !!row.is_required,
+        });
+    }
+
+    const candidates = [];
+    for (const recipe of byRecipe.values()) {
+        const required = recipe.ingredients.filter(i => i.is_required);
+        const seasoning = recipe.ingredients.filter(i => !i.is_required);
+
+        const matchedRequired = required.filter(i => isMatchedByPantry(i.name, pantryNames));
+        const matchedSeasoning = seasoning.filter(i => isMatchedByPantry(i.name, pantryNames));
+
+        const requiredCoverage = required.length ? matchedRequired.length / required.length : 0;
+
+        const seasoningCoverage = seasoning.length ? matchedSeasoning.length / seasoning.length : 0;
+        const priorityMatchCount = [...matchedRequired, ...matchedSeasoning]
+            .filter(i => isMatchedByPantry(i.name, priorityNames)).length;
+
+        // costGap = 부족 개수 - 보유 개수 (범용 조미료 제외, 필수+양념 통합). <=0이면 "사야 할 게
+        // 이미 가진 것보다 많지 않다"는 뜻. 하드 필터 자체는 루프 밖에서 COST_GAP_TIERS로 단계적으로
+        // 적용한다(우선순위 매칭 레시피는 거기서도 이 값과 무관하게 항상 통과시킨다 - "카레만 있고
+        // 나머지 재료는 없는" 경우처럼 사용자가 명시적으로 고른 재료를 쓰는 레시피가 낮은 커버리지
+        // 때문에 걸러지던 문제 방지).
+        const nonStapleIngredients = recipe.ingredients.filter(i => !isUniversalStaple(i.name));
+        const matchedNonStapleCount = nonStapleIngredients.filter(i => isMatchedByPantry(i.name, pantryNames)).length;
+        const missingNonStapleCount = nonStapleIngredients.length - matchedNonStapleCount;
+        const costGap = missingNonStapleCount - matchedNonStapleCount;
+
+        // requiredCoverage(비율)만으로 점수를 매기면 필수재료가 적은 레시피가 쉽게 100%를 찍어
+        // 상위권을 독식하므로, matchedRequired.length(절대량)를 더해 보유 재료를 많이 쓰는
+        // 레시피가 우대받도록 한다. costGap 페널티(-20/개)는 필터(COST_GAP_TIERS)와 같은 기준을
+        // 점수에도 반영한다 - 필터만 costGap을 보고 점수는 안 보면, gap이 큰(살 게 더 많은) 레시피가
+        // 필터는 통과했는데도 다른 항목(matchedRequired 등) 때문에 gap이 작은/음수인 레시피보다
+        // 오히려 위로 올라가는 모순이 생긴다(실사용 중 발견: gap=+1인 레시피가 gap=-1인 레시피보다
+        // 상위 노출됨). 가중치 20은 matchedRequired.length의 가중치와 대칭시켰다.
+        const score =
+            requiredCoverage * 40 +
+            matchedRequired.length * 20 +
+            seasoningCoverage * 10 +
+            priorityMatchCount * 150 -
+            costGap * 20;
+
+        const usedIngredients = [...matchedRequired, ...matchedSeasoning]
+            .map(i => ({ name: i.name, amount: i.amount, unit: i.unit, is_required: i.is_required }));
+        const missingIngredients = recipe.ingredients
+            .filter(i => !isMatchedByPantry(i.name, pantryNames))
+            .map(i => `${i.amount ?? ''}${i.unit ?? ''} ${i.name}`.trim());
+
+        candidates.push({
+            id: recipe.id,
+            name: recipe.title,
+            description: recipe.description,
+            time: recipe.cooking_time ? `${recipe.cooking_time}분` : '?',
+            difficulty: DIFFICULTY_KO[recipe.difficulty] || '보통',
+            used_ingredients: usedIngredients,
+            missing_ingredients: missingIngredients,
+            priorityMatchCount,
+            costGap,
+            score,
+        });
+    }
+
+    // 최근 추천된 레시피는 점수를 감점해 같은 펜트리 조합으로 반복 요청해도 다른 레시피가
+    // 섞여 나오게 한다. recommendation_logs는 호출당 1행(recipe_id 컬럼 미사용)이라
+    // llm_response.recipes[].id를 JSON_TABLE로 펼쳐서 최근 추천 id를 구한다.
+    if (userId) {
+        const recentRows = await query(
+            `SELECT DISTINCT jt.recipe_id
+             FROM recommendation_logs rl,
+             JSON_TABLE(rl.llm_response, '$.recipes[*]' COLUMNS (recipe_id BIGINT PATH '$.id')) AS jt
+             WHERE rl.user_id = ? AND rl.created_at > NOW() - INTERVAL ? DAY`,
+            [userId, RECENT_RECOMMENDATION_WINDOW_DAYS]
+        );
+        const recentIdSet = new Set(recentRows.map(r => r.recipe_id));
+        for (const c of candidates) {
+            if (recentIdSet.has(c.id)) c.score -= RECENT_RECOMMENDATION_PENALTY;
+        }
+    }
+
+    // COST_GAP_TIERS를 단계적으로 완화하되, 목표는 CANDIDATE_POOL_SIZE(최종 출력 상한, 다양성용)가
+    // 아니라 더 작은 MIN_ACCEPTABLE_POOL이다 - "개수를 채우려고 품질 기준 자체를 낮추는" 문제를
+    // 피하기 위해 완화는 "후보가 너무 적을 때만" 최소한으로 하고, 확보된 후보가 이미 충분히 많으면
+    // 그 이상 완화하지 않는다(즉, 완화 여부는 품질 우선이고 풀 크기는 부차적). 우선순위 재료를 실제로
+    // 쓰는 레시피는 costGap과 무관하게 모든 단계에서 항상 포함시킨다.
+    let pool = candidates;
+    for (const maxGap of COST_GAP_TIERS) {
+        const tierPool = candidates.filter(c => c.priorityMatchCount > 0 || c.costGap <= maxGap);
+        pool = tierPool;
+        if (tierPool.length >= MIN_ACCEPTABLE_POOL) break;
+    }
+
+    // 우선순위 재료가 선택된 경우, 그 재료를 실제로 쓰는 레시피만 남긴다(하드 필터) -
+    // 위 단계적 완화는 항상 우선순위 매칭 레시피를 포함시키지만, 매칭 안 되는 다른 레시피가
+    // 섞여 상위권을 차지하지 않도록 우선순위 매칭이 하나라도 있으면 그것만 남긴다.
+    // 단, 우선순위 재료명이 pantry의 지저분한 표기(예: "햇반 210g")라 어떤 recipe_ingredients
+    // 이름과도 안 겹치면 하드 필터가 후보를 전부 걸러낼 수 있으므로, 그 경우엔 필터를 적용하지 않고
+    // (이미 점수에 반영된) 커버리지 기준 정렬로 폴백해 "추천이 아예 없음"을 피한다.
+    if (priorityNames.length > 0) {
+        const withPriorityMatch = pool.filter(c => c.priorityMatchCount > 0);
+        if (withPriorityMatch.length > 0) pool = withPriorityMatch;
+    }
+
+    pool.sort((a, b) => b.score - a.score);
+    return pool.slice(0, CANDIDATE_POOL_SIZE).map(({ priorityMatchCount, costGap, ...c }) => c);
+};
+
+// 2단계: 상위 후보의 조리순서/팁/추천이유만 LLM으로 다듬는다.
+// 재료 목록·수량은 절대 LLM 출력으로 덮어쓰지 않는다.
+const RECIPE_POLISH_PROMPT = `너는 한국 요리 레시피 설명 작성 보조 AI다. 반드시 순수 JSON만 출력한다. 마크다운, 설명, 코드블럭, 주석을 절대 출력하지 않는다.
+
+입력으로 레시피 목록(id, 요리명, 설명, 보유 재료, 부족한 재료)이 주어진다.
+각 레시피에 대해 조리 순서와 팁, 한 줄 추천 이유만 작성한다. 재료나 분량을 새로 만들어내지 않는다.
+
+출력 형식:
+{
+  "recipes": [
+    { "id": 123, "steps": ["1단계 상세 설명", "2단계 상세 설명"], "tips": ["핵심 팁"], "reason": "이 재료들로 만들기 좋은 이유 한 줄" }
+  ]
+}
+
+규칙:
+- steps: 5~7개 구체적 설명, tips: 1~2개, reason: 1문장
+- 입력에 없던 id를 만들어내지 않는다, 입력된 id 전부에 대해 결과를 작성한다
+- JSON만 출력`;
+
+const polishRecipesWithLLM = async (candidates) => {
+    const userPayload = candidates.map(c => ({
+        id: c.id,
+        name: c.name,
+        description: c.description,
+        have: c.used_ingredients.map(i => i.name),
+        missing: c.missing_ingredients,
+    }));
+
+    try {
+        const { data } = await callOllamaWithRetry({
+            model: 'qwen3-27b',
+            messages: [
+                { role: 'system', content: RECIPE_POLISH_PROMPT },
+                { role: 'user', content: JSON.stringify(userPayload) },
+            ],
+            stream: false,
+            temperature: 0.7,
+            max_tokens: 3000,
+            chat_template_kwargs: { enable_thinking: false },
+        });
+
+        const text = data?.choices?.[0]?.message?.content || '';
+        const parsed = JSON.parse(text);
+        const byId = new Map((parsed?.recipes || []).map(r => [r.id, r]));
+
+        return candidates.map(c => {
+            const polish = byId.get(c.id);
+            return {
+                ...c,
+                steps: Array.isArray(polish?.steps) ? polish.steps : [],
+                tips: Array.isArray(polish?.tips) ? polish.tips : [],
+                reason: typeof polish?.reason === 'string' ? polish.reason : '',
+            };
+        });
+    } catch (err) {
+        console.error('⚠️ 레시피 서술 다듬기 실패(LLM은 선택 단계이므로 기본값으로 계속):', err.message);
+        return candidates.map(c => ({ ...c, steps: [], tips: [], reason: '' }));
+    }
+};
+
+// 3단계: 데이터셋 후보와 별개로, 펜트리 재료만 주고 LLM이 레시피 자체를 자유 생성한다.
+// polishRecipesWithLLM과 달리 재료 목록도 LLM이 새로 지어내므로 recipes 테이블과 무관하다(id: null).
+const RECIPE_GENERATE_PROMPT = `너는 요리 레시피 생성 보조 AI다. 한식에 국한하지 말고 양식·중식·일식·동남아식·중동식 등 전 세계 요리 중에서 자유롭게 골라, 주어진 보유 재료만으로(또는 최소한의 흔한 조미료를 추가로 가정하고) 만들 수 있는 요리를 하나 창작한다. 매번 같은 나라 음식으로 치우치지 말고 다양하게 제안한다. 요리 이름·조리순서·팁 등 출력 텍스트는 한국어로 작성하되, 그 요리가 어느 나라/문화권 음식인지 자연스럽게 드러나도 된다(예: "이탈리아식 감자 뇨끼", "태국식 새우 볶음밥"). 재료 목록, 조리순서, 팁을 모두 새로 작성한다.
+
+입력에 "priority" 배열이 있으면, 그 재료는 사용자가 반드시 이번 요리에 쓰고 싶다고 명시적으로 고른 재료다. priority 재료를 실제로 포함하는 요리를 최우선으로 창작하고(다른 보유 재료보다 priority 재료를 중심에 둔다), priority가 비어있으면 보유 재료 전체 중에서 자유롭게 고른다.
+
+반드시 아래 JSON 하나만 출력한다:
+{
+  "name": "요리 이름",
+  "used_ingredients": [{ "name": "재료명", "amount": 숫자 또는 null, "unit": "단위 또는 null", "is_required": true }],
+  "missing_ingredients": ["부족할 수 있는 재료(있다면)"],
+  "steps": ["1단계 설명", "2단계 설명"],
+  "tips": ["팁1"],
+  "reason": "이 재료들로 이 요리를 추천하는 이유 1문장"
+}
+마크다운, 설명, 코드블록, 주석을 절대 출력하지 않는다. JSON만 출력한다.`;
+
+const generateLLMRecipe = async (pantryNames, priorityNames = []) => {
+    try {
+        const { data } = await callOllamaWithRetry({
+            model: 'qwen3-27b',
+            messages: [
+                { role: 'system', content: RECIPE_GENERATE_PROMPT },
+                { role: 'user', content: JSON.stringify({ have: pantryNames, priority: priorityNames }) },
+            ],
+            stream: false,
+            temperature: 0.7,
+            max_tokens: 1500,
+            chat_template_kwargs: { enable_thinking: false },
+        });
+        const text = data?.choices?.[0]?.message?.content || '';
+        const parsed = JSON.parse(text);
+        return {
+            id: null,
+            source: 'llm',
+            name: parsed.name,
+            description: '',
+            time: '?',
+            difficulty: '보통',
+            used_ingredients: Array.isArray(parsed.used_ingredients) ? parsed.used_ingredients : [],
+            missing_ingredients: Array.isArray(parsed.missing_ingredients) ? parsed.missing_ingredients : [],
+            steps: Array.isArray(parsed.steps) ? parsed.steps : [],
+            tips: Array.isArray(parsed.tips) ? parsed.tips : [],
+            reason: typeof parsed.reason === 'string' ? parsed.reason : '',
+        };
+    } catch (err) {
+        console.error('LLM 레시피 자유생성 실패:', err.message);
+        return null;
+    }
+};
+
 app.post('/api/recommend', isLoggedIn, async (req, res) => {
     // 같은 재료가 여러 배치로 등록돼 있어도 이름 기준 1건으로 합쳐 전달한다
     const ingredients = [...new Set(req.body?.ingredients || [])];
     const priorityIngredients = [...new Set(req.body?.priorityIngredients || [])];
     if (!ingredients.length) return res.status(400).json({ recipes: [] });
 
-    const priorityRule = priorityIngredients.length > 0
-        ? `- 우선 사용 재료: [${priorityIngredients.join(', ')}] → 이 재료들이 반드시 메인 재료로 활용되어야 한다`
-        : `- 앞쪽 재료일수록 유통기한 임박 → 우선 활용`;
-
-    const dynamicPrompt = RECIPE_PROMPT.replace(
-        '- 앞쪽 재료일수록 유통기한 임박 → 우선 활용',
-        priorityRule
-    );
-
-    const userMessage = priorityIngredients.length > 0
-        ? `우선 사용할 재료: ${priorityIngredients.join(', ')}\n전체 보유 재료: ${ingredients.join(', ')}\n우선 재료를 메인으로 활용한 요리를 JSON만 출력해라.`
-        : `보유 재료: ${ingredients.join(', ')}\n위 재료로 만들 수 있는 요리를 JSON만 출력해라.`;
-
     try {
-        const { data } = await callOllamaWithRetry({
-            model: 'gemma4:26b',
-            messages: [
-                { role: 'system', content: dynamicPrompt },
-                { role: 'user', content: userMessage },
-            ],
-            stream: false,
-            think: false,
-            options: { temperature: 0.7, num_predict: 3000 },
-        });
+        const aliasRows = await loadAliasRows();
+        const expandedIngredients = expandWithAliases(ingredients, aliasRows);
+        const expandedPriorityIngredients = expandWithAliases(priorityIngredients, aliasRows);
 
-        const text = data?.message?.content || data?.response || '';
-        let parsed;
-        try { parsed = JSON.parse(text); }
-        catch { parsed = null; }
+        const candidates = await buildRecipeCandidates(expandedIngredients, expandedPriorityIngredients, req.user.id);
+        const datasetFinalists = candidates.slice(0, DATASET_RECIPE_COUNT);
 
-        const recipes = Array.isArray(parsed?.recipes) ? parsed.recipes.filter(isValidRecipe) : [];
+        const [polished, llmRecipe] = await Promise.all([
+            datasetFinalists.length ? polishRecipesWithLLM(datasetFinalists) : Promise.resolve([]),
+            generateLLMRecipe(expandedIngredients, expandedPriorityIngredients),
+        ]);
+
+        const recipes = [
+            ...polished.map(({ score, ...recipe }) => ({ ...recipe, source: 'dataset' })),
+            ...(llmRecipe ? [llmRecipe] : []),
+        ];
 
         if (recipes.length === 0) {
-            console.error('❌ LLM 추천 응답 파싱 실패 또는 빈 결과:', text.slice(0, 300));
-            return res.status(502).json({ recipes: [], error: 'invalid_ai_response' });
+            return res.json({ recipes: [] });
         }
 
-        // 추천 이력 저장 (비동기, 오류 무시)
+        const avgScore = datasetFinalists.length
+            ? datasetFinalists.reduce((sum, c) => sum + c.score, 0) / datasetFinalists.length
+            : 0;
         db.query(
-            "INSERT INTO recommendation_logs (user_id, recommendation_type, input_ingredients, llm_response) VALUES (?, 'llm_generated', ?, ?)",
-            [req.user.id, ingredients.join(','), JSON.stringify({ recipes })],
+            "INSERT INTO recommendation_logs (user_id, recommendation_type, input_ingredients, match_score, llm_response) VALUES (?, 'db_match', ?, ?, ?)",
+            [req.user.id, ingredients.join(','), avgScore, JSON.stringify({ recipes })],
             (err) => { if (err) console.error('추천 로그 저장 실패:', err.message); }
         );
 
         res.json({ recipes });
     } catch (err) {
-        console.error('❌ LLM 추천 에러:', err.message);
+        console.error('❌ 레시피 추천 에러:', err.message);
         res.status(500).json({ recipes: [], error: err.message });
     }
 });

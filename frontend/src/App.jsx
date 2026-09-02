@@ -141,6 +141,10 @@ function App() {
     setIsCameraOpen(false);
   };
 
+  const handleRetake = () => {
+    openCamera(scanMode);
+  };
+
   const handleCapture = () => {
     if (videoRef.current && canvasRef.current) {
       const context = canvasRef.current.getContext('2d');
@@ -247,12 +251,12 @@ function App() {
               {view === 'pantry'      && <MainPage />}
               {view === 'recipe'      && <RecipePage />}
               {view === 'mypage'      && <MyPage userName={user.name} consents={user.consents} onLogout={() => window.location.href = "/logout"} onUserNameChange={(name) => setUser(prev => ({ ...prev, name }))} />}
-              {view === 'scan_result' && <ScanResultPage capturedImg={capturedImg} onBack={() => setView('home')} onNavigate={setView} scanMode={scanMode} />}
+              {view === 'scan_result' && <ScanResultPage capturedImg={capturedImg} onBack={handleRetake} onNavigate={setView} scanMode={scanMode} />}
             </main>
             <nav className="shrink-0 h-20 bg-white border-t flex justify-around items-center px-6">
               <button onClick={() => setView('home')}   className={view === 'home'   ? 'text-black' : 'text-gray-300'}><Home /></button>
               <button onClick={() => setView('pantry')} className={view === 'pantry' ? 'text-black' : 'text-gray-300'}><ShoppingBasket /></button>
-              <button onClick={() => openCamera('food')} className="w-14 h-14 bg-black text-white rounded-2xl -mt-10 border-4 border-white flex items-center justify-center"><Camera /></button>
+              <button onClick={() => openCamera(scanMode)} className="w-14 h-14 bg-black text-white rounded-2xl -mt-10 border-4 border-white flex items-center justify-center"><Camera /></button>
               <button onClick={() => setView('recipe')} className={view === 'recipe' ? 'text-black' : 'text-gray-300'}><Sparkles /></button>
               <button onClick={() => setView('mypage')} className={view === 'mypage' ? 'text-black' : 'text-gray-300'}><User /></button>
             </nav>

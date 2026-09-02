@@ -1,0 +1,450 @@
+name	현재_저장_카테고리	내_정답_추정	신뢰도	바뀜?	← 맞는_카테고리 적기(비우면 유지)	코멘트
+굴김치 1000g	채소류	가공·즉석식품	high	CHANGED		
+김치 500g	채소류	가공·즉석식품	high	CHANGED		
+두부 어묵 240g	수산물	가공·즉석식품	high	CHANGED		
+멸치볶음 80g	None	가공·즉석식품	high	CHANGED		
+멸치볶음 80g	수산물	가공·즉석식품	high	CHANGED		
+베이비 덩기패 460g	채소류	가공·즉석식품	med	CHANGED		
+와셔마늘 비엔나 180g	육류	가공·즉석식품	high	CHANGED		
+의성마늘 비엔나 180g	육류	가공·즉석식품	high	CHANGED		
+참치 160g	수산물	가공·즉석식품	high	CHANGED		
+참치 1kg	수산물	가공·즉석식품	med	CHANGED		
+참치캔	수산물	가공·즉석식품	high	CHANGED		
+참치캔 100g 3	수산물	가공·즉석식품	high	CHANGED		
+참치캔 135g	수산물	가공·즉석식품	high	CHANGED		
+참치캔(중) 135g	수산물	가공·즉석식품	high	CHANGED		
+햄바스틱 2	육류	가공·즉석식품	high	CHANGED		
+훈제닭피 460g	육류	가공·즉석식품	med	CHANGED		
+GSI 그라시아멜로 750M	None	None	assumed			
+HMP IA 우유 1L	None	None	assumed			
+HMP 다기오 이브	None	None	assumed			
+HMP 다이어트 닭 50	None	None	assumed			
+HMP 미니 베쥬 250g	None	None	assumed			
+HMP 베쥬 뚱	None	None	assumed			
+HMP 알파 (맛	None	None	assumed			
+HMP 암 란 30인	None	None	assumed			
+가니	None	None	assumed			
+가브리살	None	None	assumed			
+그라시아멜로 750M	None	None	assumed			
+그릭요거트볼	None	None	assumed			
+다기오이분	None	None	assumed			
+다이어트저당공기	None	None	assumed			
+다이어트정공기	None	None	assumed			
+다짐육 50	None	None	assumed			
+대파 500g	None	None	assumed			
+대포	None	None	assumed			
+라면	None	None	assumed			
+라면 5	None	None	assumed			
+망고 그대로 1	None	None	assumed			
+무항생제 특란 30	None	None	assumed			
+미니버섯 250g	None	None	assumed			
+버섯 300g	None	None	assumed			
+베이컨	None	None	assumed			
+보원 아토마인드 에센	None	None	assumed			
+볶음우엉 400g	None	None	assumed			
+볶음우엉 볶음 40g	None	None	assumed			
+비빔국수	None	None	assumed			
+삼겹살	None	None	assumed			
+생삼겹살	None	None	assumed			
+생수 2L	None	None	assumed			
+순두부 12g	None	None	assumed			
+스팸 200g	None	None	assumed			
+아스파라거스 200g	None	None	assumed			
+아토마인드에센	None	None	assumed			
+안다리 혼합 다짐	None	None	assumed			
+안다리훈 닭다리	None	None	assumed			
+앙팡치즈 까요까요	None	None	assumed			
+앙프치즈 까요클로	None	None	assumed			
+애호박	None	None	assumed			
+애호박 2	None	None	assumed			
+양파	None	None	assumed			
+양파 30인	None	None	assumed			
+오두기 후레시 340g	None	None	assumed			
+요거볼	None	None	assumed			
+우유 1L	None	None	assumed			
+우유 저지방 1L	None	None	assumed			
+유기농멸균우유 200ml * 12	None	None	assumed			
+유기농멸균우유 200ml * 6	None	None	assumed			
+유기베이비플레인	None	None	assumed			
+음료	None	None	assumed			
+지리산흑돼지	None	None	assumed			
+지리산흑돼지호	None	None	assumed			
+짜장분말 100g	None	None	assumed			
+콩나물 300g	None	None	assumed			
+토마토 에센 부르	None	None	assumed			
+토테름 에센 부르	None	None	assumed			
+피자치즈 800g	None	None	assumed			
+한우 안심 1kg	None	None	assumed			
+후레시 햄 340g	None	None	assumed			
+훈슬라이스 햄	None	None	assumed			
+훈슬라이스 햄 밥	None	None	assumed			
+훈제 돼지껌	None	None	assumed			
+흑돈 돼지 쇠고기	None	None	assumed			
+흑마늘 480g	None	None	assumed			
+흑마늘 480g	None	None	assumed			
+흠플러 소중한 듬	None	None	assumed			
+흠플러 소중한 듬 밤	None	None	assumed			
+가시오리	육류		garbage			
+갑귤 1kg	과일류		garbage			
+갑자 500g	채소류		garbage			
+나트리버섯	채소류		garbage			
+날콩가리소 4	채소류		garbage			
+노란티버섯 200g	채소류		garbage			
+대왕 닭고 500g	육류		garbage			
+딸기버섯 200g	채소류		garbage			
+딸기베리벚꽃 200g	과일류		garbage			
+맛있는 버섯	채소류		garbage			
+맛있는오기버섯	채소류		garbage			
+베이직 소시움 500g	육류		garbage			
+수산물	수산물		garbage			
+양념 beef버섯	채소류		garbage			
+양념 소고기 버섯	채소류		garbage			
+양다리훈합 닭다리	육류		garbage			
+오미 3잉	채소류		garbage			
+오이지 3	채소류		garbage			
+왕정살 460g	육류		garbage			
+자프리카 (중) 2	과일류		garbage			
+정부자	채소류		garbage			
+종합 채소 묶음	채소류		garbage			
+지리산흑돼지애호	육류		garbage			
+트리버섯	채소류		garbage			
+팬이베릇	채소류		garbage			
+햇빛 20	채소류		garbage			
+햇잎 20	채소류		garbage			
+3분 카레	가공·즉석식품	가공·즉석식품	assumed			
+3분 카레(중)	가공·즉석식품	가공·즉석식품	assumed			
+3분카레(중)	가공·즉석식품	가공·즉석식품	assumed			
+고메바스틱	가공·즉석식품	가공·즉석식품	assumed			
+고메함박스테이크	가공·즉석식품	가공·즉석식품	assumed			
+고메함박스테이크 2	가공·즉석식품	가공·즉석식품	assumed			
+고해맑바스틱 2입	가공·즉석식품	가공·즉석식품	assumed			
+고해밥스테이크 2	가공·즉석식품	가공·즉석식품	assumed			
+냉동 탕수	가공·즉석식품	가공·즉석식품	assumed			
+다이어트저당공기	가공·즉석식품	가공·즉석식품	assumed			
+닭갈비	가공·즉석식품	가공·즉석식품	assumed			
+닭스테이크 2	가공·즉석식품	가공·즉석식품	assumed			
+덜알	가공·즉석식품	가공·즉석식품	assumed			
+덤벙스테이크 2	가공·즉석식품	가공·즉석식품	assumed			
+된장찌개	가공·즉석식품	가공·즉석식품	assumed			
+된장찌개 460g	가공·즉석식품	가공·즉석식품	assumed			
+떡국	가공·즉석식품	가공·즉석식품	assumed			
+맛있는 밥	가공·즉석식품	가공·즉석식품	assumed			
+맛있는 옥수수 립	가공·즉석식품	가공·즉석식품	assumed			
+멸치볶음	가공·즉석식품	가공·즉석식품	high			
+바베큐씬드위치	가공·즉석식품	가공·즉석식품	assumed			
+박스테이크 2	가공·즉석식품	가공·즉석식품	assumed			
+발보토	가공·즉석식품	가공·즉석식품	assumed			
+밥	가공·즉석식품	가공·즉석식품	assumed			
+밥 4	가공·즉석식품	가공·즉석식품	assumed			
+밥통 6기계 붓	가공·즉석식품	가공·즉석식품	assumed			
+비나 180g	가공·즉석식품	가공·즉석식품	assumed			
+비베규샌드위치	가공·즉석식품	가공·즉석식품	assumed			
+비비고 된장찌개	가공·즉석식품	가공·즉석식품	assumed			
+비비고 된장찌개 460g	가공·즉석식품	가공·즉석식품	assumed			
+비비고 찐만두 460g	가공·즉석식품	가공·즉석식품	assumed			
+비스크자르트	가공·즉석식품	가공·즉석식품	assumed			
+비엔나	가공·즉석식품	가공·즉석식품	high			
+삼양라면	가공·즉석식품	가공·즉석식품	assumed			
+소고기 버섯	가공·즉석식품	가공·즉석식품	assumed			
+소고기버섯	가공·즉석식품	가공·즉석식품	assumed			
+손두부찌개	가공·즉석식품	가공·즉석식품	assumed			
+쇠고기버섯 2	가공·즉석식품	가공·즉석식품	assumed			
+순두부찌개	가공·즉석식품	가공·즉석식품	assumed			
+신라면	가공·즉석식품	가공·즉석식품	assumed			
+애닐라	가공·즉석식품	가공·즉석식품	assumed			
+양교 350g	가공·즉석식품	가공·즉석식품	assumed			
+양반죽	가공·즉석식품	가공·즉석식품	assumed			
+양반죽 소고기버섯	가공·즉석식품	가공·즉석식품	assumed			
+양반죽순 60g	가공·즉석식품	가공·즉석식품	assumed			
+양죽 소고기버섯	가공·즉석식품	가공·즉석식품	assumed			
+에브리	가공·즉석식품	가공·즉석식품	assumed			
+오레일 500g	가공·즉석식품	가공·즉석식품	assumed			
+왕고자 350g	가공·즉석식품	가공·즉석식품	assumed			
+왕교 350g	가공·즉석식품	가공·즉석식품	assumed			
+왕교자 350g	가공·즉석식품	가공·즉석식품	assumed			
+왕자반	가공·즉석식품	가공·즉석식품	assumed			
+원지	가공·즉석식품	가공·즉석식품	assumed			
+의성마늘 비엔나	가공·즉석식품	가공·즉석식품	high			
+죽 소고기버섯	가공·즉석식품	가공·즉석식품	assumed			
+죽순 소고기버섯	가공·즉석식품	가공·즉석식품	assumed			
+즉석 콩나물국 1인분	가공·즉석식품	가공·즉석식품	assumed			
+즉석밥	가공·즉석식품	가공·즉석식품	assumed			
+즉석밥 210g	가공·즉석식품	가공·즉석식품	assumed			
+즉석밥(오뚜기)	가공·즉석식품	가공·즉석식품	assumed			
+즉석밥(오뚜기) 4	가공·즉석식품	가공·즉석식품	assumed			
+찐피만두 460g	가공·즉석식품	가공·즉석식품	assumed			
+참치 80g×3	가공·즉석식품	가공·즉석식품	assumed			
+참치캔	가공·즉석식품	가공·즉석식품	high			
+참치캔 100g 3입	가공·즉석식품	가공·즉석식품	high			
+참치캔 100g×3	가공·즉석식품	가공·즉석식품	high			
+참치캔 160g	가공·즉석식품	가공·즉석식품	high			
+참치캔(중)	가공·즉석식품	가공·즉석식품	high			
+찹스테이크	가공·즉석식품	가공·즉석식품	assumed			
+치즈샌드위치	가공·즉석식품	가공·즉석식품	assumed			
+카레 (중)	가공·즉석식품	가공·즉석식품	assumed			
+카레(중)	가공·즉석식품	가공·즉석식품	assumed			
+컵밥 닭갈비	가공·즉석식품	가공·즉석식품	assumed			
+컵밥닭갈비	가공·즉석식품	가공·즉석식품	assumed			
+탕수	가공·즉석식품	가공·즉석식품	assumed			
+파이벅	가공·즉석식품	가공·즉석식품	assumed			
+함박스테이크 2	가공·즉석식품	가공·즉석식품	assumed			
+핫스테이크	가공·즉석식품	가공·즉석식품	assumed			
+햇반	가공·즉석식품	가공·즉석식품	assumed			
+햇반 210g	가공·즉석식품	가공·즉석식품	assumed			
+햇밥 210g	가공·즉석식품	가공·즉석식품	assumed			
+훼집 210g	가공·즉석식품	가공·즉석식품	assumed			
+국수 80g×4	곡류·면류	곡류·면류	assumed			
+그라노라 150g 2입	곡류·면류	곡류·면류	assumed			
+냉면 세트 200g	곡류·면류	곡류·면류	assumed			
+떡볶이 양장 150g	곡류·면류	곡류·면류	assumed			
+멸치국수 80g 4	곡류·면류	곡류·면류	assumed			
+밀볶음 80g	곡류·면류	곡류·면류	assumed			
+비빔국수	곡류·면류	곡류·면류	assumed			
+스파게티면	곡류·면류	곡류·면류	assumed			
+쌀국수	곡류·면류	곡류·면류	assumed			
+쌀국수 80g×4	곡류·면류	곡류·면류	assumed			
+오트밀	곡류·면류	곡류·면류	assumed			
+오트밀 500g	곡류·면류	곡류·면류	assumed			
+감귤	과일류	과일류	assumed			
+감귤 1kg	과일류	과일류	assumed			
+감귤 1단	과일류	과일류	assumed			
+곶감	과일류	과일류	assumed			
+김귤	과일류	과일류	assumed			
+단감	과일류	과일류	assumed			
+딸기 4	과일류	과일류	assumed			
+바나나	과일류	과일류	assumed			
+바나나 1	과일류	과일류	assumed			
+바나나 송이	과일류	과일류	assumed			
+바나나 한 송이	과일류	과일류	assumed			
+방울토마토	과일류	과일류	assumed			
+사과	과일류	과일류	assumed			
+사과 2	과일류	과일류	assumed			
+사과(소)	과일류	과일류	assumed			
+사과(소) 2입	과일류	과일류	assumed			
+오렌지	과일류	과일류	assumed			
+청포도	과일류	과일류	assumed			
+청포도 500g	과일류	과일류	assumed			
+청포도 500g	과일류	과일류	assumed			
+황도	과일류	과일류	assumed			
+냉동 완두콩	두부·콩류	두부·콩류	assumed			
+냉동 완두콩 500g	두부·콩류	두부·콩류	assumed			
+두부	두부·콩류	두부·콩류	assumed			
+두부 1단	두부·콩류	두부·콩류	assumed			
+두부 300g	두부·콩류	두부·콩류	assumed			
+두부(찌개용)	두부·콩류	두부·콩류	assumed			
+두부(찌개용) 300g	두부·콩류	두부·콩류	assumed			
+무항생제두부 400g	두부·콩류	두부·콩류	assumed			
+손두부피경	두부·콩류	두부·콩류	assumed			
+순두부찌개	두부·콩류	두부·콩류	assumed			
+완두콩 500g	두부·콩류	두부·콩류	assumed			
+우림두부 150g	두부·콩류	두부·콩류	assumed			
+콩나물	두부·콩류	두부·콩류	assumed			
+콩나물 500g	두부·콩류	두부·콩류	assumed			
+갑물	수산물	수산물	assumed			
+김 1kg	수산물	수산물	assumed			
+김 1단	수산물	수산물	assumed			
+냉동 새우	수산물	수산물	assumed			
+냉동 새우 200g	수산물	수산물	assumed			
+냉동새우	수산물	수산물	assumed			
+냉동새우 300g	수산물	수산물	assumed			
+냉동자숙우	수산물	수산물	assumed			
+동동새우 300g	수산물	수산물	assumed			
+마른멸치	수산물	수산물	med			
+멸치	수산물	수산물	assumed			
+생연어	수산물	수산물	assumed			
+참돔 1kg	수산물	수산물	assumed			
+참치	수산물	수산물	assumed			
+고구마빵	스낵·과자	스낵·과자	high			
+너비버스 200g	스낵·과자	스낵·과자	assumed			
+너트리버	스낵·과자	스낵·과자	assumed			
+멀치볶음 80g	스낵·과자	스낵·과자	assumed			
+모이 3	스낵·과자	스낵·과자	assumed			
+바니니 몽이	스낵·과자	스낵·과자	assumed			
+비스크치즈스콘	스낵·과자	스낵·과자	assumed			
+새우깡	스낵·과자	스낵·과자	high			
+아이스크림	스낵·과자	스낵·과자	assumed			
+양파링	스낵·과자	스낵·과자	high			
+오감자	스낵·과자	스낵·과자	high			
+오르릉 500g	스낵·과자	스낵·과자	assumed			
+오트밀바	스낵·과자	스낵·과자	assumed			
+초코송이	스낵·과자	스낵·과자	assumed			
+칩스민트초코쉬트	스낵·과자	스낵·과자	assumed			
+간장 1L	양념·소스	양념·소스	assumed			
+간장 500ml	양념·소스	양념·소스	assumed			
+고추장	양념·소스	양념·소스	assumed			
+고추장 500g	양념·소스	양념·소스	assumed			
+굵은소금	양념·소스	양념·소스	assumed			
+김장 1L	양념·소스	양념·소스	assumed			
+다시다 500g	양념·소스	양념·소스	assumed			
+들기름	양념·소스	양념·소스	assumed			
+들기름 160ml	양념·소스	양념·소스	assumed			
+들기름 350ml	양념·소스	양념·소스	assumed			
+딸기잼	양념·소스	양념·소스	assumed			
+몰리브유	양념·소스	양념·소스	assumed			
+물기름	양념·소스	양념·소스	assumed			
+미원 500g	양념·소스	양념·소스	assumed			
+바질 페스토	양념·소스	양념·소스	assumed			
+볶음고추장	양념·소스	양념·소스	assumed			
+설탕 1kg	양념·소스	양념·소스	assumed			
+소금 500g	양념·소스	양념·소스	assumed			
+식용유 1.8L	양념·소스	양념·소스	assumed			
+식초	양념·소스	양념·소스	assumed			
+올리브	양념·소스	양념·소스	assumed			
+올리브 500ml	양념·소스	양념·소스	assumed			
+올리브유	양념·소스	양념·소스	assumed			
+올리브유 500ml	양념·소스	양념·소스	assumed			
+의성마늘 비네나	양념·소스	양념·소스	assumed			
+진간장	양념·소스	양념·소스	assumed			
+진간장 500ml	양념·소스	양념·소스	assumed			
+참기름	양념·소스	양념·소스	assumed			
+참기름 160ml	양념·소스	양념·소스	assumed			
+참기름 350ml	양념·소스	양념·소스	assumed			
+참깨	양념·소스	양념·소스	assumed			
+초고추장 1kg	양념·소스	양념·소스	assumed			
+카놀라유 1.8L	양념·소스	양념·소스	assumed			
+칸장 1L	양념·소스	양념·소스	assumed			
+케찹	양념·소스	양념·소스	assumed			
+케찹 500g	양념·소스	양념·소스	assumed			
+케첩	양념·소스	양념·소스	assumed			
+콩기름 1.8L	양념·소스	양념·소스	assumed			
+태양초고추장	양념·소스	양념·소스	assumed			
+후추 그라인더	양념·소스	양념·소스	assumed			
+계란	유제품·계란	유제품·계란	assumed			
+계란 15구	유제품·계란	유제품·계란	assumed			
+계란 15구 (중란)	유제품·계란	유제품·계란	assumed			
+계란(중란)	유제품·계란	유제품·계란	assumed			
+그리크요트 150g	유제품·계란	유제품·계란	assumed			
+그릭요거	유제품·계란	유제품·계란	assumed			
+그릭요거 150g	유제품·계란	유제품·계란	assumed			
+그릭요거트 150g	유제품·계란	유제품·계란	assumed			
+달걀	유제품·계란	유제품·계란	assumed			
+달걀 특란	유제품·계란	유제품·계란	assumed			
+달걀 특란 10구	유제품·계란	유제품·계란	assumed			
+달걀(10구) 특란	유제품·계란	유제품·계란	assumed			
+달걀(특란)	유제품·계란	유제품·계란	assumed			
+딸기맛우유	유제품·계란	유제품·계란	assumed			
+딸기요플레	유제품·계란	유제품·계란	assumed			
+무항생제 특란 (30구)	유제품·계란	유제품·계란	assumed			
+바나나맛우유	유제품·계란	유제품·계란	assumed			
+바나나맛우유 240ml	유제품·계란	유제품·계란	assumed			
+버터	유제품·계란	유제품·계란	assumed			
+버터 450g	유제품·계란	유제품·계란	assumed			
+불가리스 4	유제품·계란	유제품·계란	assumed			
+불가리스 딸기	유제품·계란	유제품·계란	assumed			
+불가리스 딸기 4	유제품·계란	유제품·계란	assumed			
+불가리스 딸기×4	유제품·계란	유제품·계란	assumed			
+삶은달걀	유제품·계란	유제품·계란	assumed			
+스트링치즈	유제품·계란	유제품·계란	assumed			
+요플레 4	유제품·계란	유제품·계란	assumed			
+요플레(딸기)	유제품·계란	유제품·계란	assumed			
+요플레(딸기) x 4	유제품·계란	유제품·계란	assumed			
+요플레(딸기)×4	유제품·계란	유제품·계란	assumed			
+우유	유제품·계란	유제품·계란	assumed			
+우유 1L	유제품·계란	유제품·계란	assumed			
+우유 1l	유제품·계란	유제품·계란	assumed			
+유정란	유제품·계란	유제품·계란	assumed			
+저방유 우유 1L	유제품·계란	유제품·계란	assumed			
+저지방 우유 1L	유제품·계란	유제품·계란	assumed			
+저지방우유	유제품·계란	유제품·계란	assumed			
+치즈	유제품·계란	유제품·계란	assumed			
+흑우유 1L	유제품·계란	유제품·계란	assumed			
+가브리살	육류	육류	assumed			
+감자탕용 돼지등뼈	육류	육류	assumed			
+냉동 닭다리	육류	육류	assumed			
+닭가슴살	육류	육류	assumed			
+닭가슴살	육류	육류	assumed			
+닭날개 80g 4입	육류	육류	assumed			
+돼지 목살	육류	육류	assumed			
+생삼겹살	육류	육류	assumed			
+손실 삼겹살	육류	육류	assumed			
+순살 삼겹살	육류	육류	assumed			
+한돈 닭다리	육류	육류	assumed			
+한돈 왕정살	육류	육류	assumed			
+한우 국거리	육류	육류	assumed			
+한우 안심	육류	육류	assumed			
+한우지롱	육류	육류	assumed			
+두유	음료·주류	음료·주류	assumed			
+두유(베이지)	음료·주류	음료·주류	assumed			
+두유(베지밀)	음료·주류	음료·주류	assumed			
+딸기스 4	음료·주류	음료·주류	assumed			
+망고로코	음료·주류	음료·주류	assumed			
+물통 20L	음료·주류	음료·주류	assumed			
+바나나맛우유	음료·주류	음료·주류	assumed			
+바나나우유	음료·주류	음료·주류	assumed			
+바나나우유 240ml	음료·주류	음료·주류	assumed			
+왕초차	음료·주류	음료·주류	assumed			
+자몽에이드	음료·주류	음료·주류	assumed			
+갈릭	채소류	채소류	assumed			
+감자	채소류	채소류	assumed			
+감자	채소류	채소류	assumed			
+감자 1kg	채소류	채소류	assumed			
+감자 500g	채소류	채소류	assumed			
+고구마	채소류	채소류	assumed			
+고구마	채소류	채소류	assumed			
+깐마늘	채소류	채소류	assumed			
+깻잎	채소류	채소류	assumed			
+깻잎 20	채소류	채소류	assumed			
+냉동 브로콜리	채소류	채소류	assumed			
+냉동 브로콜리 500g	채소류	채소류	assumed			
+냉동 완두 500g	채소류	채소류	assumed			
+냉동 완두콩 500g	채소류	채소류	assumed			
+냉동 캘리포니아 믹스 4	채소류	채소류	assumed			
+너티버섯 200g	채소류	채소류	assumed			
+느타리버섯 200g	채소류	채소류	assumed			
+당근	채소류	채소류	assumed			
+당근 10	채소류	채소류	assumed			
+대파	채소류	채소류	assumed			
+대파 1단	채소류	채소류	assumed			
+망측	채소류	채소류	assumed			
+목이버섯 80g	채소류	채소류	assumed			
+무 1개	채소류	채소류	assumed			
+미나리	채소류	채소류	assumed			
+미니 양배추	채소류	채소류	assumed			
+미니 파	채소류	채소류	assumed			
+미니양배추	채소류	채소류	assumed			
+미니파	채소류	채소류	assumed			
+방울토마토	채소류	채소류	assumed			
+방울토마토 500g	채소류	채소류	assumed			
+버섯	채소류	채소류	assumed			
+베이비버섯 150g x 2	채소류	채소류	assumed			
+베이비버섯 300g	채소류	채소류	assumed			
+브로콜리	채소류	채소류	assumed			
+브로콜리 1	채소류	채소류	assumed			
+브로콜리 1개	채소류	채소류	assumed			
+새송이버섯	채소류	채소류	assumed			
+생콩나물	채소류	채소류	assumed			
+시금치	채소류	채소류	assumed			
+시금치 1단	채소류	채소류	assumed			
+애호박	채소류	채소류	assumed			
+애호박 1개	채소류	채소류	assumed			
+애호박 1팩	채소류	채소류	assumed			
+양념 브로콜리 500g	채소류	채소류	assumed			
+양배추	채소류	채소류	assumed			
+양배추 1통	채소류	채소류	assumed			
+양파	채소류	채소류	assumed			
+양파	채소류	채소류	assumed			
+양파 1kg	채소류	채소류	assumed			
+양파 1kg	채소류	채소류	assumed			
+양파 350g	채소류	채소류	assumed			
+양파 500g	채소류	채소류	assumed			
+어린잎채소	채소류	채소류	assumed			
+어린잎채소 100g	채소류	채소류	assumed			
+오이	채소류	채소류	assumed			
+오이 3	채소류	채소류	assumed			
+오이 3입	채소류	채소류	assumed			
+의성마늘	채소류	채소류	assumed			
+쪽파	채소류	채소류	assumed			
+청양고추	채소류	채소류	assumed			
+콩고추	채소류	채소류	assumed			
+콩나물	채소류	채소류	assumed			
+파프리카	채소류	채소류	assumed			
+파프리카 (적/황)	채소류	채소류	assumed			
+파프리카 1kg	채소류	채소류	assumed			
+파프리카 3색	채소류	채소류	assumed			
+파프리카(2/중)	채소류	채소류	assumed			
+파프리카(적/황)	채소류	채소류	assumed			
+팽이버섯	채소류	채소류	assumed			
+팽이버섯 150g	채소류	채소류	assumed			
+팽이버섯 150g×2	채소류	채소류	assumed			
+팽이버섯 500g	채소류	채소류	assumed			
+표고버섯	채소류	채소류	assumed			

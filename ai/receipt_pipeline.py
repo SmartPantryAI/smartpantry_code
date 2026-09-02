@@ -124,17 +124,20 @@ PASS1_PROMPT = """너는 한국 영수증 OCR 전문가다. 생각하지 말고 
 [무게/용량(unit) 추출 규칙]
 상품명에 무게/부피 표기(g, kg, ml, mL, L)가 보이면 숫자와 단위를 별도 필드로 추출한다.
 - kg→g(×1000), L→ml(×1000), mL/ml→그대로. unit은 "g" 또는 "ml"로 정규화.
-- 추출한 무게/용량 값을 그 상품의 qty로 사용한다(수량 컬럼과 무관).
-  예) "고추장 500g  ... 1 ..." → name:"고추장 500g", qty:500, unit:"g"
-  예) "국모닝우유 900ML [2,150]" → name:"국모닝우유 900ML", qty:900, unit:"ml"
+- 이 값은 "낱개 1개당" 무게/부피이며, unit_weight 필드에 그대로 넣는다.
+  계산(곱셈)은 절대 하지 않는다 — 다음 단계에서 처리한다.
+  예) "한우 안심 1kg      1    62,900" → name:"한우 안심 1kg", qty:1, unit_weight:1000, unit:"g"
+  예) "고추장 500g  ... 1 ..."         → name:"고추장 500g", qty:1, unit_weight:500, unit:"g"
+  예) "콩나물 300g        990   2   1,980" → name:"콩나물 300g", qty:2, unit_weight:300, unit:"g"
+- qty는 항상 영수증의 수량 컬럼 값을 그대로 쓴다 (곱셈 절대 금지).
 - name은 영수증 원문 표기를 그대로 유지(무게 표기 제거는 다음 단계).
-- 무게/부피 표기가 없으면 qty는 수량 컬럼 값, unit은 null.
+- 무게/부피 표기가 없으면 unit_weight는 null, unit도 null. qty는 수량 컬럼 값 그대로.
 
 출력 스키마:
 {
   "purchase_date": "YYYY-MM-DD 또는 unknown",
   "items": [
-    {"name": "영수증 원문 그대로 (정제 후)", "qty": 1, "unit": "g | ml | null"}
+    {"name": "영수증 원문 그대로 (정제 후)", "qty": 1, "unit_weight": 300, "unit": "g | ml | null"}
   ]
 }
 JSON만 출력.
@@ -236,7 +239,26 @@ def _binarize(img: np.ndarray) -> np.ndarray:
         return img
 
 
+def _downscale_max(img: np.ndarray, max_side: int = 2000) -> np.ndarray:
+    """긴 변이 max_side를 넘으면 축소. OCR 화질에는 영향이 없다 —
+    뒤에서 어차피 _upscale(1200) / encode_image(max_width=1500)로 더 줄어들기 때문.
+    안드로이드 고화소 카메라(12~16MP)가 보내는 큰 이미지에서 크롭·CLAHE·샤프닝이
+    풀 해상도로 도는 걸 막아 서버 전처리 시간을 크게 줄인다."""
+    h, w = img.shape[:2]
+    longest = max(h, w)
+    if longest <= max_side:
+        return img
+    scale = max_side / longest
+    resized = cv2.resize(img, (round(w * scale), round(h * scale)),
+                         interpolation=cv2.INTER_AREA)
+    print(f"[다운스케일] {w}x{h} → {resized.shape[1]}x{resized.shape[0]}")
+    return resized
+
+
 def _preprocess_for_ocr(img: np.ndarray) -> np.ndarray:
+    # 0. 과대 해상도 축소 (전처리를 풀 해상도로 돌리지 않도록)
+    img = _downscale_max(img, max_side=2000)
+
     # 1. 영수증 크롭
     img = _crop_receipt(img)
 
@@ -265,18 +287,23 @@ def _pass1_ocr(img: np.ndarray, fallback_date: str) -> dict:
 
     payload = {
         "model": MODEL,
-        "think": False,
+        "chat_template_kwargs": {"enable_thinking": False},
         "messages": [
             {"role": "system", "content": PASS1_PROMPT},
             {
                 "role": "user",
-                "content": "이 영수증의 날짜와 상품 목록을, 영수증에 적힌 무게/용량 표기(예: 500g, 1kg, 1L)가 있으면 함께 읽어줘.",
-                "images": [img_b64]
+                # Ollama의 "content"(문자열) + "images"(리스트) 분리 필드 대신, OpenAI 호환
+                # vision 포맷은 content를 배열로 만들어 텍스트/이미지 블록을 함께 넣는다.
+                "content": [
+                    {"type": "text", "text": "이 영수증의 날짜와 상품 목록을, 영수증에 적힌 무게/용량 표기(예: 500g, 1kg, 1L)가 있으면 함께 읽어줘."},
+                    {"type": "image_url", "image_url": {"url": f"data:image/jpeg;base64,{img_b64}"}},
+                ],
             }
         ],
-        "format": "json",
+        "response_format": {"type": "json_object"},
         "stream": True,
-        "options": {"temperature": 0, "num_predict": 2048}
+        "temperature": 0,
+        "max_tokens": 2048,
     }
 
     raw_text = stream_llm(payload)
@@ -299,10 +326,25 @@ def _pass1_ocr(img: np.ndarray, fallback_date: str) -> dict:
         # 여기서는 LLM이 실제로 읽어낸 무게/용량 표기만 유효성 검증해서 넘긴다 —
         # 미리 추측값을 채우면 "망"/"포대"처럼 무게 표기 유무로 분기하는 2pass 로직이 깨진다.
         unit = (it.get("unit") or "").strip()
+        unit = unit if unit in VALID_UNITS else None
+
+        purchase_qty = float(it.get("qty") or 1)   # 영수증 수량 컬럼 값 (구매 개수)
+        unit_weight  = it.get("unit_weight")       # 낱개 1개당 무게/부피 (없으면 None)
+
+        # 곱셈은 LLM한테 맡기지 않고 여기서 파이썬으로 확정적으로 계산한다.
+        if unit_weight is not None and unit in ("g", "ml"):
+            try:
+                final_qty = float(unit_weight) * purchase_qty
+            except (TypeError, ValueError):
+                final_qty = purchase_qty
+        else:
+            final_qty = purchase_qty
+            unit = None
+
         items.append({
             "name": name,
-            "qty": float(it.get("qty") or 1),
-            "unit": unit if unit in VALID_UNITS else None,
+            "qty": final_qty,
+            "unit": unit,
         })
 
     return {"purchase_date": purchase_date, "items": items}

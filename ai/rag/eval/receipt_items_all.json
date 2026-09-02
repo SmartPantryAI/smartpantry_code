@@ -1,0 +1,2696 @@
+[
+ {
+  "name": "GSI 그라시아멜로 750M",
+  "stored_category": "None",
+  "storage": "실온",
+  "count": 1
+ },
+ {
+  "name": "HMP IA 우유 1L",
+  "stored_category": "None",
+  "storage": "냉장",
+  "count": 1
+ },
+ {
+  "name": "HMP 다기오 이브",
+  "stored_category": "None",
+  "storage": "실온",
+  "count": 1
+ },
+ {
+  "name": "HMP 다이어트 닭 50",
+  "stored_category": "None",
+  "storage": "냉장",
+  "count": 1
+ },
+ {
+  "name": "HMP 미니 베쥬 250g",
+  "stored_category": "None",
+  "storage": "실온",
+  "count": 1
+ },
+ {
+  "name": "HMP 베쥬 뚱",
+  "stored_category": "None",
+  "storage": "실온",
+  "count": 1
+ },
+ {
+  "name": "HMP 알파 (맛",
+  "stored_category": "None",
+  "storage": "실온",
+  "count": 1
+ },
+ {
+  "name": "HMP 암 란 30인",
+  "stored_category": "None",
+  "storage": "냉장",
+  "count": 1
+ },
+ {
+  "name": "가니",
+  "stored_category": "None",
+  "storage": "실온",
+  "count": 1
+ },
+ {
+  "name": "가브리살",
+  "stored_category": "None",
+  "storage": "냉장",
+  "count": 3
+ },
+ {
+  "name": "그라시아멜로 750M",
+  "stored_category": "None",
+  "storage": "실온",
+  "count": 1
+ },
+ {
+  "name": "그릭요거트볼",
+  "stored_category": "None",
+  "storage": "냉장",
+  "count": 1
+ },
+ {
+  "name": "다기오이분",
+  "stored_category": "None",
+  "storage": "실온",
+  "count": 1
+ },
+ {
+  "name": "다이어트저당공기",
+  "stored_category": "None",
+  "storage": "실온",
+  "count": 2
+ },
+ {
+  "name": "다이어트정공기",
+  "stored_category": "None",
+  "storage": "실온",
+  "count": 1
+ },
+ {
+  "name": "다짐육 50",
+  "stored_category": "None",
+  "storage": "냉동",
+  "count": 1
+ },
+ {
+  "name": "대파 500g",
+  "stored_category": "None",
+  "storage": "냉장",
+  "count": 1
+ },
+ {
+  "name": "대포",
+  "stored_category": "None",
+  "storage": "실온",
+  "count": 1
+ },
+ {
+  "name": "라면",
+  "stored_category": "None",
+  "storage": "실온",
+  "count": 1
+ },
+ {
+  "name": "라면 5",
+  "stored_category": "None",
+  "storage": "실온",
+  "count": 1
+ },
+ {
+  "name": "망고 그대로 1",
+  "stored_category": "None",
+  "storage": "실온",
+  "count": 2
+ },
+ {
+  "name": "멸치볶음 80g",
+  "stored_category": "None",
+  "storage": "실온",
+  "count": 1
+ },
+ {
+  "name": "무항생제 특란 30",
+  "stored_category": "None",
+  "storage": "냉장",
+  "count": 2
+ },
+ {
+  "name": "미니버섯 250g",
+  "stored_category": "None",
+  "storage": "냉장",
+  "count": 1
+ },
+ {
+  "name": "버섯 300g",
+  "stored_category": "None",
+  "storage": "냉장",
+  "count": 1
+ },
+ {
+  "name": "베이컨",
+  "stored_category": "None",
+  "storage": "냉장",
+  "count": 1
+ },
+ {
+  "name": "보원 아토마인드 에센",
+  "stored_category": "None",
+  "storage": "실온",
+  "count": 1
+ },
+ {
+  "name": "볶음우엉 400g",
+  "stored_category": "None",
+  "storage": "냉장",
+  "count": 1
+ },
+ {
+  "name": "볶음우엉 볶음 40g",
+  "stored_category": "None",
+  "storage": "실온",
+  "count": 1
+ },
+ {
+  "name": "비빔국수",
+  "stored_category": "None",
+  "storage": "실온",
+  "count": 3
+ },
+ {
+  "name": "삼겹살",
+  "stored_category": "None",
+  "storage": "냉장",
+  "count": 1
+ },
+ {
+  "name": "생삼겹살",
+  "stored_category": "None",
+  "storage": "냉장",
+  "count": 3
+ },
+ {
+  "name": "생수 2L",
+  "stored_category": "None",
+  "storage": "실온",
+  "count": 2
+ },
+ {
+  "name": "순두부 12g",
+  "stored_category": "None",
+  "storage": "냉장",
+  "count": 2
+ },
+ {
+  "name": "스팸 200g",
+  "stored_category": "None",
+  "storage": "실온",
+  "count": 2
+ },
+ {
+  "name": "아스파라거스 200g",
+  "stored_category": "None",
+  "storage": "냉장",
+  "count": 1
+ },
+ {
+  "name": "아토마인드에센",
+  "stored_category": "None",
+  "storage": "실온",
+  "count": 1
+ },
+ {
+  "name": "안다리 혼합 다짐",
+  "stored_category": "None",
+  "storage": "냉동",
+  "count": 1
+ },
+ {
+  "name": "안다리훈 닭다리",
+  "stored_category": "None",
+  "storage": "냉장",
+  "count": 1
+ },
+ {
+  "name": "앙팡치즈 까요까요",
+  "stored_category": "None",
+  "storage": "냉장",
+  "count": 1
+ },
+ {
+  "name": "앙프치즈 까요클로",
+  "stored_category": "None",
+  "storage": "냉장",
+  "count": 1
+ },
+ {
+  "name": "애호박",
+  "stored_category": "None",
+  "storage": "냉장",
+  "count": 1
+ },
+ {
+  "name": "애호박 2",
+  "stored_category": "None",
+  "storage": "냉장",
+  "count": 1
+ },
+ {
+  "name": "양파",
+  "stored_category": "None",
+  "storage": "냉장",
+  "count": 1
+ },
+ {
+  "name": "양파 30인",
+  "stored_category": "None",
+  "storage": "냉장",
+  "count": 1
+ },
+ {
+  "name": "오두기 후레시 340g",
+  "stored_category": "None",
+  "storage": "실온",
+  "count": 1
+ },
+ {
+  "name": "요거볼",
+  "stored_category": "None",
+  "storage": "냉장",
+  "count": 1
+ },
+ {
+  "name": "우유 1L",
+  "stored_category": "None",
+  "storage": "냉장",
+  "count": 1
+ },
+ {
+  "name": "우유 저지방 1L",
+  "stored_category": "None",
+  "storage": "냉장",
+  "count": 2
+ },
+ {
+  "name": "유기농멸균우유 200ml * 12",
+  "stored_category": "None",
+  "storage": "실온",
+  "count": 1
+ },
+ {
+  "name": "유기농멸균우유 200ml * 6",
+  "stored_category": "None",
+  "storage": "실온",
+  "count": 1
+ },
+ {
+  "name": "유기베이비플레인",
+  "stored_category": "None",
+  "storage": "냉장",
+  "count": 2
+ },
+ {
+  "name": "음료",
+  "stored_category": "None",
+  "storage": "실온",
+  "count": 3
+ },
+ {
+  "name": "지리산흑돼지",
+  "stored_category": "None",
+  "storage": "냉장",
+  "count": 1
+ },
+ {
+  "name": "지리산흑돼지호",
+  "stored_category": "None",
+  "storage": "냉장",
+  "count": 2
+ },
+ {
+  "name": "짜장분말 100g",
+  "stored_category": "None",
+  "storage": "실온",
+  "count": 2
+ },
+ {
+  "name": "콩나물 300g",
+  "stored_category": "None",
+  "storage": "냉장",
+  "count": 1
+ },
+ {
+  "name": "토마토 에센 부르",
+  "stored_category": "None",
+  "storage": "실온",
+  "count": 1
+ },
+ {
+  "name": "토테름 에센 부르",
+  "stored_category": "None",
+  "storage": "실온",
+  "count": 1
+ },
+ {
+  "name": "피자치즈 800g",
+  "stored_category": "None",
+  "storage": "냉장",
+  "count": 1
+ },
+ {
+  "name": "한우 안심 1kg",
+  "stored_category": "None",
+  "storage": "냉장",
+  "count": 1
+ },
+ {
+  "name": "후레시 햄 340g",
+  "stored_category": "None",
+  "storage": "냉장",
+  "count": 1
+ },
+ {
+  "name": "훈슬라이스 햄",
+  "stored_category": "None",
+  "storage": "냉장",
+  "count": 1
+ },
+ {
+  "name": "훈슬라이스 햄 밥",
+  "stored_category": "None",
+  "storage": "냉장",
+  "count": 1
+ },
+ {
+  "name": "훈제 돼지껌",
+  "stored_category": "None",
+  "storage": "냉장",
+  "count": 1
+ },
+ {
+  "name": "흑돈 돼지 쇠고기",
+  "stored_category": "None",
+  "storage": "냉장",
+  "count": 1
+ },
+ {
+  "name": "흑마늘 480g",
+  "stored_category": "None",
+  "storage": "냉장",
+  "count": 1
+ },
+ {
+  "name": "흑마늘 480g",
+  "stored_category": "None",
+  "storage": "실온",
+  "count": 1
+ },
+ {
+  "name": "흠플러 소중한 듬",
+  "stored_category": "None",
+  "storage": "실온",
+  "count": 1
+ },
+ {
+  "name": "흠플러 소중한 듬 밤",
+  "stored_category": "None",
+  "storage": "실온",
+  "count": 1
+ },
+ {
+  "name": "3분 카레",
+  "stored_category": "가공·즉석식품",
+  "storage": "실온",
+  "count": 1
+ },
+ {
+  "name": "3분 카레(중)",
+  "stored_category": "가공·즉석식품",
+  "storage": "실온",
+  "count": 2
+ },
+ {
+  "name": "3분카레(중)",
+  "stored_category": "가공·즉석식품",
+  "storage": "실온",
+  "count": 1
+ },
+ {
+  "name": "고메바스틱",
+  "stored_category": "가공·즉석식품",
+  "storage": "냉동",
+  "count": 1
+ },
+ {
+  "name": "고메함박스테이크",
+  "stored_category": "가공·즉석식품",
+  "storage": "냉동",
+  "count": 2
+ },
+ {
+  "name": "고메함박스테이크 2",
+  "stored_category": "가공·즉석식품",
+  "storage": "냉동",
+  "count": 2
+ },
+ {
+  "name": "고해맑바스틱 2입",
+  "stored_category": "가공·즉석식품",
+  "storage": "실온",
+  "count": 1
+ },
+ {
+  "name": "고해밥스테이크 2",
+  "stored_category": "가공·즉석식품",
+  "storage": "냉동",
+  "count": 1
+ },
+ {
+  "name": "냉동 탕수",
+  "stored_category": "가공·즉석식품",
+  "storage": "냉동",
+  "count": 1
+ },
+ {
+  "name": "다이어트저당공기",
+  "stored_category": "가공·즉석식품",
+  "storage": "실온",
+  "count": 1
+ },
+ {
+  "name": "닭갈비",
+  "stored_category": "가공·즉석식품",
+  "storage": "실온",
+  "count": 1
+ },
+ {
+  "name": "닭스테이크 2",
+  "stored_category": "가공·즉석식품",
+  "storage": "냉동",
+  "count": 1
+ },
+ {
+  "name": "덜알",
+  "stored_category": "가공·즉석식품",
+  "storage": "실온",
+  "count": 1
+ },
+ {
+  "name": "덤벙스테이크 2",
+  "stored_category": "가공·즉석식품",
+  "storage": "냉동",
+  "count": 1
+ },
+ {
+  "name": "된장찌개",
+  "stored_category": "가공·즉석식품",
+  "storage": "냉장",
+  "count": 2
+ },
+ {
+  "name": "된장찌개 460g",
+  "stored_category": "가공·즉석식품",
+  "storage": "냉장",
+  "count": 2
+ },
+ {
+  "name": "떡국",
+  "stored_category": "가공·즉석식품",
+  "storage": "냉장",
+  "count": 1
+ },
+ {
+  "name": "맛있는 밥",
+  "stored_category": "가공·즉석식품",
+  "storage": "실온",
+  "count": 1
+ },
+ {
+  "name": "맛있는 옥수수 립",
+  "stored_category": "가공·즉석식품",
+  "storage": "실온",
+  "count": 1
+ },
+ {
+  "name": "멸치볶음",
+  "stored_category": "가공·즉석식품",
+  "storage": "실온",
+  "count": 1
+ },
+ {
+  "name": "바베큐씬드위치",
+  "stored_category": "가공·즉석식품",
+  "storage": "실온",
+  "count": 1
+ },
+ {
+  "name": "박스테이크 2",
+  "stored_category": "가공·즉석식품",
+  "storage": "냉동",
+  "count": 1
+ },
+ {
+  "name": "발보토",
+  "stored_category": "가공·즉석식품",
+  "storage": "실온",
+  "count": 1
+ },
+ {
+  "name": "밥",
+  "stored_category": "가공·즉석식품",
+  "storage": "실온",
+  "count": 2
+ },
+ {
+  "name": "밥 4",
+  "stored_category": "가공·즉석식품",
+  "storage": "실온",
+  "count": 3
+ },
+ {
+  "name": "밥통 6기계 붓",
+  "stored_category": "가공·즉석식품",
+  "storage": "실온",
+  "count": 1
+ },
+ {
+  "name": "비나 180g",
+  "stored_category": "가공·즉석식품",
+  "storage": "실온",
+  "count": 1
+ },
+ {
+  "name": "비베규샌드위치",
+  "stored_category": "가공·즉석식품",
+  "storage": "냉장",
+  "count": 1
+ },
+ {
+  "name": "비비고 된장찌개",
+  "stored_category": "가공·즉석식품",
+  "storage": "실온",
+  "count": 2
+ },
+ {
+  "name": "비비고 된장찌개 460g",
+  "stored_category": "가공·즉석식품",
+  "storage": "냉장",
+  "count": 1
+ },
+ {
+  "name": "비비고 찐만두 460g",
+  "stored_category": "가공·즉석식품",
+  "storage": "냉동",
+  "count": 2
+ },
+ {
+  "name": "비스크자르트",
+  "stored_category": "가공·즉석식품",
+  "storage": "냉장",
+  "count": 1
+ },
+ {
+  "name": "비엔나",
+  "stored_category": "가공·즉석식품",
+  "storage": "냉장",
+  "count": 1
+ },
+ {
+  "name": "삼양라면",
+  "stored_category": "가공·즉석식품",
+  "storage": "실온",
+  "count": 1
+ },
+ {
+  "name": "소고기 버섯",
+  "stored_category": "가공·즉석식품",
+  "storage": "실온",
+  "count": 1
+ },
+ {
+  "name": "소고기버섯",
+  "stored_category": "가공·즉석식품",
+  "storage": "실온",
+  "count": 1
+ },
+ {
+  "name": "손두부찌개",
+  "stored_category": "가공·즉석식품",
+  "storage": "냉장",
+  "count": 1
+ },
+ {
+  "name": "쇠고기버섯 2",
+  "stored_category": "가공·즉석식품",
+  "storage": "실온",
+  "count": 1
+ },
+ {
+  "name": "순두부찌개",
+  "stored_category": "가공·즉석식품",
+  "storage": "냉장",
+  "count": 1
+ },
+ {
+  "name": "신라면",
+  "stored_category": "가공·즉석식품",
+  "storage": "실온",
+  "count": 6
+ },
+ {
+  "name": "애닐라",
+  "stored_category": "가공·즉석식품",
+  "storage": "실온",
+  "count": 1
+ },
+ {
+  "name": "양교 350g",
+  "stored_category": "가공·즉석식품",
+  "storage": "실온",
+  "count": 1
+ },
+ {
+  "name": "양반죽",
+  "stored_category": "가공·즉석식품",
+  "storage": "실온",
+  "count": 1
+ },
+ {
+  "name": "양반죽 소고기버섯",
+  "stored_category": "가공·즉석식품",
+  "storage": "실온",
+  "count": 2
+ },
+ {
+  "name": "양반죽순 60g",
+  "stored_category": "가공·즉석식품",
+  "storage": "실온",
+  "count": 1
+ },
+ {
+  "name": "양죽 소고기버섯",
+  "stored_category": "가공·즉석식품",
+  "storage": "실온",
+  "count": 1
+ },
+ {
+  "name": "에브리",
+  "stored_category": "가공·즉석식품",
+  "storage": "실온",
+  "count": 1
+ },
+ {
+  "name": "오레일 500g",
+  "stored_category": "가공·즉석식품",
+  "storage": "실온",
+  "count": 1
+ },
+ {
+  "name": "왕고자 350g",
+  "stored_category": "가공·즉석식품",
+  "storage": "냉동",
+  "count": 1
+ },
+ {
+  "name": "왕교 350g",
+  "stored_category": "가공·즉석식품",
+  "storage": "냉동",
+  "count": 1
+ },
+ {
+  "name": "왕교자 350g",
+  "stored_category": "가공·즉석식품",
+  "storage": "냉동",
+  "count": 2
+ },
+ {
+  "name": "왕자반",
+  "stored_category": "가공·즉석식품",
+  "storage": "실온",
+  "count": 1
+ },
+ {
+  "name": "원지",
+  "stored_category": "가공·즉석식품",
+  "storage": "실온",
+  "count": 1
+ },
+ {
+  "name": "의성마늘 비엔나",
+  "stored_category": "가공·즉석식품",
+  "storage": "냉장",
+  "count": 3
+ },
+ {
+  "name": "죽 소고기버섯",
+  "stored_category": "가공·즉석식품",
+  "storage": "실온",
+  "count": 1
+ },
+ {
+  "name": "죽순 소고기버섯",
+  "stored_category": "가공·즉석식품",
+  "storage": "실온",
+  "count": 1
+ },
+ {
+  "name": "즉석 콩나물국 1인분",
+  "stored_category": "가공·즉석식품",
+  "storage": "실온",
+  "count": 1
+ },
+ {
+  "name": "즉석밥",
+  "stored_category": "가공·즉석식품",
+  "storage": "실온",
+  "count": 1
+ },
+ {
+  "name": "즉석밥 210g",
+  "stored_category": "가공·즉석식품",
+  "storage": "실온",
+  "count": 3
+ },
+ {
+  "name": "즉석밥(오뚜기)",
+  "stored_category": "가공·즉석식품",
+  "storage": "실온",
+  "count": 6
+ },
+ {
+  "name": "즉석밥(오뚜기) 4",
+  "stored_category": "가공·즉석식품",
+  "storage": "실온",
+  "count": 2
+ },
+ {
+  "name": "찐피만두 460g",
+  "stored_category": "가공·즉석식품",
+  "storage": "냉동",
+  "count": 1
+ },
+ {
+  "name": "참치 80g×3",
+  "stored_category": "가공·즉석식품",
+  "storage": "실온",
+  "count": 1
+ },
+ {
+  "name": "참치캔",
+  "stored_category": "가공·즉석식품",
+  "storage": "실온",
+  "count": 6
+ },
+ {
+  "name": "참치캔 100g 3입",
+  "stored_category": "가공·즉석식품",
+  "storage": "실온",
+  "count": 1
+ },
+ {
+  "name": "참치캔 100g×3",
+  "stored_category": "가공·즉석식품",
+  "storage": "실온",
+  "count": 4
+ },
+ {
+  "name": "참치캔 160g",
+  "stored_category": "가공·즉석식품",
+  "storage": "실온",
+  "count": 1
+ },
+ {
+  "name": "참치캔(중)",
+  "stored_category": "가공·즉석식품",
+  "storage": "실온",
+  "count": 1
+ },
+ {
+  "name": "찹스테이크",
+  "stored_category": "가공·즉석식품",
+  "storage": "냉동",
+  "count": 1
+ },
+ {
+  "name": "치즈샌드위치",
+  "stored_category": "가공·즉석식품",
+  "storage": "냉장",
+  "count": 1
+ },
+ {
+  "name": "카레 (중)",
+  "stored_category": "가공·즉석식품",
+  "storage": "실온",
+  "count": 1
+ },
+ {
+  "name": "카레(중)",
+  "stored_category": "가공·즉석식품",
+  "storage": "실온",
+  "count": 1
+ },
+ {
+  "name": "컵밥 닭갈비",
+  "stored_category": "가공·즉석식품",
+  "storage": "실온",
+  "count": 2
+ },
+ {
+  "name": "컵밥닭갈비",
+  "stored_category": "가공·즉석식품",
+  "storage": "실온",
+  "count": 1
+ },
+ {
+  "name": "탕수",
+  "stored_category": "가공·즉석식품",
+  "storage": "냉동",
+  "count": 2
+ },
+ {
+  "name": "파이벅",
+  "stored_category": "가공·즉석식품",
+  "storage": "냉동",
+  "count": 1
+ },
+ {
+  "name": "함박스테이크 2",
+  "stored_category": "가공·즉석식품",
+  "storage": "냉동",
+  "count": 2
+ },
+ {
+  "name": "핫스테이크",
+  "stored_category": "가공·즉석식품",
+  "storage": "냉동",
+  "count": 1
+ },
+ {
+  "name": "햇반",
+  "stored_category": "가공·즉석식품",
+  "storage": "실온",
+  "count": 7
+ },
+ {
+  "name": "햇반 210g",
+  "stored_category": "가공·즉석식품",
+  "storage": "실온",
+  "count": 3
+ },
+ {
+  "name": "햇밥 210g",
+  "stored_category": "가공·즉석식품",
+  "storage": "실온",
+  "count": 1
+ },
+ {
+  "name": "훼집 210g",
+  "stored_category": "가공·즉석식품",
+  "storage": "실온",
+  "count": 1
+ },
+ {
+  "name": "국수 80g×4",
+  "stored_category": "곡류·면류",
+  "storage": "실온",
+  "count": 1
+ },
+ {
+  "name": "그라노라 150g 2입",
+  "stored_category": "곡류·면류",
+  "storage": "실온",
+  "count": 1
+ },
+ {
+  "name": "냉면 세트 200g",
+  "stored_category": "곡류·면류",
+  "storage": "냉동",
+  "count": 1
+ },
+ {
+  "name": "떡볶이 양장 150g",
+  "stored_category": "곡류·면류",
+  "storage": "실온",
+  "count": 1
+ },
+ {
+  "name": "멸치국수 80g 4",
+  "stored_category": "곡류·면류",
+  "storage": "실온",
+  "count": 1
+ },
+ {
+  "name": "밀볶음 80g",
+  "stored_category": "곡류·면류",
+  "storage": "실온",
+  "count": 1
+ },
+ {
+  "name": "비빔국수",
+  "stored_category": "곡류·면류",
+  "storage": "실온",
+  "count": 1
+ },
+ {
+  "name": "스파게티면",
+  "stored_category": "곡류·면류",
+  "storage": "실온",
+  "count": 2
+ },
+ {
+  "name": "쌀국수",
+  "stored_category": "곡류·면류",
+  "storage": "실온",
+  "count": 1
+ },
+ {
+  "name": "쌀국수 80g×4",
+  "stored_category": "곡류·면류",
+  "storage": "실온",
+  "count": 4
+ },
+ {
+  "name": "오트밀",
+  "stored_category": "곡류·면류",
+  "storage": "실온",
+  "count": 2
+ },
+ {
+  "name": "오트밀 500g",
+  "stored_category": "곡류·면류",
+  "storage": "실온",
+  "count": 5
+ },
+ {
+  "name": "감귤",
+  "stored_category": "과일류",
+  "storage": "실온",
+  "count": 5
+ },
+ {
+  "name": "감귤 1kg",
+  "stored_category": "과일류",
+  "storage": "실온",
+  "count": 3
+ },
+ {
+  "name": "감귤 1단",
+  "stored_category": "과일류",
+  "storage": "실온",
+  "count": 1
+ },
+ {
+  "name": "갑귤 1kg",
+  "stored_category": "과일류",
+  "storage": "실온",
+  "count": 1
+ },
+ {
+  "name": "곶감",
+  "stored_category": "과일류",
+  "storage": "실온",
+  "count": 1
+ },
+ {
+  "name": "김귤",
+  "stored_category": "과일류",
+  "storage": "실온",
+  "count": 1
+ },
+ {
+  "name": "단감",
+  "stored_category": "과일류",
+  "storage": "실온",
+  "count": 1
+ },
+ {
+  "name": "딸기 4",
+  "stored_category": "과일류",
+  "storage": "냉장",
+  "count": 1
+ },
+ {
+  "name": "딸기베리벚꽃 200g",
+  "stored_category": "과일류",
+  "storage": "냉장",
+  "count": 1
+ },
+ {
+  "name": "바나나",
+  "stored_category": "과일류",
+  "storage": "실온",
+  "count": 6
+ },
+ {
+  "name": "바나나 1",
+  "stored_category": "과일류",
+  "storage": "실온",
+  "count": 7
+ },
+ {
+  "name": "바나나 송이",
+  "stored_category": "과일류",
+  "storage": "실온",
+  "count": 1
+ },
+ {
+  "name": "바나나 한 송이",
+  "stored_category": "과일류",
+  "storage": "실온",
+  "count": 8
+ },
+ {
+  "name": "방울토마토",
+  "stored_category": "과일류",
+  "storage": "냉장",
+  "count": 1
+ },
+ {
+  "name": "사과",
+  "stored_category": "과일류",
+  "storage": "실온",
+  "count": 1
+ },
+ {
+  "name": "사과 2",
+  "stored_category": "과일류",
+  "storage": "실온",
+  "count": 8
+ },
+ {
+  "name": "사과(소)",
+  "stored_category": "과일류",
+  "storage": "실온",
+  "count": 10
+ },
+ {
+  "name": "사과(소) 2입",
+  "stored_category": "과일류",
+  "storage": "실온",
+  "count": 1
+ },
+ {
+  "name": "오렌지",
+  "stored_category": "과일류",
+  "storage": "실온",
+  "count": 1
+ },
+ {
+  "name": "자프리카 (중) 2",
+  "stored_category": "과일류",
+  "storage": "실온",
+  "count": 1
+ },
+ {
+  "name": "청포도",
+  "stored_category": "과일류",
+  "storage": "실온",
+  "count": 5
+ },
+ {
+  "name": "청포도 500g",
+  "stored_category": "과일류",
+  "storage": "실온",
+  "count": 3
+ },
+ {
+  "name": "청포도 500g",
+  "stored_category": "과일류",
+  "storage": "냉장",
+  "count": 1
+ },
+ {
+  "name": "황도",
+  "stored_category": "과일류",
+  "storage": "실온",
+  "count": 1
+ },
+ {
+  "name": "냉동 완두콩",
+  "stored_category": "두부·콩류",
+  "storage": "냉동",
+  "count": 1
+ },
+ {
+  "name": "냉동 완두콩 500g",
+  "stored_category": "두부·콩류",
+  "storage": "냉동",
+  "count": 2
+ },
+ {
+  "name": "두부",
+  "stored_category": "두부·콩류",
+  "storage": "냉장",
+  "count": 3
+ },
+ {
+  "name": "두부 1단",
+  "stored_category": "두부·콩류",
+  "storage": "냉장",
+  "count": 2
+ },
+ {
+  "name": "두부 300g",
+  "stored_category": "두부·콩류",
+  "storage": "냉장",
+  "count": 2
+ },
+ {
+  "name": "두부(찌개용)",
+  "stored_category": "두부·콩류",
+  "storage": "냉장",
+  "count": 5
+ },
+ {
+  "name": "두부(찌개용) 300g",
+  "stored_category": "두부·콩류",
+  "storage": "냉장",
+  "count": 8
+ },
+ {
+  "name": "무항생제두부 400g",
+  "stored_category": "두부·콩류",
+  "storage": "냉장",
+  "count": 1
+ },
+ {
+  "name": "손두부피경",
+  "stored_category": "두부·콩류",
+  "storage": "냉장",
+  "count": 1
+ },
+ {
+  "name": "순두부찌개",
+  "stored_category": "두부·콩류",
+  "storage": "냉장",
+  "count": 2
+ },
+ {
+  "name": "완두콩 500g",
+  "stored_category": "두부·콩류",
+  "storage": "냉장",
+  "count": 1
+ },
+ {
+  "name": "우림두부 150g",
+  "stored_category": "두부·콩류",
+  "storage": "냉장",
+  "count": 1
+ },
+ {
+  "name": "콩나물",
+  "stored_category": "두부·콩류",
+  "storage": "냉장",
+  "count": 2
+ },
+ {
+  "name": "콩나물 500g",
+  "stored_category": "두부·콩류",
+  "storage": "냉장",
+  "count": 1
+ },
+ {
+  "name": "갑물",
+  "stored_category": "수산물",
+  "storage": "냉장",
+  "count": 1
+ },
+ {
+  "name": "김 1kg",
+  "stored_category": "수산물",
+  "storage": "실온",
+  "count": 1
+ },
+ {
+  "name": "김 1단",
+  "stored_category": "수산물",
+  "storage": "실온",
+  "count": 2
+ },
+ {
+  "name": "냉동 새우",
+  "stored_category": "수산물",
+  "storage": "냉동",
+  "count": 1
+ },
+ {
+  "name": "냉동 새우 200g",
+  "stored_category": "수산물",
+  "storage": "냉동",
+  "count": 5
+ },
+ {
+  "name": "냉동새우",
+  "stored_category": "수산물",
+  "storage": "냉동",
+  "count": 2
+ },
+ {
+  "name": "냉동새우 300g",
+  "stored_category": "수산물",
+  "storage": "냉동",
+  "count": 4
+ },
+ {
+  "name": "냉동자숙우",
+  "stored_category": "수산물",
+  "storage": "냉동",
+  "count": 1
+ },
+ {
+  "name": "동동새우 300g",
+  "stored_category": "수산물",
+  "storage": "냉동",
+  "count": 1
+ },
+ {
+  "name": "두부 어묵 240g",
+  "stored_category": "수산물",
+  "storage": "냉장",
+  "count": 1
+ },
+ {
+  "name": "마른멸치",
+  "stored_category": "수산물",
+  "storage": "실온",
+  "count": 1
+ },
+ {
+  "name": "멸치",
+  "stored_category": "수산물",
+  "storage": "실온",
+  "count": 1
+ },
+ {
+  "name": "멸치볶음 80g",
+  "stored_category": "수산물",
+  "storage": "실온",
+  "count": 3
+ },
+ {
+  "name": "생연어",
+  "stored_category": "수산물",
+  "storage": "냉장",
+  "count": 1
+ },
+ {
+  "name": "수산물",
+  "stored_category": "수산물",
+  "storage": "냉장",
+  "count": 1
+ },
+ {
+  "name": "참돔 1kg",
+  "stored_category": "수산물",
+  "storage": "냉장",
+  "count": 1
+ },
+ {
+  "name": "참치",
+  "stored_category": "수산물",
+  "storage": "실온",
+  "count": 1
+ },
+ {
+  "name": "참치 160g",
+  "stored_category": "수산물",
+  "storage": "실온",
+  "count": 1
+ },
+ {
+  "name": "참치 1kg",
+  "stored_category": "수산물",
+  "storage": "냉장",
+  "count": 1
+ },
+ {
+  "name": "참치캔",
+  "stored_category": "수산물",
+  "storage": "실온",
+  "count": 2
+ },
+ {
+  "name": "참치캔 100g 3",
+  "stored_category": "수산물",
+  "storage": "실온",
+  "count": 1
+ },
+ {
+  "name": "참치캔 135g",
+  "stored_category": "수산물",
+  "storage": "실온",
+  "count": 4
+ },
+ {
+  "name": "참치캔(중) 135g",
+  "stored_category": "수산물",
+  "storage": "실온",
+  "count": 1
+ },
+ {
+  "name": "고구마빵",
+  "stored_category": "스낵·과자",
+  "storage": "실온",
+  "count": 1
+ },
+ {
+  "name": "너비버스 200g",
+  "stored_category": "스낵·과자",
+  "storage": "실온",
+  "count": 1
+ },
+ {
+  "name": "너트리버",
+  "stored_category": "스낵·과자",
+  "storage": "실온",
+  "count": 1
+ },
+ {
+  "name": "멀치볶음 80g",
+  "stored_category": "스낵·과자",
+  "storage": "실온",
+  "count": 1
+ },
+ {
+  "name": "모이 3",
+  "stored_category": "스낵·과자",
+  "storage": "실온",
+  "count": 1
+ },
+ {
+  "name": "바니니 몽이",
+  "stored_category": "스낵·과자",
+  "storage": "실온",
+  "count": 1
+ },
+ {
+  "name": "비스크치즈스콘",
+  "stored_category": "스낵·과자",
+  "storage": "실온",
+  "count": 1
+ },
+ {
+  "name": "새우깡",
+  "stored_category": "스낵·과자",
+  "storage": "실온",
+  "count": 1
+ },
+ {
+  "name": "아이스크림",
+  "stored_category": "스낵·과자",
+  "storage": "냉동",
+  "count": 1
+ },
+ {
+  "name": "양파링",
+  "stored_category": "스낵·과자",
+  "storage": "실온",
+  "count": 1
+ },
+ {
+  "name": "오감자",
+  "stored_category": "스낵·과자",
+  "storage": "실온",
+  "count": 1
+ },
+ {
+  "name": "오르릉 500g",
+  "stored_category": "스낵·과자",
+  "storage": "실온",
+  "count": 1
+ },
+ {
+  "name": "오트밀바",
+  "stored_category": "스낵·과자",
+  "storage": "실온",
+  "count": 3
+ },
+ {
+  "name": "초코송이",
+  "stored_category": "스낵·과자",
+  "storage": "실온",
+  "count": 1
+ },
+ {
+  "name": "칩스민트초코쉬트",
+  "stored_category": "스낵·과자",
+  "storage": "실온",
+  "count": 1
+ },
+ {
+  "name": "간장 1L",
+  "stored_category": "양념·소스",
+  "storage": "실온",
+  "count": 3
+ },
+ {
+  "name": "간장 500ml",
+  "stored_category": "양념·소스",
+  "storage": "실온",
+  "count": 1
+ },
+ {
+  "name": "고추장",
+  "stored_category": "양념·소스",
+  "storage": "실온",
+  "count": 3
+ },
+ {
+  "name": "고추장 500g",
+  "stored_category": "양념·소스",
+  "storage": "실온",
+  "count": 4
+ },
+ {
+  "name": "굵은소금",
+  "stored_category": "양념·소스",
+  "storage": "실온",
+  "count": 1
+ },
+ {
+  "name": "김장 1L",
+  "stored_category": "양념·소스",
+  "storage": "냉장",
+  "count": 1
+ },
+ {
+  "name": "다시다 500g",
+  "stored_category": "양념·소스",
+  "storage": "실온",
+  "count": 1
+ },
+ {
+  "name": "들기름",
+  "stored_category": "양념·소스",
+  "storage": "실온",
+  "count": 1
+ },
+ {
+  "name": "들기름 160ml",
+  "stored_category": "양념·소스",
+  "storage": "실온",
+  "count": 3
+ },
+ {
+  "name": "들기름 350ml",
+  "stored_category": "양념·소스",
+  "storage": "실온",
+  "count": 1
+ },
+ {
+  "name": "딸기잼",
+  "stored_category": "양념·소스",
+  "storage": "실온",
+  "count": 1
+ },
+ {
+  "name": "몰리브유",
+  "stored_category": "양념·소스",
+  "storage": "실온",
+  "count": 1
+ },
+ {
+  "name": "물기름",
+  "stored_category": "양념·소스",
+  "storage": "실온",
+  "count": 1
+ },
+ {
+  "name": "미원 500g",
+  "stored_category": "양념·소스",
+  "storage": "실온",
+  "count": 1
+ },
+ {
+  "name": "바질 페스토",
+  "stored_category": "양념·소스",
+  "storage": "냉장",
+  "count": 2
+ },
+ {
+  "name": "볶음고추장",
+  "stored_category": "양념·소스",
+  "storage": "실온",
+  "count": 1
+ },
+ {
+  "name": "설탕 1kg",
+  "stored_category": "양념·소스",
+  "storage": "실온",
+  "count": 1
+ },
+ {
+  "name": "소금 500g",
+  "stored_category": "양념·소스",
+  "storage": "실온",
+  "count": 1
+ },
+ {
+  "name": "식용유 1.8L",
+  "stored_category": "양념·소스",
+  "storage": "실온",
+  "count": 1
+ },
+ {
+  "name": "식초",
+  "stored_category": "양념·소스",
+  "storage": "실온",
+  "count": 1
+ },
+ {
+  "name": "올리브",
+  "stored_category": "양념·소스",
+  "storage": "실온",
+  "count": 1
+ },
+ {
+  "name": "올리브 500ml",
+  "stored_category": "양념·소스",
+  "storage": "실온",
+  "count": 3
+ },
+ {
+  "name": "올리브유",
+  "stored_category": "양념·소스",
+  "storage": "실온",
+  "count": 7
+ },
+ {
+  "name": "올리브유 500ml",
+  "stored_category": "양념·소스",
+  "storage": "실온",
+  "count": 6
+ },
+ {
+  "name": "의성마늘 비네나",
+  "stored_category": "양념·소스",
+  "storage": "냉장",
+  "count": 1
+ },
+ {
+  "name": "진간장",
+  "stored_category": "양념·소스",
+  "storage": "실온",
+  "count": 6
+ },
+ {
+  "name": "진간장 500ml",
+  "stored_category": "양념·소스",
+  "storage": "실온",
+  "count": 6
+ },
+ {
+  "name": "참기름",
+  "stored_category": "양념·소스",
+  "storage": "실온",
+  "count": 6
+ },
+ {
+  "name": "참기름 160ml",
+  "stored_category": "양념·소스",
+  "storage": "실온",
+  "count": 4
+ },
+ {
+  "name": "참기름 350ml",
+  "stored_category": "양념·소스",
+  "storage": "실온",
+  "count": 1
+ },
+ {
+  "name": "참깨",
+  "stored_category": "양념·소스",
+  "storage": "실온",
+  "count": 1
+ },
+ {
+  "name": "초고추장 1kg",
+  "stored_category": "양념·소스",
+  "storage": "실온",
+  "count": 1
+ },
+ {
+  "name": "카놀라유 1.8L",
+  "stored_category": "양념·소스",
+  "storage": "실온",
+  "count": 1
+ },
+ {
+  "name": "칸장 1L",
+  "stored_category": "양념·소스",
+  "storage": "실온",
+  "count": 1
+ },
+ {
+  "name": "케찹",
+  "stored_category": "양념·소스",
+  "storage": "실온",
+  "count": 6
+ },
+ {
+  "name": "케찹 500g",
+  "stored_category": "양념·소스",
+  "storage": "실온",
+  "count": 5
+ },
+ {
+  "name": "케첩",
+  "stored_category": "양념·소스",
+  "storage": "실온",
+  "count": 3
+ },
+ {
+  "name": "콩기름 1.8L",
+  "stored_category": "양념·소스",
+  "storage": "실온",
+  "count": 1
+ },
+ {
+  "name": "태양초고추장",
+  "stored_category": "양념·소스",
+  "storage": "실온",
+  "count": 1
+ },
+ {
+  "name": "후추 그라인더",
+  "stored_category": "양념·소스",
+  "storage": "실온",
+  "count": 1
+ },
+ {
+  "name": "계란",
+  "stored_category": "유제품·계란",
+  "storage": "냉장",
+  "count": 2
+ },
+ {
+  "name": "계란 15구",
+  "stored_category": "유제품·계란",
+  "storage": "냉장",
+  "count": 3
+ },
+ {
+  "name": "계란 15구 (중란)",
+  "stored_category": "유제품·계란",
+  "storage": "냉장",
+  "count": 3
+ },
+ {
+  "name": "계란(중란)",
+  "stored_category": "유제품·계란",
+  "storage": "냉장",
+  "count": 5
+ },
+ {
+  "name": "그리크요트 150g",
+  "stored_category": "유제품·계란",
+  "storage": "냉장",
+  "count": 1
+ },
+ {
+  "name": "그릭요거",
+  "stored_category": "유제품·계란",
+  "storage": "냉장",
+  "count": 1
+ },
+ {
+  "name": "그릭요거 150g",
+  "stored_category": "유제품·계란",
+  "storage": "냉장",
+  "count": 1
+ },
+ {
+  "name": "그릭요거트 150g",
+  "stored_category": "유제품·계란",
+  "storage": "냉장",
+  "count": 4
+ },
+ {
+  "name": "달걀",
+  "stored_category": "유제품·계란",
+  "storage": "냉장",
+  "count": 4
+ },
+ {
+  "name": "달걀 특란",
+  "stored_category": "유제품·계란",
+  "storage": "냉장",
+  "count": 8
+ },
+ {
+  "name": "달걀 특란 10구",
+  "stored_category": "유제품·계란",
+  "storage": "냉장",
+  "count": 1
+ },
+ {
+  "name": "달걀(10구) 특란",
+  "stored_category": "유제품·계란",
+  "storage": "냉장",
+  "count": 2
+ },
+ {
+  "name": "달걀(특란)",
+  "stored_category": "유제품·계란",
+  "storage": "냉장",
+  "count": 1
+ },
+ {
+  "name": "딸기맛우유",
+  "stored_category": "유제품·계란",
+  "storage": "냉장",
+  "count": 1
+ },
+ {
+  "name": "딸기요플레",
+  "stored_category": "유제품·계란",
+  "storage": "냉장",
+  "count": 1
+ },
+ {
+  "name": "무항생제 특란 (30구)",
+  "stored_category": "유제품·계란",
+  "storage": "냉장",
+  "count": 1
+ },
+ {
+  "name": "바나나맛우유",
+  "stored_category": "유제품·계란",
+  "storage": "냉장",
+  "count": 1
+ },
+ {
+  "name": "바나나맛우유 240ml",
+  "stored_category": "유제품·계란",
+  "storage": "냉장",
+  "count": 2
+ },
+ {
+  "name": "버터",
+  "stored_category": "유제품·계란",
+  "storage": "냉장",
+  "count": 1
+ },
+ {
+  "name": "버터 450g",
+  "stored_category": "유제품·계란",
+  "storage": "냉장",
+  "count": 7
+ },
+ {
+  "name": "불가리스 4",
+  "stored_category": "유제품·계란",
+  "storage": "냉장",
+  "count": 2
+ },
+ {
+  "name": "불가리스 딸기",
+  "stored_category": "유제품·계란",
+  "storage": "냉장",
+  "count": 4
+ },
+ {
+  "name": "불가리스 딸기 4",
+  "stored_category": "유제품·계란",
+  "storage": "냉장",
+  "count": 2
+ },
+ {
+  "name": "불가리스 딸기×4",
+  "stored_category": "유제품·계란",
+  "storage": "냉장",
+  "count": 2
+ },
+ {
+  "name": "삶은달걀",
+  "stored_category": "유제품·계란",
+  "storage": "냉장",
+  "count": 4
+ },
+ {
+  "name": "스트링치즈",
+  "stored_category": "유제품·계란",
+  "storage": "냉장",
+  "count": 1
+ },
+ {
+  "name": "요플레 4",
+  "stored_category": "유제품·계란",
+  "storage": "냉장",
+  "count": 1
+ },
+ {
+  "name": "요플레(딸기)",
+  "stored_category": "유제품·계란",
+  "storage": "냉장",
+  "count": 6
+ },
+ {
+  "name": "요플레(딸기) x 4",
+  "stored_category": "유제품·계란",
+  "storage": "냉장",
+  "count": 1
+ },
+ {
+  "name": "요플레(딸기)×4",
+  "stored_category": "유제품·계란",
+  "storage": "냉장",
+  "count": 3
+ },
+ {
+  "name": "우유",
+  "stored_category": "유제품·계란",
+  "storage": "냉장",
+  "count": 6
+ },
+ {
+  "name": "우유 1L",
+  "stored_category": "유제품·계란",
+  "storage": "냉장",
+  "count": 12
+ },
+ {
+  "name": "우유 1l",
+  "stored_category": "유제품·계란",
+  "storage": "냉장",
+  "count": 1
+ },
+ {
+  "name": "유정란",
+  "stored_category": "유제품·계란",
+  "storage": "냉장",
+  "count": 1
+ },
+ {
+  "name": "저방유 우유 1L",
+  "stored_category": "유제품·계란",
+  "storage": "냉장",
+  "count": 1
+ },
+ {
+  "name": "저지방 우유 1L",
+  "stored_category": "유제품·계란",
+  "storage": "냉장",
+  "count": 4
+ },
+ {
+  "name": "저지방우유",
+  "stored_category": "유제품·계란",
+  "storage": "냉장",
+  "count": 2
+ },
+ {
+  "name": "치즈",
+  "stored_category": "유제품·계란",
+  "storage": "냉장",
+  "count": 1
+ },
+ {
+  "name": "흑우유 1L",
+  "stored_category": "유제품·계란",
+  "storage": "냉장",
+  "count": 1
+ },
+ {
+  "name": "가브리살",
+  "stored_category": "육류",
+  "storage": "냉장",
+  "count": 1
+ },
+ {
+  "name": "가시오리",
+  "stored_category": "육류",
+  "storage": "냉장",
+  "count": 1
+ },
+ {
+  "name": "감자탕용 돼지등뼈",
+  "stored_category": "육류",
+  "storage": "냉장",
+  "count": 1
+ },
+ {
+  "name": "냉동 닭다리",
+  "stored_category": "육류",
+  "storage": "냉동",
+  "count": 1
+ },
+ {
+  "name": "닭가슴살",
+  "stored_category": "육류",
+  "storage": "냉장",
+  "count": 5
+ },
+ {
+  "name": "닭가슴살",
+  "stored_category": "육류",
+  "storage": "냉동",
+  "count": 2
+ },
+ {
+  "name": "닭날개 80g 4입",
+  "stored_category": "육류",
+  "storage": "냉동",
+  "count": 1
+ },
+ {
+  "name": "대왕 닭고 500g",
+  "stored_category": "육류",
+  "storage": "냉동",
+  "count": 1
+ },
+ {
+  "name": "돼지 목살",
+  "stored_category": "육류",
+  "storage": "냉장",
+  "count": 1
+ },
+ {
+  "name": "베이직 소시움 500g",
+  "stored_category": "육류",
+  "storage": "냉장",
+  "count": 1
+ },
+ {
+  "name": "생삼겹살",
+  "stored_category": "육류",
+  "storage": "냉장",
+  "count": 1
+ },
+ {
+  "name": "손실 삼겹살",
+  "stored_category": "육류",
+  "storage": "냉장",
+  "count": 1
+ },
+ {
+  "name": "순살 삼겹살",
+  "stored_category": "육류",
+  "storage": "냉장",
+  "count": 1
+ },
+ {
+  "name": "양다리훈합 닭다리",
+  "stored_category": "육류",
+  "storage": "냉장",
+  "count": 1
+ },
+ {
+  "name": "와셔마늘 비엔나 180g",
+  "stored_category": "육류",
+  "storage": "냉장",
+  "count": 1
+ },
+ {
+  "name": "왕정살 460g",
+  "stored_category": "육류",
+  "storage": "냉장",
+  "count": 1
+ },
+ {
+  "name": "의성마늘 비엔나 180g",
+  "stored_category": "육류",
+  "storage": "냉장",
+  "count": 4
+ },
+ {
+  "name": "지리산흑돼지애호",
+  "stored_category": "육류",
+  "storage": "냉장",
+  "count": 1
+ },
+ {
+  "name": "한돈 닭다리",
+  "stored_category": "육류",
+  "storage": "냉장",
+  "count": 1
+ },
+ {
+  "name": "한돈 왕정살",
+  "stored_category": "육류",
+  "storage": "냉장",
+  "count": 1
+ },
+ {
+  "name": "한우 국거리",
+  "stored_category": "육류",
+  "storage": "냉장",
+  "count": 1
+ },
+ {
+  "name": "한우 안심",
+  "stored_category": "육류",
+  "storage": "냉장",
+  "count": 1
+ },
+ {
+  "name": "한우지롱",
+  "stored_category": "육류",
+  "storage": "냉장",
+  "count": 1
+ },
+ {
+  "name": "햄바스틱 2",
+  "stored_category": "육류",
+  "storage": "냉장",
+  "count": 1
+ },
+ {
+  "name": "훈제닭피 460g",
+  "stored_category": "육류",
+  "storage": "냉동",
+  "count": 1
+ },
+ {
+  "name": "두유",
+  "stored_category": "음료·주류",
+  "storage": "실온",
+  "count": 1
+ },
+ {
+  "name": "두유(베이지)",
+  "stored_category": "음료·주류",
+  "storage": "실온",
+  "count": 2
+ },
+ {
+  "name": "두유(베지밀)",
+  "stored_category": "음료·주류",
+  "storage": "실온",
+  "count": 1
+ },
+ {
+  "name": "딸기스 4",
+  "stored_category": "음료·주류",
+  "storage": "냉장",
+  "count": 1
+ },
+ {
+  "name": "망고로코",
+  "stored_category": "음료·주류",
+  "storage": "실온",
+  "count": 1
+ },
+ {
+  "name": "물통 20L",
+  "stored_category": "음료·주류",
+  "storage": "실온",
+  "count": 1
+ },
+ {
+  "name": "바나나맛우유",
+  "stored_category": "음료·주류",
+  "storage": "냉장",
+  "count": 4
+ },
+ {
+  "name": "바나나우유",
+  "stored_category": "음료·주류",
+  "storage": "냉장",
+  "count": 2
+ },
+ {
+  "name": "바나나우유 240ml",
+  "stored_category": "음료·주류",
+  "storage": "냉장",
+  "count": 4
+ },
+ {
+  "name": "왕초차",
+  "stored_category": "음료·주류",
+  "storage": "실온",
+  "count": 1
+ },
+ {
+  "name": "자몽에이드",
+  "stored_category": "음료·주류",
+  "storage": "실온",
+  "count": 2
+ },
+ {
+  "name": "갈릭",
+  "stored_category": "채소류",
+  "storage": "냉장",
+  "count": 1
+ },
+ {
+  "name": "감자",
+  "stored_category": "채소류",
+  "storage": "냉장",
+  "count": 7
+ },
+ {
+  "name": "감자",
+  "stored_category": "채소류",
+  "storage": "실온",
+  "count": 4
+ },
+ {
+  "name": "감자 1kg",
+  "stored_category": "채소류",
+  "storage": "실온",
+  "count": 1
+ },
+ {
+  "name": "감자 500g",
+  "stored_category": "채소류",
+  "storage": "냉장",
+  "count": 5
+ },
+ {
+  "name": "갑자 500g",
+  "stored_category": "채소류",
+  "storage": "냉장",
+  "count": 1
+ },
+ {
+  "name": "고구마",
+  "stored_category": "채소류",
+  "storage": "냉장",
+  "count": 4
+ },
+ {
+  "name": "고구마",
+  "stored_category": "채소류",
+  "storage": "실온",
+  "count": 1
+ },
+ {
+  "name": "굴김치 1000g",
+  "stored_category": "채소류",
+  "storage": "냉장",
+  "count": 1
+ },
+ {
+  "name": "김치 500g",
+  "stored_category": "채소류",
+  "storage": "냉장",
+  "count": 1
+ },
+ {
+  "name": "깐마늘",
+  "stored_category": "채소류",
+  "storage": "냉장",
+  "count": 5
+ },
+ {
+  "name": "깻잎",
+  "stored_category": "채소류",
+  "storage": "냉장",
+  "count": 9
+ },
+ {
+  "name": "깻잎 20",
+  "stored_category": "채소류",
+  "storage": "냉장",
+  "count": 2
+ },
+ {
+  "name": "나트리버섯",
+  "stored_category": "채소류",
+  "storage": "냉장",
+  "count": 1
+ },
+ {
+  "name": "날콩가리소 4",
+  "stored_category": "채소류",
+  "storage": "냉장",
+  "count": 1
+ },
+ {
+  "name": "냉동 브로콜리",
+  "stored_category": "채소류",
+  "storage": "냉동",
+  "count": 1
+ },
+ {
+  "name": "냉동 브로콜리 500g",
+  "stored_category": "채소류",
+  "storage": "냉동",
+  "count": 6
+ },
+ {
+  "name": "냉동 완두 500g",
+  "stored_category": "채소류",
+  "storage": "냉동",
+  "count": 1
+ },
+ {
+  "name": "냉동 완두콩 500g",
+  "stored_category": "채소류",
+  "storage": "냉동",
+  "count": 2
+ },
+ {
+  "name": "냉동 캘리포니아 믹스 4",
+  "stored_category": "채소류",
+  "storage": "냉동",
+  "count": 1
+ },
+ {
+  "name": "너티버섯 200g",
+  "stored_category": "채소류",
+  "storage": "냉장",
+  "count": 1
+ },
+ {
+  "name": "노란티버섯 200g",
+  "stored_category": "채소류",
+  "storage": "냉장",
+  "count": 1
+ },
+ {
+  "name": "느타리버섯 200g",
+  "stored_category": "채소류",
+  "storage": "냉장",
+  "count": 6
+ },
+ {
+  "name": "당근",
+  "stored_category": "채소류",
+  "storage": "냉장",
+  "count": 4
+ },
+ {
+  "name": "당근 10",
+  "stored_category": "채소류",
+  "storage": "냉장",
+  "count": 1
+ },
+ {
+  "name": "대파",
+  "stored_category": "채소류",
+  "storage": "냉장",
+  "count": 10
+ },
+ {
+  "name": "대파 1단",
+  "stored_category": "채소류",
+  "storage": "냉장",
+  "count": 5
+ },
+ {
+  "name": "딸기버섯 200g",
+  "stored_category": "채소류",
+  "storage": "냉장",
+  "count": 1
+ },
+ {
+  "name": "맛있는 버섯",
+  "stored_category": "채소류",
+  "storage": "냉장",
+  "count": 1
+ },
+ {
+  "name": "맛있는오기버섯",
+  "stored_category": "채소류",
+  "storage": "냉장",
+  "count": 1
+ },
+ {
+  "name": "망측",
+  "stored_category": "채소류",
+  "storage": "냉장",
+  "count": 1
+ },
+ {
+  "name": "목이버섯 80g",
+  "stored_category": "채소류",
+  "storage": "냉장",
+  "count": 1
+ },
+ {
+  "name": "무 1개",
+  "stored_category": "채소류",
+  "storage": "냉장",
+  "count": 5
+ },
+ {
+  "name": "미나리",
+  "stored_category": "채소류",
+  "storage": "냉장",
+  "count": 1
+ },
+ {
+  "name": "미니 양배추",
+  "stored_category": "채소류",
+  "storage": "냉장",
+  "count": 3
+ },
+ {
+  "name": "미니 파",
+  "stored_category": "채소류",
+  "storage": "냉장",
+  "count": 1
+ },
+ {
+  "name": "미니양배추",
+  "stored_category": "채소류",
+  "storage": "냉장",
+  "count": 2
+ },
+ {
+  "name": "미니파",
+  "stored_category": "채소류",
+  "storage": "냉장",
+  "count": 1
+ },
+ {
+  "name": "방울토마토",
+  "stored_category": "채소류",
+  "storage": "냉장",
+  "count": 4
+ },
+ {
+  "name": "방울토마토 500g",
+  "stored_category": "채소류",
+  "storage": "냉장",
+  "count": 1
+ },
+ {
+  "name": "버섯",
+  "stored_category": "채소류",
+  "storage": "냉장",
+  "count": 1
+ },
+ {
+  "name": "베이비 덩기패 460g",
+  "stored_category": "채소류",
+  "storage": "냉장",
+  "count": 1
+ },
+ {
+  "name": "베이비버섯 150g x 2",
+  "stored_category": "채소류",
+  "storage": "냉장",
+  "count": 1
+ },
+ {
+  "name": "베이비버섯 300g",
+  "stored_category": "채소류",
+  "storage": "냉장",
+  "count": 1
+ },
+ {
+  "name": "브로콜리",
+  "stored_category": "채소류",
+  "storage": "냉장",
+  "count": 10
+ },
+ {
+  "name": "브로콜리 1",
+  "stored_category": "채소류",
+  "storage": "냉장",
+  "count": 8
+ },
+ {
+  "name": "브로콜리 1개",
+  "stored_category": "채소류",
+  "storage": "냉장",
+  "count": 1
+ },
+ {
+  "name": "새송이버섯",
+  "stored_category": "채소류",
+  "storage": "냉장",
+  "count": 1
+ },
+ {
+  "name": "생콩나물",
+  "stored_category": "채소류",
+  "storage": "냉장",
+  "count": 1
+ },
+ {
+  "name": "시금치",
+  "stored_category": "채소류",
+  "storage": "냉장",
+  "count": 5
+ },
+ {
+  "name": "시금치 1단",
+  "stored_category": "채소류",
+  "storage": "냉장",
+  "count": 3
+ },
+ {
+  "name": "애호박",
+  "stored_category": "채소류",
+  "storage": "냉장",
+  "count": 11
+ },
+ {
+  "name": "애호박 1개",
+  "stored_category": "채소류",
+  "storage": "냉장",
+  "count": 6
+ },
+ {
+  "name": "애호박 1팩",
+  "stored_category": "채소류",
+  "storage": "냉장",
+  "count": 1
+ },
+ {
+  "name": "양념 beef버섯",
+  "stored_category": "채소류",
+  "storage": "냉장",
+  "count": 1
+ },
+ {
+  "name": "양념 브로콜리 500g",
+  "stored_category": "채소류",
+  "storage": "냉장",
+  "count": 1
+ },
+ {
+  "name": "양념 소고기 버섯",
+  "stored_category": "채소류",
+  "storage": "냉장",
+  "count": 1
+ },
+ {
+  "name": "양배추",
+  "stored_category": "채소류",
+  "storage": "냉장",
+  "count": 6
+ },
+ {
+  "name": "양배추 1통",
+  "stored_category": "채소류",
+  "storage": "냉장",
+  "count": 1
+ },
+ {
+  "name": "양파",
+  "stored_category": "채소류",
+  "storage": "냉장",
+  "count": 16
+ },
+ {
+  "name": "양파",
+  "stored_category": "채소류",
+  "storage": "실온",
+  "count": 6
+ },
+ {
+  "name": "양파 1kg",
+  "stored_category": "채소류",
+  "storage": "냉장",
+  "count": 3
+ },
+ {
+  "name": "양파 1kg",
+  "stored_category": "채소류",
+  "storage": "실온",
+  "count": 1
+ },
+ {
+  "name": "양파 350g",
+  "stored_category": "채소류",
+  "storage": "실온",
+  "count": 1
+ },
+ {
+  "name": "양파 500g",
+  "stored_category": "채소류",
+  "storage": "냉장",
+  "count": 6
+ },
+ {
+  "name": "어린잎채소",
+  "stored_category": "채소류",
+  "storage": "냉장",
+  "count": 6
+ },
+ {
+  "name": "어린잎채소 100g",
+  "stored_category": "채소류",
+  "storage": "냉장",
+  "count": 6
+ },
+ {
+  "name": "오미 3잉",
+  "stored_category": "채소류",
+  "storage": "냉장",
+  "count": 1
+ },
+ {
+  "name": "오이",
+  "stored_category": "채소류",
+  "storage": "냉장",
+  "count": 12
+ },
+ {
+  "name": "오이 3",
+  "stored_category": "채소류",
+  "storage": "냉장",
+  "count": 7
+ },
+ {
+  "name": "오이 3입",
+  "stored_category": "채소류",
+  "storage": "냉장",
+  "count": 1
+ },
+ {
+  "name": "오이지 3",
+  "stored_category": "채소류",
+  "storage": "냉장",
+  "count": 1
+ },
+ {
+  "name": "의성마늘",
+  "stored_category": "채소류",
+  "storage": "냉장",
+  "count": 1
+ },
+ {
+  "name": "정부자",
+  "stored_category": "채소류",
+  "storage": "냉장",
+  "count": 1
+ },
+ {
+  "name": "종합 채소 묶음",
+  "stored_category": "채소류",
+  "storage": "냉장",
+  "count": 1
+ },
+ {
+  "name": "쪽파",
+  "stored_category": "채소류",
+  "storage": "냉장",
+  "count": 5
+ },
+ {
+  "name": "청양고추",
+  "stored_category": "채소류",
+  "storage": "냉장",
+  "count": 5
+ },
+ {
+  "name": "콩고추",
+  "stored_category": "채소류",
+  "storage": "냉장",
+  "count": 1
+ },
+ {
+  "name": "콩나물",
+  "stored_category": "채소류",
+  "storage": "냉장",
+  "count": 2
+ },
+ {
+  "name": "트리버섯",
+  "stored_category": "채소류",
+  "storage": "냉장",
+  "count": 1
+ },
+ {
+  "name": "파프리카",
+  "stored_category": "채소류",
+  "storage": "냉장",
+  "count": 8
+ },
+ {
+  "name": "파프리카 (적/황)",
+  "stored_category": "채소류",
+  "storage": "냉장",
+  "count": 1
+ },
+ {
+  "name": "파프리카 1kg",
+  "stored_category": "채소류",
+  "storage": "냉장",
+  "count": 1
+ },
+ {
+  "name": "파프리카 3색",
+  "stored_category": "채소류",
+  "storage": "냉장",
+  "count": 1
+ },
+ {
+  "name": "파프리카(2/중)",
+  "stored_category": "채소류",
+  "storage": "냉장",
+  "count": 1
+ },
+ {
+  "name": "파프리카(적/황)",
+  "stored_category": "채소류",
+  "storage": "냉장",
+  "count": 6
+ },
+ {
+  "name": "팬이베릇",
+  "stored_category": "채소류",
+  "storage": "냉장",
+  "count": 1
+ },
+ {
+  "name": "팽이버섯",
+  "stored_category": "채소류",
+  "storage": "냉장",
+  "count": 4
+ },
+ {
+  "name": "팽이버섯 150g",
+  "stored_category": "채소류",
+  "storage": "냉장",
+  "count": 1
+ },
+ {
+  "name": "팽이버섯 150g×2",
+  "stored_category": "채소류",
+  "storage": "냉장",
+  "count": 3
+ },
+ {
+  "name": "팽이버섯 500g",
+  "stored_category": "채소류",
+  "storage": "냉장",
+  "count": 1
+ },
+ {
+  "name": "표고버섯",
+  "stored_category": "채소류",
+  "storage": "냉장",
+  "count": 7
+ },
+ {
+  "name": "햇빛 20",
+  "stored_category": "채소류",
+  "storage": "냉장",
+  "count": 1
+ },
+ {
+  "name": "햇잎 20",
+  "stored_category": "채소류",
+  "storage": "냉장",
+  "count": 2
+ }
+]

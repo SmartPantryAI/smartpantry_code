@@ -9,8 +9,28 @@ try:
 except ImportError:
     PIL_AVAILABLE = False
 
-OLLAMA_URL = os.getenv("OLLAMA_URL", "https://ollama.aikopo.net")
-MODEL      = os.getenv("OLLAMA_MODEL", "gemma4:26b")
+try:
+    from rag.store import lookup_shelf_life
+    RAG_AVAILABLE = True
+except Exception as _rag_err:  # 색인 파일이 아직 없거나 rag 모듈 자체가 없어도 서비스는 계속 동작해야 함
+    print(f"[RAG-B] 비활성화 (사유: {_rag_err})")
+    RAG_AVAILABLE = False
+
+    def lookup_shelf_life(*args, **kwargs):
+        return None
+
+try:
+    from rag.product_store import lookup_product
+    RAG_A_AVAILABLE = True
+except Exception as _rag_a_err:
+    print(f"[RAG-A] 비활성화 (사유: {_rag_a_err})")
+    RAG_A_AVAILABLE = False
+
+    def lookup_product(*args, **kwargs):
+        return None
+
+OLLAMA_URL = os.getenv("OLLAMA_URL", "https://code.aikopo.net")
+MODEL      = os.getenv("OLLAMA_MODEL", "qwen3-27b")
 LLM_TIMEOUT = int(os.getenv("LLM_TIMEOUT", "120"))
 
 VALID_STORAGE = {"냉장", "냉동", "실온"}
@@ -25,9 +45,17 @@ DATE_RE = re.compile(r'^\d{4}-\d{2}-\d{2}$')
 #       한국식품산업협회 (https://www.kfia.or.kr)
 #
 # ⚠️ 아래 값은 대표적인 참고값이며, 실제 식약처 공개 데이터로
-#    검증/보완할 것. 키워드는 위에서부터 첫 매칭 적용.
+#    검증/보완할 것. 매칭은 "전체 그룹 통틀어 가장 긴 키워드"가 이긴다.
+#
+# 테이블을 두 갈래로 나눈 이유:
+#   _MFDS_FRESH        — 상하기 쉬운 신선 농·수·축산물, 유제품, 두부.
+#   _MFDS_SHELF_STABLE — 상온/장기 보관되는 가공식품(통조림·장류·유지류·
+#                        면류·즉석밥·과자·조미료 등).
+# 가공식품 경로에서 RAG가 실패했을 때는 _MFDS_SHELF_STABLE만 폴백으로 쓴다.
+# _MFDS_FRESH까지 열어주면 "새우깡"이 "새우"(2일)에, "오감자"가 "감자"(21일)에
+# 다시 걸리는 원래 버그가 되살아난다.
 # ══════════════════════════════════════════════════════════════
-_MFDS_USE_BY: list[tuple[list[str], int]] = [
+_MFDS_FRESH: list[tuple[list[str], int]] = [
     # ── 유제품 ──
     (["발효유", "요거트", "요구르트"], 18),
     (["가공유", "딸기우유", "초코우유", "바나나우유"], 16),
@@ -42,19 +70,6 @@ _MFDS_USE_BY: list[tuple[list[str], int]] = [
     (["콩나물"], 5),
     (["숙주"], 4),
 
-    # ── 어묵/가공수산 ──
-    (["어묵", "맛살", "게맛살"], 29),
-    (["젓갈"], 60),
-
-    # ── 김치/절임 ──
-    (["김치", "겉절이"], 30),
-    (["단무지", "장아찌", "피클"], 90),
-
-    # ── 육가공 ──
-    (["햄", "소시지", "비엔나"], 38),
-    (["베이컨"], 30),
-    (["스팸", "런천미트"], 365),
-
     # ── 신선 육류 (냉장) ──
     (["다짐육", "간고기"], 2),
     (["삼겹살", "목살", "갈비", "불고기", "소고기", "돼지고기", "닭고기", "한우", "한돈"], 5),
@@ -67,33 +82,6 @@ _MFDS_USE_BY: list[tuple[list[str], int]] = [
 
     # ── 달걀 ──
     (["달걀", "계란", "특란", "메추리알"], 30),
-
-    # ── 면/즉석 ──
-    (["라면", "국수", "당면", "파스타", "스파게티"], 180),
-    (["즉석밥", "햇반"], 270),
-    (["냉동만두", "만두"], 270),
-
-    # ── 통조림/장류 ──
-    (["참치캔", "통조림", "캔"], 365),
-    (["간장", "된장", "고추장", "쌈장", "춘장"], 540),
-    (["참기름", "들기름", "식용유", "올리브유"], 365),
-    (["고춧가루", "소금", "설탕", "밀가루", "전분"], 365),
-    (["케첩", "마요네즈", "소스", "드레싱"], 270),
-
-    # ── 곡물 ──
-    (["쌀", "현미", "잡곡", "보리", "콩"], 180),
-
-    # ── 과자/스낵 ──
-    (["과자", "스낵", "크래커", "쿠키", "비스킷", "초콜릿"], 180),
-    (["빵", "식빵", "베이글"], 5),
-    (["견과류", "아몬드", "호두", "땅콩", "캐슈"], 180),
-
-    # ── 음료/주류 ──
-    (["생수", "물"], 365),
-    (["탄산음료", "콜라", "사이다"], 270),
-    (["주스", "음료"], 180),
-    (["맥주"], 365),
-    (["소주", "막걸리", "와인"], 365),
 
     # ── 채소 (냉장) ──
     (["상추", "시금치", "깻잎", "배추", "잎채소", "쌈채소"], 5),
@@ -111,6 +99,52 @@ _MFDS_USE_BY: list[tuple[list[str], int]] = [
     # ── 뿌리채소 (실온) ──
     (["양파", "마늘", "감자", "고구마", "생강"], 21),
 ]
+
+_MFDS_SHELF_STABLE: list[tuple[list[str], int]] = [
+    # ── 어묵/가공수산 ──
+    (["어묵", "맛살", "게맛살"], 29),
+    (["젓갈"], 60),
+
+    # ── 김치/절임 ──
+    (["김치", "겉절이"], 30),
+    (["단무지", "장아찌", "피클"], 90),
+
+    # ── 육가공 ──
+    (["햄", "소시지", "비엔나"], 38),
+    (["베이컨"], 30),
+    (["스팸", "런천미트"], 365),
+
+    # ── 면/즉석 ──
+    (["라면", "국수", "당면", "파스타", "스파게티"], 180),
+    (["즉석밥", "햇반"], 270),
+    (["냉동만두", "만두"], 270),
+
+    # ── 통조림/장류 ──
+    (["참치캔", "통조림", "캔"], 365),
+    (["간장", "된장", "고추장", "쌈장", "춘장"], 540),
+    (["참기름", "들기름", "식용유", "올리브유"], 365),
+    (["고춧가루", "소금", "설탕", "밀가루", "전분"], 365),
+    (["케첩", "케찹", "마요네즈", "소스", "드레싱"], 270),
+    (["잼", "마멀레이드"], 270),
+
+    # ── 곡물 ──
+    (["쌀", "현미", "잡곡", "보리", "콩"], 180),
+
+    # ── 과자/스낵 ──
+    (["과자", "스낵", "크래커", "쿠키", "비스킷", "초콜릿"], 180),
+    (["빵", "식빵", "베이글"], 5),
+    (["견과류", "아몬드", "호두", "땅콩", "캐슈"], 180),
+
+    # ── 음료/주류 ──
+    (["생수", "물"], 365),
+    (["탄산음료", "콜라", "사이다"], 270),
+    (["주스", "음료"], 180),
+    (["맥주"], 365),
+    (["소주", "막걸리", "와인"], 365),
+]
+
+# 신선식품 경로는 종전대로 전체 테이블을 쓴다(동작 불변).
+_MFDS_USE_BY: list[tuple[list[str], int]] = _MFDS_FRESH + _MFDS_SHELF_STABLE
 
 # 식약처 매핑에 없을 때 storage별 기본값
 _STORAGE_DEFAULT_DAYS = {"냉동": 90, "냉장": 5, "실온": 90}
@@ -132,7 +166,7 @@ _DEFAULT_UNIT_BY_NAME: dict[str, str] = {
 
     # ── 부피형(ml) ──
     "우유": "ml", "두유": "ml", "식용유": "ml", "참기름": "ml", "들기름": "ml",
-    "올리브유": "ml", "주스": "ml", "생수": "ml", "물": "ml", "맥주": "ml",
+    "올리브유": "ml", "주스": "ml", "생수": "ml", "맥주": "ml",   
     "소주": "ml", "막걸리": "ml", "와인": "ml", "식초": "ml", "맛술": "ml",
     "미림": "ml", "탄산음료": "ml", "콜라": "ml", "사이다": "ml",
     "케찹": "ml", "마요네즈": "ml", "머스타드": "ml", "칠리소스": "ml",
@@ -323,22 +357,110 @@ def _add_days(base_date_str: str, days: int) -> str:
     return (base + timedelta(days=days)).strftime("%Y-%m-%d")
 
 
-def calculate_use_by(name: str, storage: str, purchase_date: str) -> str:
-    """
-    소비기한 계산 (우선순위)
-      1. 식약처 참고값(_MFDS_USE_BY) 키워드 매칭
-      2. 매칭 없으면 storage별 기본값
-    """
-    # 1순위: 식약처 참고값
-    for keywords, days in _MFDS_USE_BY:
-        if any(kw in name for kw in keywords):
-            # 냉동이면 신선식품 기한을 크게 연장
-            if storage == "냉동":
-                days = max(days, 90)
-            return _add_days(purchase_date, days)
+# _MFDS_USE_BY 키워드 테이블은 "신선식품"(채소/과일/육류/수산물/유제품/두부)을 염두에 두고
+# 만들어졌다. 가공식품(스낵·과자, 가공·즉석식품 등)에 그대로 적용하면 "새우깡"이 "새우"
+# 키워드에 걸려 2일로 계산되는 등 심각한 오분류가 생긴다(교차 사례는 PR 논의 참고).
+# RAG-B(식약처 소비기한 참고값 임베딩 검색)로 대체되기 전까지, 최소한 가공식품 카테고리는
+# 이 키워드 테이블을 아예 타지 않도록 게이트를 둔다.
+_FRESH_FOOD_CATEGORIES = {"채소류", "과일류", "육류", "수산물", "유제품·계란", "두부·콩류"}
 
-    # 2순위: storage별 기본값
-    return _add_days(purchase_date, _STORAGE_DEFAULT_DAYS.get(storage, 7))
+
+def _match_keyword_table(name: str, table: list[tuple[list[str], int]]) -> tuple[str, int] | None:
+    """전체 그룹을 통틀어 가장 긴 키워드가 이긴다 — "감자"가 과일류 그룹의 "감"(1글자)에
+    먼저 걸려 뿌리채소 그룹의 "감자"(2글자, 정확 일치)를 놓치는 문제를 막는다.
+    반환: (matched_keyword, days) 또는 None."""
+    best = None  # (키워드 길이, 키워드, days)
+    for keywords, days in table:
+        for kw in keywords:
+            if kw in name and (best is None or len(kw) > best[0]):
+                best = (len(kw), kw, days)
+    return (best[1], best[2]) if best else None
+
+
+def _rag_lookup(name: str, storage: str, category_name: str | None,
+                query_text: str | None) -> dict | None:
+    if not RAG_AVAILABLE:
+        return None
+    rag_query = query_text or name
+    if category_name:
+        rag_query = f"{rag_query} {category_name}"
+    return lookup_shelf_life(rag_query, storage=storage)
+
+
+def calculate_use_by(name: str, storage: str, purchase_date: str,
+                     category_name: str | None = None,
+                     query_text: str | None = None) -> tuple[str, dict]:
+    """
+    소비기한 계산 — 카테고리에 따라 우선순위 자체를 다르게 둔다.
+
+    RAG-B 코퍼스(식약처 소비기한 참고값)는 전부 "가공식품" 예시로만 구성되어
+    있고 신선 농·수·축산물은 대상이 아니다. 그래서:
+
+      [신선식품] (채소류/과일류/육류/수산물/유제품·계란/두부·콩류, category=None 포함)
+        1순위: 키워드 테이블 전체(_MFDS_USE_BY)
+        2순위: RAG (키워드 테이블에 없는 드문 재료 보강)
+        3순위: storage 기본값
+        ※ RAG를 1순위로 두면 "생새우"가 가공식품 문서와 글자만 겹쳐 훨씬 긴
+          소비기한으로 잘못 매칭되는 위험한 오류가 생긴다.
+
+      [가공식품] (스낵·과자/가공·즉석식품/음료·주류/양념·소스/곡류·면류 등)
+        1순위: RAG (해당 카테고리를 위해 만들어진 코퍼스)
+        2순위: _MFDS_SHELF_STABLE 키워드 테이블 (통조림·장류·유지류·면류·과자…)
+        3순위: storage 기본값
+        ※ _MFDS_FRESH(신선식품 키워드)는 절대 안 탄다 — "새우깡"이 "새우"(2일)에,
+          "오감자"가 "감자"(21일)에 걸리는 오분류를 막기 위함.
+        ※ 2순위를 둔 이유: RAG-B 평가에서 참기름·간장·케첩·참치캔·햇반처럼
+          예전 키워드 테이블이 정확히 맞히던 상온 가공식품이 RAG 미스 시
+          storage 기본값(90일)으로 추락해 전체 MAE가 오히려 악화됐다.
+
+    Returns:
+        (use_by_date, evidence)
+    """
+    is_fresh = category_name is None or category_name in _FRESH_FOOD_CATEGORIES
+
+    def _finish(days: int, evidence: dict) -> tuple[str, dict]:
+        if storage == "냉동":
+            days = max(days, 90)
+        return _add_days(purchase_date, days), evidence
+
+    if is_fresh:
+        kw = _match_keyword_table(name, _MFDS_USE_BY)
+        if kw:
+            return _finish(kw[1], {
+                "basis": "hardcoded_table",
+                "source": "식약처 소비기한 참고값(내장 테이블)",
+                "matched_keyword": kw[0],
+            })
+        hit = _rag_lookup(name, storage, category_name, query_text)
+        if hit:
+            return _finish(hit["days"], {
+                "basis": "rag", "source": hit["source"],
+                "matched_item": hit["item_name"],
+                "confidence": round(hit["score"], 3),
+                "value_basis": hit["value_basis"],
+            })
+    else:
+        hit = _rag_lookup(name, storage, category_name, query_text)
+        if hit:
+            return _finish(hit["days"], {
+                "basis": "rag", "source": hit["source"],
+                "matched_item": hit["item_name"],
+                "confidence": round(hit["score"], 3),
+                "value_basis": hit["value_basis"],
+            })
+        kw = _match_keyword_table(name, _MFDS_SHELF_STABLE)
+        if kw:
+            return _finish(kw[1], {
+                "basis": "hardcoded_table",
+                "source": "식약처 소비기한 참고값(내장 테이블, 상온 가공식품)",
+                "matched_keyword": kw[0],
+            })
+
+    days = _STORAGE_DEFAULT_DAYS.get(storage, 7)
+    return _add_days(purchase_date, days), {
+        "basis": "storage_default",
+        "source": f"{storage or '기본'} 보관 기본값",
+    }
 
 
 def fix_exif_rotation(img_path: str) -> np.ndarray:
@@ -361,14 +483,27 @@ def fix_exif_rotation(img_path: str) -> np.ndarray:
         return cv2.imread(img_path)
 
 
-def encode_image(img: np.ndarray, max_width: int = 1000) -> str:
+def encode_image(img: np.ndarray, max_width: int = 1000, max_b64_bytes: int = 900_000) -> str:
+    # code.aikopo.net(vLLM 게이트웨이)의 요청 본문 제한이 약 1MB(1024KB에서 즉시 413, 1000KB는 통과)라,
+    # 실제 폰 카메라 사진(예: 3060x4080)을 base64 인코딩하면 이 한도를 넘어 413으로 거부되고
+    # stream_llm이 빈 문자열을 반환해 "0개 인식"으로 조용히 실패하는 문제가 실사용 중 확인됐다.
+    # 품질을 낮춰도 부족하면 해상도까지 단계적으로 줄여서 항상 한도 아래로 맞춘다(프롬프트 텍스트
+    # 오버헤드를 감안해 base64 900KB를 목표로 잡아 1MB 한도에 여유를 둔다).
     h, w = img.shape[:2]
     if w > max_width:
         scale = max_width / w
         img = cv2.resize(img, (int(w * scale), int(h * scale)),
                          interpolation=cv2.INTER_AREA)
-    _, buf = cv2.imencode(".jpg", img, [cv2.IMWRITE_JPEG_QUALITY, 85])
-    return base64.b64encode(buf).decode("utf-8")
+
+    for _ in range(6):
+        for quality in (85, 70, 55, 40):
+            _, buf = cv2.imencode(".jpg", img, [cv2.IMWRITE_JPEG_QUALITY, quality])
+            b64 = base64.b64encode(buf).decode("utf-8")
+            if len(b64) <= max_b64_bytes:
+                return b64
+        h, w = img.shape[:2]
+        img = cv2.resize(img, (int(w * 0.8), int(h * 0.8)), interpolation=cv2.INTER_AREA)
+    return b64
 
 
 def _wrap(parsed):
@@ -405,8 +540,12 @@ def parse_llm_json(text: str) -> dict:
 
 
 def stream_llm(payload: dict) -> str:
+    # LLM 서빙이 Ollama에서 vLLM(OpenAI 호환 API)으로 바뀌었다 - 엔드포인트는 /v1/chat/completions이고
+    # 스트리밍 응답은 Ollama의 NDJSON(줄마다 완결된 JSON, message.content/thinking/done 필드)이 아니라
+    # OpenAI 스타일 SSE("data: {...}" 줄, choices[0].delta.content, 종료는 "data: [DONE]")다.
+    # reasoning(사고 과정)이 별도로 오는 경우 delta.reasoning_content로 온다(Ollama의 thinking에 대응).
     try:
-        resp = requests.post(f"{OLLAMA_URL}/api/chat",
+        resp = requests.post(f"{OLLAMA_URL}/v1/chat/completions",
                              json=payload, stream=True, timeout=LLM_TIMEOUT)
         resp.raise_for_status()
     except requests.RequestException as e:
@@ -414,14 +553,16 @@ def stream_llm(payload: dict) -> str:
         return ""
     content_buf = ""
     thinking_buf = ""
-    for line in resp.iter_lines():
-        if line:
-            chunk = json.loads(line)
-            msg = chunk.get("message", {})
-            content_buf += msg.get("content", "")
-            thinking_buf += msg.get("thinking", "")
-            if chunk.get("done"):
-                break
+    for line in resp.iter_lines(decode_unicode=True):
+        if not line or not line.startswith("data:"):
+            continue
+        data = line[len("data:"):].strip()
+        if data == "[DONE]":
+            break
+        chunk = json.loads(data)
+        delta = chunk.get("choices", [{}])[0].get("delta", {})
+        content_buf += delta.get("content") or ""
+        thinking_buf += delta.get("reasoning_content") or ""
     return content_buf.strip() if content_buf.strip() else thinking_buf
 
 
@@ -528,14 +669,15 @@ def pass2_normalize(purchase_date: str, raw_items: list, fallback_date: str) -> 
 
     payload = {
         "model": MODEL,
-        "think": False,
+        "chat_template_kwargs": {"enable_thinking": False},
         "messages": [
             {"role": "system", "content": _PASS2_PROMPT.format(items_json=items_json)},
             {"role": "user", "content": "위 상품 목록을 정규화해줘."}
         ],
-        "format": "json",
+        "response_format": {"type": "json_object"},
         "stream": True,
-        "options": {"temperature": 0, "num_predict": 2048}
+        "temperature": 0,
+        "max_tokens": 2048,
     }
 
     raw_text = stream_llm(payload)
@@ -562,8 +704,6 @@ def pass2_normalize(purchase_date: str, raw_items: list, fallback_date: str) -> 
         if storage not in VALID_STORAGE:
             storage = "실온"
 
-        use_by = calculate_use_by(name, storage, purchase_date)
-
         VALID_CATEGORIES = {
             "채소류", "과일류", "육류", "수산물",
             "유제품·계란", "두부·콩류", "가공·즉석식품",
@@ -587,15 +727,32 @@ def pass2_normalize(purchase_date: str, raw_items: list, fallback_date: str) -> 
         if category_name not in VALID_CATEGORIES:
             category_name = None  # 유효하지 않으면 None
 
+        # RAG-A(상품 마스터) — "좁은 안전망": 가공식품이 신선 카테고리로 오분류된
+        # 경우만 보정한다. 손 큐레이션 마스터에 score>=0.80으로 정확 매칭되고,
+        # 저장 카테고리가 신선인데 마스터 카테고리가 가공이면 마스터를 따른다.
+        # (범용 override는 평가에서 정확도를 떨어뜨려 폐기 — raga-eval 참고)
+        category_source = None
+        if category_name in _FRESH_FOOD_CATEGORIES:
+            _prod = lookup_product(name, min_score=0.80)
+            if _prod and _prod["category_name"] not in _FRESH_FOOD_CATEGORIES:
+                category_name = _prod["category_name"]
+                category_source = f"rag_a:{_prod['name']}({_prod['score']})"
+
+        use_by, use_by_evidence = calculate_use_by(name, storage, purchase_date, category_name=category_name)
+
         qty, unit, name = resolve_package_unit(name, it.get("qty"), (it.get("unit") or "").strip())
 
         items.append({
             "name": name,
             "category_name": category_name,   # ← 추가
+            "category_source": category_source,   # rag_a로 보정됐으면 근거, 아니면 None
             "qty": qty,
             "unit": unit,
             "storage": storage,
             "use_by": use_by,
+            "use_by_source": use_by_evidence.get("source"),
+            "use_by_basis": use_by_evidence.get("basis"),
+            "use_by_confidence": use_by_evidence.get("confidence"),
         })
 
     return items

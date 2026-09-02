@@ -1,0 +1,449 @@
+{"name": "GSI 그라시아멜로 750M", "storage": "실온", "count": 1, "stored_category": "None", "gold_category": "None", "conf": "assumed", "rag_should_fire": false}
+{"name": "HMP IA 우유 1L", "storage": "냉장", "count": 1, "stored_category": "None", "gold_category": "None", "conf": "assumed", "rag_should_fire": false}
+{"name": "HMP 다기오 이브", "storage": "실온", "count": 1, "stored_category": "None", "gold_category": "None", "conf": "assumed", "rag_should_fire": false}
+{"name": "HMP 다이어트 닭 50", "storage": "냉장", "count": 1, "stored_category": "None", "gold_category": "None", "conf": "assumed", "rag_should_fire": false}
+{"name": "HMP 미니 베쥬 250g", "storage": "실온", "count": 1, "stored_category": "None", "gold_category": "None", "conf": "assumed", "rag_should_fire": false}
+{"name": "HMP 베쥬 뚱", "storage": "실온", "count": 1, "stored_category": "None", "gold_category": "None", "conf": "assumed", "rag_should_fire": false}
+{"name": "HMP 알파 (맛", "storage": "실온", "count": 1, "stored_category": "None", "gold_category": "None", "conf": "assumed", "rag_should_fire": false}
+{"name": "HMP 암 란 30인", "storage": "냉장", "count": 1, "stored_category": "None", "gold_category": "None", "conf": "assumed", "rag_should_fire": false}
+{"name": "가니", "storage": "실온", "count": 1, "stored_category": "None", "gold_category": "None", "conf": "assumed", "rag_should_fire": false}
+{"name": "가브리살", "storage": "냉장", "count": 3, "stored_category": "None", "gold_category": "None", "conf": "assumed", "rag_should_fire": false}
+{"name": "그라시아멜로 750M", "storage": "실온", "count": 1, "stored_category": "None", "gold_category": "None", "conf": "assumed", "rag_should_fire": false}
+{"name": "그릭요거트볼", "storage": "냉장", "count": 1, "stored_category": "None", "gold_category": "None", "conf": "assumed", "rag_should_fire": false}
+{"name": "다기오이분", "storage": "실온", "count": 1, "stored_category": "None", "gold_category": "None", "conf": "assumed", "rag_should_fire": false}
+{"name": "다이어트저당공기", "storage": "실온", "count": 2, "stored_category": "None", "gold_category": "None", "conf": "assumed", "rag_should_fire": false}
+{"name": "다이어트정공기", "storage": "실온", "count": 1, "stored_category": "None", "gold_category": "None", "conf": "assumed", "rag_should_fire": false}
+{"name": "다짐육 50", "storage": "냉동", "count": 1, "stored_category": "None", "gold_category": "None", "conf": "assumed", "rag_should_fire": false}
+{"name": "대파 500g", "storage": "냉장", "count": 1, "stored_category": "None", "gold_category": "None", "conf": "assumed", "rag_should_fire": false}
+{"name": "대포", "storage": "실온", "count": 1, "stored_category": "None", "gold_category": "None", "conf": "assumed", "rag_should_fire": false}
+{"name": "라면", "storage": "실온", "count": 1, "stored_category": "None", "gold_category": "None", "conf": "assumed", "rag_should_fire": false}
+{"name": "라면 5", "storage": "실온", "count": 1, "stored_category": "None", "gold_category": "None", "conf": "assumed", "rag_should_fire": false}
+{"name": "망고 그대로 1", "storage": "실온", "count": 2, "stored_category": "None", "gold_category": "None", "conf": "assumed", "rag_should_fire": false}
+{"name": "멸치볶음 80g", "storage": "실온", "count": 1, "stored_category": "None", "gold_category": "가공·즉석식품", "conf": "high", "rag_should_fire": true}
+{"name": "무항생제 특란 30", "storage": "냉장", "count": 2, "stored_category": "None", "gold_category": "None", "conf": "assumed", "rag_should_fire": false}
+{"name": "미니버섯 250g", "storage": "냉장", "count": 1, "stored_category": "None", "gold_category": "None", "conf": "assumed", "rag_should_fire": false}
+{"name": "버섯 300g", "storage": "냉장", "count": 1, "stored_category": "None", "gold_category": "None", "conf": "assumed", "rag_should_fire": false}
+{"name": "베이컨", "storage": "냉장", "count": 1, "stored_category": "None", "gold_category": "None", "conf": "assumed", "rag_should_fire": false}
+{"name": "보원 아토마인드 에센", "storage": "실온", "count": 1, "stored_category": "None", "gold_category": "None", "conf": "assumed", "rag_should_fire": false}
+{"name": "볶음우엉 400g", "storage": "냉장", "count": 1, "stored_category": "None", "gold_category": "None", "conf": "assumed", "rag_should_fire": false}
+{"name": "볶음우엉 볶음 40g", "storage": "실온", "count": 1, "stored_category": "None", "gold_category": "None", "conf": "assumed", "rag_should_fire": false}
+{"name": "비빔국수", "storage": "실온", "count": 3, "stored_category": "None", "gold_category": "None", "conf": "assumed", "rag_should_fire": false}
+{"name": "삼겹살", "storage": "냉장", "count": 1, "stored_category": "None", "gold_category": "None", "conf": "assumed", "rag_should_fire": false}
+{"name": "생삼겹살", "storage": "냉장", "count": 3, "stored_category": "None", "gold_category": "None", "conf": "assumed", "rag_should_fire": false}
+{"name": "생수 2L", "storage": "실온", "count": 2, "stored_category": "None", "gold_category": "None", "conf": "assumed", "rag_should_fire": false}
+{"name": "순두부 12g", "storage": "냉장", "count": 2, "stored_category": "None", "gold_category": "None", "conf": "assumed", "rag_should_fire": false}
+{"name": "스팸 200g", "storage": "실온", "count": 2, "stored_category": "None", "gold_category": "None", "conf": "assumed", "rag_should_fire": false}
+{"name": "아스파라거스 200g", "storage": "냉장", "count": 1, "stored_category": "None", "gold_category": "None", "conf": "assumed", "rag_should_fire": false}
+{"name": "아토마인드에센", "storage": "실온", "count": 1, "stored_category": "None", "gold_category": "None", "conf": "assumed", "rag_should_fire": false}
+{"name": "안다리 혼합 다짐", "storage": "냉동", "count": 1, "stored_category": "None", "gold_category": "None", "conf": "assumed", "rag_should_fire": false}
+{"name": "안다리훈 닭다리", "storage": "냉장", "count": 1, "stored_category": "None", "gold_category": "None", "conf": "assumed", "rag_should_fire": false}
+{"name": "앙팡치즈 까요까요", "storage": "냉장", "count": 1, "stored_category": "None", "gold_category": "None", "conf": "assumed", "rag_should_fire": false}
+{"name": "앙프치즈 까요클로", "storage": "냉장", "count": 1, "stored_category": "None", "gold_category": "None", "conf": "assumed", "rag_should_fire": false}
+{"name": "애호박", "storage": "냉장", "count": 1, "stored_category": "None", "gold_category": "None", "conf": "assumed", "rag_should_fire": false}
+{"name": "애호박 2", "storage": "냉장", "count": 1, "stored_category": "None", "gold_category": "None", "conf": "assumed", "rag_should_fire": false}
+{"name": "양파", "storage": "냉장", "count": 1, "stored_category": "None", "gold_category": "None", "conf": "assumed", "rag_should_fire": false}
+{"name": "양파 30인", "storage": "냉장", "count": 1, "stored_category": "None", "gold_category": "None", "conf": "assumed", "rag_should_fire": false}
+{"name": "오두기 후레시 340g", "storage": "실온", "count": 1, "stored_category": "None", "gold_category": "None", "conf": "assumed", "rag_should_fire": false}
+{"name": "요거볼", "storage": "냉장", "count": 1, "stored_category": "None", "gold_category": "None", "conf": "assumed", "rag_should_fire": false}
+{"name": "우유 1L", "storage": "냉장", "count": 1, "stored_category": "None", "gold_category": "None", "conf": "assumed", "rag_should_fire": false}
+{"name": "우유 저지방 1L", "storage": "냉장", "count": 2, "stored_category": "None", "gold_category": "None", "conf": "assumed", "rag_should_fire": false}
+{"name": "유기농멸균우유 200ml * 12", "storage": "실온", "count": 1, "stored_category": "None", "gold_category": "None", "conf": "assumed", "rag_should_fire": false}
+{"name": "유기농멸균우유 200ml * 6", "storage": "실온", "count": 1, "stored_category": "None", "gold_category": "None", "conf": "assumed", "rag_should_fire": false}
+{"name": "유기베이비플레인", "storage": "냉장", "count": 2, "stored_category": "None", "gold_category": "None", "conf": "assumed", "rag_should_fire": false}
+{"name": "음료", "storage": "실온", "count": 3, "stored_category": "None", "gold_category": "None", "conf": "assumed", "rag_should_fire": false}
+{"name": "지리산흑돼지", "storage": "냉장", "count": 1, "stored_category": "None", "gold_category": "None", "conf": "assumed", "rag_should_fire": false}
+{"name": "지리산흑돼지호", "storage": "냉장", "count": 2, "stored_category": "None", "gold_category": "None", "conf": "assumed", "rag_should_fire": false}
+{"name": "짜장분말 100g", "storage": "실온", "count": 2, "stored_category": "None", "gold_category": "None", "conf": "assumed", "rag_should_fire": false}
+{"name": "콩나물 300g", "storage": "냉장", "count": 1, "stored_category": "None", "gold_category": "None", "conf": "assumed", "rag_should_fire": false}
+{"name": "토마토 에센 부르", "storage": "실온", "count": 1, "stored_category": "None", "gold_category": "None", "conf": "assumed", "rag_should_fire": false}
+{"name": "토테름 에센 부르", "storage": "실온", "count": 1, "stored_category": "None", "gold_category": "None", "conf": "assumed", "rag_should_fire": false}
+{"name": "피자치즈 800g", "storage": "냉장", "count": 1, "stored_category": "None", "gold_category": "None", "conf": "assumed", "rag_should_fire": false}
+{"name": "한우 안심 1kg", "storage": "냉장", "count": 1, "stored_category": "None", "gold_category": "None", "conf": "assumed", "rag_should_fire": false}
+{"name": "후레시 햄 340g", "storage": "냉장", "count": 1, "stored_category": "None", "gold_category": "None", "conf": "assumed", "rag_should_fire": false}
+{"name": "훈슬라이스 햄", "storage": "냉장", "count": 1, "stored_category": "None", "gold_category": "None", "conf": "assumed", "rag_should_fire": false}
+{"name": "훈슬라이스 햄 밥", "storage": "냉장", "count": 1, "stored_category": "None", "gold_category": "None", "conf": "assumed", "rag_should_fire": false}
+{"name": "훈제 돼지껌", "storage": "냉장", "count": 1, "stored_category": "None", "gold_category": "None", "conf": "assumed", "rag_should_fire": false}
+{"name": "흑돈 돼지 쇠고기", "storage": "냉장", "count": 1, "stored_category": "None", "gold_category": "None", "conf": "assumed", "rag_should_fire": false}
+{"name": "흑마늘 480g", "storage": "냉장", "count": 1, "stored_category": "None", "gold_category": "None", "conf": "assumed", "rag_should_fire": false}
+{"name": "흑마늘 480g", "storage": "실온", "count": 1, "stored_category": "None", "gold_category": "None", "conf": "assumed", "rag_should_fire": false}
+{"name": "흠플러 소중한 듬", "storage": "실온", "count": 1, "stored_category": "None", "gold_category": "None", "conf": "assumed", "rag_should_fire": false}
+{"name": "흠플러 소중한 듬 밤", "storage": "실온", "count": 1, "stored_category": "None", "gold_category": "None", "conf": "assumed", "rag_should_fire": false}
+{"name": "3분 카레", "storage": "실온", "count": 1, "stored_category": "가공·즉석식품", "gold_category": "가공·즉석식품", "conf": "assumed", "rag_should_fire": true}
+{"name": "3분 카레(중)", "storage": "실온", "count": 2, "stored_category": "가공·즉석식품", "gold_category": "가공·즉석식품", "conf": "assumed", "rag_should_fire": true}
+{"name": "3분카레(중)", "storage": "실온", "count": 1, "stored_category": "가공·즉석식품", "gold_category": "가공·즉석식품", "conf": "assumed", "rag_should_fire": true}
+{"name": "고메바스틱", "storage": "냉동", "count": 1, "stored_category": "가공·즉석식품", "gold_category": "가공·즉석식품", "conf": "assumed", "rag_should_fire": true}
+{"name": "고메함박스테이크", "storage": "냉동", "count": 2, "stored_category": "가공·즉석식품", "gold_category": "가공·즉석식품", "conf": "assumed", "rag_should_fire": true}
+{"name": "고메함박스테이크 2", "storage": "냉동", "count": 2, "stored_category": "가공·즉석식품", "gold_category": "가공·즉석식품", "conf": "assumed", "rag_should_fire": true}
+{"name": "고해맑바스틱 2입", "storage": "실온", "count": 1, "stored_category": "가공·즉석식품", "gold_category": "가공·즉석식품", "conf": "assumed", "rag_should_fire": true}
+{"name": "고해밥스테이크 2", "storage": "냉동", "count": 1, "stored_category": "가공·즉석식품", "gold_category": "가공·즉석식품", "conf": "assumed", "rag_should_fire": true}
+{"name": "냉동 탕수", "storage": "냉동", "count": 1, "stored_category": "가공·즉석식품", "gold_category": "가공·즉석식품", "conf": "assumed", "rag_should_fire": true}
+{"name": "다이어트저당공기", "storage": "실온", "count": 1, "stored_category": "가공·즉석식품", "gold_category": "가공·즉석식품", "conf": "assumed", "rag_should_fire": true}
+{"name": "닭갈비", "storage": "실온", "count": 1, "stored_category": "가공·즉석식품", "gold_category": "가공·즉석식품", "conf": "assumed", "rag_should_fire": true}
+{"name": "닭스테이크 2", "storage": "냉동", "count": 1, "stored_category": "가공·즉석식품", "gold_category": "가공·즉석식품", "conf": "assumed", "rag_should_fire": true}
+{"name": "덜알", "storage": "실온", "count": 1, "stored_category": "가공·즉석식품", "gold_category": null, "conf": "garbage", "rag_should_fire": false}
+{"name": "덤벙스테이크 2", "storage": "냉동", "count": 1, "stored_category": "가공·즉석식품", "gold_category": "가공·즉석식품", "conf": "assumed", "rag_should_fire": true}
+{"name": "된장찌개", "storage": "냉장", "count": 2, "stored_category": "가공·즉석식품", "gold_category": "가공·즉석식품", "conf": "assumed", "rag_should_fire": true}
+{"name": "된장찌개 460g", "storage": "냉장", "count": 2, "stored_category": "가공·즉석식품", "gold_category": "가공·즉석식품", "conf": "assumed", "rag_should_fire": true}
+{"name": "떡국", "storage": "냉장", "count": 1, "stored_category": "가공·즉석식품", "gold_category": "가공·즉석식품", "conf": "assumed", "rag_should_fire": true}
+{"name": "맛있는 밥", "storage": "실온", "count": 1, "stored_category": "가공·즉석식품", "gold_category": "가공·즉석식품", "conf": "assumed", "rag_should_fire": true}
+{"name": "맛있는 옥수수 립", "storage": "실온", "count": 1, "stored_category": "가공·즉석식품", "gold_category": "가공·즉석식품", "conf": "assumed", "rag_should_fire": true}
+{"name": "멸치볶음", "storage": "실온", "count": 1, "stored_category": "가공·즉석식품", "gold_category": "가공·즉석식품", "conf": "high", "rag_should_fire": true}
+{"name": "바베큐씬드위치", "storage": "실온", "count": 1, "stored_category": "가공·즉석식품", "gold_category": "가공·즉석식품", "conf": "assumed", "rag_should_fire": true}
+{"name": "박스테이크 2", "storage": "냉동", "count": 1, "stored_category": "가공·즉석식품", "gold_category": "가공·즉석식품", "conf": "assumed", "rag_should_fire": true}
+{"name": "발보토", "storage": "실온", "count": 1, "stored_category": "가공·즉석식품", "gold_category": null, "conf": "garbage", "rag_should_fire": false}
+{"name": "밥", "storage": "실온", "count": 2, "stored_category": "가공·즉석식품", "gold_category": "가공·즉석식품", "conf": "assumed", "rag_should_fire": true}
+{"name": "밥 4", "storage": "실온", "count": 3, "stored_category": "가공·즉석식품", "gold_category": "가공·즉석식품", "conf": "assumed", "rag_should_fire": true}
+{"name": "밥통 6기계 붓", "storage": "실온", "count": 1, "stored_category": "가공·즉석식품", "gold_category": "가공·즉석식품", "conf": "assumed", "rag_should_fire": true}
+{"name": "비나 180g", "storage": "실온", "count": 1, "stored_category": "가공·즉석식품", "gold_category": "가공·즉석식품", "conf": "assumed", "rag_should_fire": true}
+{"name": "비베규샌드위치", "storage": "냉장", "count": 1, "stored_category": "가공·즉석식품", "gold_category": "가공·즉석식품", "conf": "assumed", "rag_should_fire": true}
+{"name": "비비고 된장찌개", "storage": "실온", "count": 2, "stored_category": "가공·즉석식품", "gold_category": "가공·즉석식품", "conf": "assumed", "rag_should_fire": true}
+{"name": "비비고 된장찌개 460g", "storage": "냉장", "count": 1, "stored_category": "가공·즉석식품", "gold_category": "가공·즉석식품", "conf": "assumed", "rag_should_fire": true}
+{"name": "비비고 찐만두 460g", "storage": "냉동", "count": 2, "stored_category": "가공·즉석식품", "gold_category": "가공·즉석식품", "conf": "assumed", "rag_should_fire": true}
+{"name": "비스크자르트", "storage": "냉장", "count": 1, "stored_category": "가공·즉석식품", "gold_category": "가공·즉석식품", "conf": "assumed", "rag_should_fire": true}
+{"name": "비엔나", "storage": "냉장", "count": 1, "stored_category": "가공·즉석식품", "gold_category": "가공·즉석식품", "conf": "high", "rag_should_fire": true}
+{"name": "삼양라면", "storage": "실온", "count": 1, "stored_category": "가공·즉석식품", "gold_category": "가공·즉석식품", "conf": "assumed", "rag_should_fire": true}
+{"name": "소고기 버섯", "storage": "실온", "count": 1, "stored_category": "가공·즉석식품", "gold_category": "가공·즉석식품", "conf": "assumed", "rag_should_fire": false}
+{"name": "소고기버섯", "storage": "실온", "count": 1, "stored_category": "가공·즉석식품", "gold_category": "가공·즉석식품", "conf": "assumed", "rag_should_fire": true}
+{"name": "손두부찌개", "storage": "냉장", "count": 1, "stored_category": "가공·즉석식품", "gold_category": "가공·즉석식품", "conf": "assumed", "rag_should_fire": true}
+{"name": "쇠고기버섯 2", "storage": "실온", "count": 1, "stored_category": "가공·즉석식품", "gold_category": "가공·즉석식품", "conf": "assumed", "rag_should_fire": true}
+{"name": "순두부찌개", "storage": "냉장", "count": 1, "stored_category": "가공·즉석식품", "gold_category": "가공·즉석식품", "conf": "assumed", "rag_should_fire": true}
+{"name": "신라면", "storage": "실온", "count": 6, "stored_category": "가공·즉석식품", "gold_category": "가공·즉석식품", "conf": "assumed", "rag_should_fire": true}
+{"name": "애닐라", "storage": "실온", "count": 1, "stored_category": "가공·즉석식품", "gold_category": null, "conf": "garbage", "rag_should_fire": false}
+{"name": "양교 350g", "storage": "실온", "count": 1, "stored_category": "가공·즉석식품", "gold_category": "가공·즉석식품", "conf": "assumed", "rag_should_fire": true}
+{"name": "양반죽", "storage": "실온", "count": 1, "stored_category": "가공·즉석식품", "gold_category": "가공·즉석식품", "conf": "assumed", "rag_should_fire": true}
+{"name": "양반죽 소고기버섯", "storage": "실온", "count": 2, "stored_category": "가공·즉석식품", "gold_category": "가공·즉석식품", "conf": "assumed", "rag_should_fire": true}
+{"name": "양반죽순 60g", "storage": "실온", "count": 1, "stored_category": "가공·즉석식품", "gold_category": "가공·즉석식품", "conf": "assumed", "rag_should_fire": true}
+{"name": "양죽 소고기버섯", "storage": "실온", "count": 1, "stored_category": "가공·즉석식품", "gold_category": "가공·즉석식품", "conf": "assumed", "rag_should_fire": true}
+{"name": "에브리", "storage": "실온", "count": 1, "stored_category": "가공·즉석식품", "gold_category": null, "conf": "garbage", "rag_should_fire": false}
+{"name": "오레일 500g", "storage": "실온", "count": 1, "stored_category": "가공·즉석식품", "gold_category": "가공·즉석식품", "conf": "assumed", "rag_should_fire": true}
+{"name": "왕고자 350g", "storage": "냉동", "count": 1, "stored_category": "가공·즉석식품", "gold_category": "가공·즉석식품", "conf": "assumed", "rag_should_fire": true}
+{"name": "왕교 350g", "storage": "냉동", "count": 1, "stored_category": "가공·즉석식품", "gold_category": "가공·즉석식품", "conf": "assumed", "rag_should_fire": true}
+{"name": "왕교자 350g", "storage": "냉동", "count": 2, "stored_category": "가공·즉석식품", "gold_category": "가공·즉석식품", "conf": "assumed", "rag_should_fire": true}
+{"name": "왕자반", "storage": "실온", "count": 1, "stored_category": "가공·즉석식품", "gold_category": "가공·즉석식품", "conf": "assumed", "rag_should_fire": true}
+{"name": "원지", "storage": "실온", "count": 1, "stored_category": "가공·즉석식품", "gold_category": null, "conf": "garbage", "rag_should_fire": false}
+{"name": "의성마늘 비엔나", "storage": "냉장", "count": 3, "stored_category": "가공·즉석식품", "gold_category": "가공·즉석식품", "conf": "high", "rag_should_fire": true}
+{"name": "죽 소고기버섯", "storage": "실온", "count": 1, "stored_category": "가공·즉석식품", "gold_category": "가공·즉석식품", "conf": "assumed", "rag_should_fire": true}
+{"name": "죽순 소고기버섯", "storage": "실온", "count": 1, "stored_category": "가공·즉석식품", "gold_category": "가공·즉석식품", "conf": "assumed", "rag_should_fire": true}
+{"name": "즉석 콩나물국 1인분", "storage": "실온", "count": 1, "stored_category": "가공·즉석식품", "gold_category": "가공·즉석식품", "conf": "assumed", "rag_should_fire": true}
+{"name": "즉석밥", "storage": "실온", "count": 1, "stored_category": "가공·즉석식품", "gold_category": "가공·즉석식품", "conf": "assumed", "rag_should_fire": true}
+{"name": "즉석밥 210g", "storage": "실온", "count": 3, "stored_category": "가공·즉석식품", "gold_category": "가공·즉석식품", "conf": "assumed", "rag_should_fire": true}
+{"name": "즉석밥(오뚜기)", "storage": "실온", "count": 6, "stored_category": "가공·즉석식품", "gold_category": "가공·즉석식품", "conf": "assumed", "rag_should_fire": true}
+{"name": "즉석밥(오뚜기) 4", "storage": "실온", "count": 2, "stored_category": "가공·즉석식품", "gold_category": "가공·즉석식품", "conf": "assumed", "rag_should_fire": true}
+{"name": "찐피만두 460g", "storage": "냉동", "count": 1, "stored_category": "가공·즉석식품", "gold_category": "가공·즉석식품", "conf": "assumed", "rag_should_fire": true}
+{"name": "참치 80g×3", "storage": "실온", "count": 1, "stored_category": "가공·즉석식품", "gold_category": "가공·즉석식품", "conf": "assumed", "rag_should_fire": true}
+{"name": "참치캔", "storage": "실온", "count": 6, "stored_category": "가공·즉석식품", "gold_category": "가공·즉석식품", "conf": "high", "rag_should_fire": true}
+{"name": "참치캔 100g 3입", "storage": "실온", "count": 1, "stored_category": "가공·즉석식품", "gold_category": "가공·즉석식품", "conf": "high", "rag_should_fire": true}
+{"name": "참치캔 100g×3", "storage": "실온", "count": 4, "stored_category": "가공·즉석식품", "gold_category": "가공·즉석식품", "conf": "high", "rag_should_fire": true}
+{"name": "참치캔 160g", "storage": "실온", "count": 1, "stored_category": "가공·즉석식품", "gold_category": "가공·즉석식품", "conf": "high", "rag_should_fire": true}
+{"name": "참치캔(중)", "storage": "실온", "count": 1, "stored_category": "가공·즉석식품", "gold_category": "가공·즉석식품", "conf": "high", "rag_should_fire": true}
+{"name": "찹스테이크", "storage": "냉동", "count": 1, "stored_category": "가공·즉석식품", "gold_category": "가공·즉석식품", "conf": "assumed", "rag_should_fire": true}
+{"name": "치즈샌드위치", "storage": "냉장", "count": 1, "stored_category": "가공·즉석식품", "gold_category": "가공·즉석식품", "conf": "assumed", "rag_should_fire": true}
+{"name": "카레 (중)", "storage": "실온", "count": 1, "stored_category": "가공·즉석식품", "gold_category": "가공·즉석식품", "conf": "assumed", "rag_should_fire": true}
+{"name": "카레(중)", "storage": "실온", "count": 1, "stored_category": "가공·즉석식품", "gold_category": "가공·즉석식품", "conf": "assumed", "rag_should_fire": true}
+{"name": "컵밥 닭갈비", "storage": "실온", "count": 2, "stored_category": "가공·즉석식품", "gold_category": "가공·즉석식품", "conf": "assumed", "rag_should_fire": true}
+{"name": "컵밥닭갈비", "storage": "실온", "count": 1, "stored_category": "가공·즉석식품", "gold_category": "가공·즉석식품", "conf": "assumed", "rag_should_fire": true}
+{"name": "탕수", "storage": "냉동", "count": 2, "stored_category": "가공·즉석식품", "gold_category": "가공·즉석식품", "conf": "assumed", "rag_should_fire": true}
+{"name": "파이벅", "storage": "냉동", "count": 1, "stored_category": "가공·즉석식품", "gold_category": null, "conf": "garbage", "rag_should_fire": false}
+{"name": "함박스테이크 2", "storage": "냉동", "count": 2, "stored_category": "가공·즉석식품", "gold_category": "가공·즉석식품", "conf": "assumed", "rag_should_fire": true}
+{"name": "핫스테이크", "storage": "냉동", "count": 1, "stored_category": "가공·즉석식품", "gold_category": "가공·즉석식품", "conf": "assumed", "rag_should_fire": true}
+{"name": "햇반", "storage": "실온", "count": 7, "stored_category": "가공·즉석식품", "gold_category": "가공·즉석식품", "conf": "assumed", "rag_should_fire": true}
+{"name": "햇반 210g", "storage": "실온", "count": 3, "stored_category": "가공·즉석식품", "gold_category": "가공·즉석식품", "conf": "assumed", "rag_should_fire": true}
+{"name": "햇밥 210g", "storage": "실온", "count": 1, "stored_category": "가공·즉석식품", "gold_category": "가공·즉석식품", "conf": "assumed", "rag_should_fire": true}
+{"name": "훼집 210g", "storage": "실온", "count": 1, "stored_category": "가공·즉석식품", "gold_category": "가공·즉석식품", "conf": "assumed", "rag_should_fire": true}
+{"name": "국수 80g×4", "storage": "실온", "count": 1, "stored_category": "곡류·면류", "gold_category": "곡류·면류", "conf": "assumed", "rag_should_fire": true}
+{"name": "그라노라 150g 2입", "storage": "실온", "count": 1, "stored_category": "곡류·면류", "gold_category": "곡류·면류", "conf": "assumed", "rag_should_fire": true}
+{"name": "냉면 세트 200g", "storage": "냉동", "count": 1, "stored_category": "곡류·면류", "gold_category": "곡류·면류", "conf": "assumed", "rag_should_fire": true}
+{"name": "떡볶이 양장 150g", "storage": "실온", "count": 1, "stored_category": "곡류·면류", "gold_category": "곡류·면류", "conf": "assumed", "rag_should_fire": true}
+{"name": "멸치국수 80g 4", "storage": "실온", "count": 1, "stored_category": "곡류·면류", "gold_category": "곡류·면류", "conf": "assumed", "rag_should_fire": true}
+{"name": "밀볶음 80g", "storage": "실온", "count": 1, "stored_category": "곡류·면류", "gold_category": "곡류·면류", "conf": "assumed", "rag_should_fire": true}
+{"name": "비빔국수", "storage": "실온", "count": 1, "stored_category": "곡류·면류", "gold_category": "곡류·면류", "conf": "assumed", "rag_should_fire": true}
+{"name": "스파게티면", "storage": "실온", "count": 2, "stored_category": "곡류·면류", "gold_category": "곡류·면류", "conf": "assumed", "rag_should_fire": true}
+{"name": "쌀국수", "storage": "실온", "count": 1, "stored_category": "곡류·면류", "gold_category": "곡류·면류", "conf": "assumed", "rag_should_fire": true}
+{"name": "쌀국수 80g×4", "storage": "실온", "count": 4, "stored_category": "곡류·면류", "gold_category": "곡류·면류", "conf": "assumed", "rag_should_fire": true}
+{"name": "오트밀", "storage": "실온", "count": 2, "stored_category": "곡류·면류", "gold_category": "곡류·면류", "conf": "assumed", "rag_should_fire": true}
+{"name": "오트밀 500g", "storage": "실온", "count": 5, "stored_category": "곡류·면류", "gold_category": "곡류·면류", "conf": "assumed", "rag_should_fire": true}
+{"name": "감귤", "storage": "실온", "count": 5, "stored_category": "과일류", "gold_category": "과일류", "conf": "assumed", "rag_should_fire": false}
+{"name": "감귤 1kg", "storage": "실온", "count": 3, "stored_category": "과일류", "gold_category": "과일류", "conf": "assumed", "rag_should_fire": false}
+{"name": "감귤 1단", "storage": "실온", "count": 1, "stored_category": "과일류", "gold_category": "과일류", "conf": "assumed", "rag_should_fire": false}
+{"name": "갑귤 1kg", "stored_category": "과일류", "storage": "실온", "count": 1, "gold_category": null, "conf": "garbage", "rag_should_fire": false}
+{"name": "곶감", "storage": "실온", "count": 1, "stored_category": "과일류", "gold_category": "과일류", "conf": "assumed", "rag_should_fire": true}
+{"name": "김귤", "storage": "실온", "count": 1, "stored_category": "과일류", "gold_category": "과일류", "conf": "assumed", "rag_should_fire": true}
+{"name": "단감", "storage": "실온", "count": 1, "stored_category": "과일류", "gold_category": "과일류", "conf": "assumed", "rag_should_fire": true}
+{"name": "딸기 4", "storage": "냉장", "count": 1, "stored_category": "과일류", "gold_category": "과일류", "conf": "assumed", "rag_should_fire": false}
+{"name": "딸기베리벚꽃 200g", "stored_category": "과일류", "storage": "냉장", "count": 1, "gold_category": null, "conf": "garbage", "rag_should_fire": false}
+{"name": "바나나", "storage": "실온", "count": 6, "stored_category": "과일류", "gold_category": "과일류", "conf": "assumed", "rag_should_fire": false}
+{"name": "바나나 1", "storage": "실온", "count": 7, "stored_category": "과일류", "gold_category": "과일류", "conf": "assumed", "rag_should_fire": false}
+{"name": "바나나 송이", "storage": "실온", "count": 1, "stored_category": "과일류", "gold_category": "과일류", "conf": "assumed", "rag_should_fire": false}
+{"name": "바나나 한 송이", "storage": "실온", "count": 8, "stored_category": "과일류", "gold_category": "과일류", "conf": "assumed", "rag_should_fire": true}
+{"name": "방울토마토", "storage": "냉장", "count": 1, "stored_category": "과일류", "gold_category": "과일류", "conf": "assumed", "rag_should_fire": true}
+{"name": "사과", "storage": "실온", "count": 1, "stored_category": "과일류", "gold_category": "과일류", "conf": "assumed", "rag_should_fire": false}
+{"name": "사과 2", "storage": "실온", "count": 8, "stored_category": "과일류", "gold_category": "과일류", "conf": "assumed", "rag_should_fire": false}
+{"name": "사과(소)", "storage": "실온", "count": 10, "stored_category": "과일류", "gold_category": "과일류", "conf": "assumed", "rag_should_fire": false}
+{"name": "사과(소) 2입", "storage": "실온", "count": 1, "stored_category": "과일류", "gold_category": "과일류", "conf": "assumed", "rag_should_fire": false}
+{"name": "오렌지", "storage": "실온", "count": 1, "stored_category": "과일류", "gold_category": "과일류", "conf": "assumed", "rag_should_fire": false}
+{"name": "자프리카 (중) 2", "stored_category": "과일류", "storage": "실온", "count": 1, "gold_category": null, "conf": "garbage", "rag_should_fire": false}
+{"name": "청포도", "storage": "실온", "count": 5, "stored_category": "과일류", "gold_category": "과일류", "conf": "assumed", "rag_should_fire": false}
+{"name": "청포도 500g", "storage": "실온", "count": 3, "stored_category": "과일류", "gold_category": "과일류", "conf": "assumed", "rag_should_fire": false}
+{"name": "청포도 500g", "storage": "냉장", "count": 1, "stored_category": "과일류", "gold_category": "과일류", "conf": "assumed", "rag_should_fire": false}
+{"name": "황도", "storage": "실온", "count": 1, "stored_category": "과일류", "gold_category": "과일류", "conf": "assumed", "rag_should_fire": true}
+{"name": "냉동 완두콩", "storage": "냉동", "count": 1, "stored_category": "두부·콩류", "gold_category": "두부·콩류", "conf": "assumed", "rag_should_fire": true}
+{"name": "냉동 완두콩 500g", "storage": "냉동", "count": 2, "stored_category": "두부·콩류", "gold_category": "두부·콩류", "conf": "assumed", "rag_should_fire": true}
+{"name": "두부", "storage": "냉장", "count": 3, "stored_category": "두부·콩류", "gold_category": "두부·콩류", "conf": "assumed", "rag_should_fire": false}
+{"name": "두부 1단", "storage": "냉장", "count": 2, "stored_category": "두부·콩류", "gold_category": "두부·콩류", "conf": "assumed", "rag_should_fire": false}
+{"name": "두부 300g", "storage": "냉장", "count": 2, "stored_category": "두부·콩류", "gold_category": "두부·콩류", "conf": "assumed", "rag_should_fire": false}
+{"name": "두부(찌개용)", "storage": "냉장", "count": 5, "stored_category": "두부·콩류", "gold_category": "두부·콩류", "conf": "assumed", "rag_should_fire": true}
+{"name": "두부(찌개용) 300g", "storage": "냉장", "count": 8, "stored_category": "두부·콩류", "gold_category": "두부·콩류", "conf": "assumed", "rag_should_fire": true}
+{"name": "무항생제두부 400g", "storage": "냉장", "count": 1, "stored_category": "두부·콩류", "gold_category": "두부·콩류", "conf": "assumed", "rag_should_fire": true}
+{"name": "손두부피경", "storage": "냉장", "count": 1, "stored_category": "두부·콩류", "gold_category": "두부·콩류", "conf": "assumed", "rag_should_fire": true}
+{"name": "순두부찌개", "storage": "냉장", "count": 2, "stored_category": "두부·콩류", "gold_category": "가공·즉석식품", "conf": "high", "rag_should_fire": true}
+{"name": "완두콩 500g", "storage": "냉장", "count": 1, "stored_category": "두부·콩류", "gold_category": "두부·콩류", "conf": "assumed", "rag_should_fire": true}
+{"name": "우림두부 150g", "storage": "냉장", "count": 1, "stored_category": "두부·콩류", "gold_category": "두부·콩류", "conf": "assumed", "rag_should_fire": true}
+{"name": "콩나물", "storage": "냉장", "count": 2, "stored_category": "두부·콩류", "gold_category": "두부·콩류", "conf": "assumed", "rag_should_fire": false}
+{"name": "콩나물 500g", "storage": "냉장", "count": 1, "stored_category": "두부·콩류", "gold_category": "두부·콩류", "conf": "assumed", "rag_should_fire": false}
+{"name": "갑물", "storage": "냉장", "count": 1, "stored_category": "수산물", "gold_category": "수산물", "conf": "assumed", "rag_should_fire": true}
+{"name": "김 1kg", "storage": "실온", "count": 1, "stored_category": "수산물", "gold_category": "수산물", "conf": "assumed", "rag_should_fire": true}
+{"name": "김 1단", "storage": "실온", "count": 2, "stored_category": "수산물", "gold_category": "수산물", "conf": "assumed", "rag_should_fire": true}
+{"name": "냉동 새우", "storage": "냉동", "count": 1, "stored_category": "수산물", "gold_category": "수산물", "conf": "assumed", "rag_should_fire": false}
+{"name": "냉동 새우 200g", "storage": "냉동", "count": 5, "stored_category": "수산물", "gold_category": "수산물", "conf": "assumed", "rag_should_fire": false}
+{"name": "냉동새우", "storage": "냉동", "count": 2, "stored_category": "수산물", "gold_category": "수산물", "conf": "assumed", "rag_should_fire": true}
+{"name": "냉동새우 300g", "storage": "냉동", "count": 4, "stored_category": "수산물", "gold_category": "수산물", "conf": "assumed", "rag_should_fire": true}
+{"name": "냉동자숙우", "storage": "냉동", "count": 1, "stored_category": "수산물", "gold_category": "수산물", "conf": "assumed", "rag_should_fire": true}
+{"name": "동동새우 300g", "storage": "냉동", "count": 1, "stored_category": "수산물", "gold_category": "수산물", "conf": "assumed", "rag_should_fire": true}
+{"name": "두부 어묵 240g", "storage": "냉장", "count": 1, "stored_category": "수산물", "gold_category": "가공·즉석식품", "conf": "high", "rag_should_fire": true}
+{"name": "마른멸치", "storage": "실온", "count": 1, "stored_category": "수산물", "gold_category": "수산물", "conf": "med", "rag_should_fire": true}
+{"name": "멸치", "storage": "실온", "count": 1, "stored_category": "수산물", "gold_category": "수산물", "conf": "assumed", "rag_should_fire": true}
+{"name": "멸치볶음 80g", "storage": "실온", "count": 3, "stored_category": "수산물", "gold_category": "가공·즉석식품", "conf": "high", "rag_should_fire": true}
+{"name": "생연어", "storage": "냉장", "count": 1, "stored_category": "수산물", "gold_category": "수산물", "conf": "assumed", "rag_should_fire": false}
+{"name": "수산물", "stored_category": "수산물", "storage": "냉장", "count": 1, "gold_category": null, "conf": "garbage", "rag_should_fire": false}
+{"name": "참돔 1kg", "storage": "냉장", "count": 1, "stored_category": "수산물", "gold_category": "수산물", "conf": "assumed", "rag_should_fire": false}
+{"name": "참치", "storage": "실온", "count": 1, "stored_category": "수산물", "gold_category": "수산물", "conf": "assumed", "rag_should_fire": true}
+{"name": "참치 160g", "storage": "실온", "count": 1, "stored_category": "수산물", "gold_category": "가공·즉석식품", "conf": "high", "rag_should_fire": true}
+{"name": "참치 1kg", "storage": "냉장", "count": 1, "stored_category": "수산물", "gold_category": "수산물", "conf": "med", "rag_should_fire": true}
+{"name": "참치캔", "storage": "실온", "count": 2, "stored_category": "수산물", "gold_category": "가공·즉석식품", "conf": "high", "rag_should_fire": true}
+{"name": "참치캔 100g 3", "storage": "실온", "count": 1, "stored_category": "수산물", "gold_category": "가공·즉석식품", "conf": "high", "rag_should_fire": true}
+{"name": "참치캔 135g", "storage": "실온", "count": 4, "stored_category": "수산물", "gold_category": "가공·즉석식품", "conf": "high", "rag_should_fire": true}
+{"name": "참치캔(중) 135g", "storage": "실온", "count": 1, "stored_category": "수산물", "gold_category": "가공·즉석식품", "conf": "high", "rag_should_fire": true}
+{"name": "고구마빵", "storage": "실온", "count": 1, "stored_category": "스낵·과자", "gold_category": "스낵·과자", "conf": "high", "rag_should_fire": true}
+{"name": "너비버스 200g", "storage": "실온", "count": 1, "stored_category": "스낵·과자", "gold_category": "스낵·과자", "conf": "assumed", "rag_should_fire": true}
+{"name": "너트리버", "storage": "실온", "count": 1, "stored_category": "스낵·과자", "gold_category": null, "conf": "garbage", "rag_should_fire": false}
+{"name": "멀치볶음 80g", "storage": "실온", "count": 1, "stored_category": "스낵·과자", "gold_category": "스낵·과자", "conf": "assumed", "rag_should_fire": true}
+{"name": "모이 3", "storage": "실온", "count": 1, "stored_category": "스낵·과자", "gold_category": null, "conf": "garbage", "rag_should_fire": false}
+{"name": "바니니 몽이", "storage": "실온", "count": 1, "stored_category": "스낵·과자", "gold_category": "스낵·과자", "conf": "assumed", "rag_should_fire": true}
+{"name": "비스크치즈스콘", "storage": "실온", "count": 1, "stored_category": "스낵·과자", "gold_category": "스낵·과자", "conf": "assumed", "rag_should_fire": true}
+{"name": "새우깡", "storage": "실온", "count": 1, "stored_category": "스낵·과자", "gold_category": "스낵·과자", "conf": "high", "rag_should_fire": true}
+{"name": "아이스크림", "storage": "냉동", "count": 1, "stored_category": "스낵·과자", "gold_category": "스낵·과자", "conf": "assumed", "rag_should_fire": true}
+{"name": "양파링", "storage": "실온", "count": 1, "stored_category": "스낵·과자", "gold_category": "스낵·과자", "conf": "high", "rag_should_fire": true}
+{"name": "오감자", "storage": "실온", "count": 1, "stored_category": "스낵·과자", "gold_category": "스낵·과자", "conf": "high", "rag_should_fire": true}
+{"name": "오르릉 500g", "storage": "실온", "count": 1, "stored_category": "스낵·과자", "gold_category": "스낵·과자", "conf": "assumed", "rag_should_fire": true}
+{"name": "오트밀바", "storage": "실온", "count": 3, "stored_category": "스낵·과자", "gold_category": "스낵·과자", "conf": "assumed", "rag_should_fire": true}
+{"name": "초코송이", "storage": "실온", "count": 1, "stored_category": "스낵·과자", "gold_category": "스낵·과자", "conf": "assumed", "rag_should_fire": true}
+{"name": "칩스민트초코쉬트", "storage": "실온", "count": 1, "stored_category": "스낵·과자", "gold_category": "스낵·과자", "conf": "assumed", "rag_should_fire": true}
+{"name": "간장 1L", "storage": "실온", "count": 3, "stored_category": "양념·소스", "gold_category": "양념·소스", "conf": "assumed", "rag_should_fire": true}
+{"name": "간장 500ml", "storage": "실온", "count": 1, "stored_category": "양념·소스", "gold_category": "양념·소스", "conf": "assumed", "rag_should_fire": true}
+{"name": "고추장", "storage": "실온", "count": 3, "stored_category": "양념·소스", "gold_category": "양념·소스", "conf": "assumed", "rag_should_fire": true}
+{"name": "고추장 500g", "storage": "실온", "count": 4, "stored_category": "양념·소스", "gold_category": "양념·소스", "conf": "assumed", "rag_should_fire": true}
+{"name": "굵은소금", "storage": "실온", "count": 1, "stored_category": "양념·소스", "gold_category": "양념·소스", "conf": "assumed", "rag_should_fire": true}
+{"name": "김장 1L", "storage": "냉장", "count": 1, "stored_category": "양념·소스", "gold_category": "양념·소스", "conf": "assumed", "rag_should_fire": true}
+{"name": "다시다 500g", "storage": "실온", "count": 1, "stored_category": "양념·소스", "gold_category": "양념·소스", "conf": "assumed", "rag_should_fire": true}
+{"name": "들기름", "storage": "실온", "count": 1, "stored_category": "양념·소스", "gold_category": "양념·소스", "conf": "assumed", "rag_should_fire": true}
+{"name": "들기름 160ml", "storage": "실온", "count": 3, "stored_category": "양념·소스", "gold_category": "양념·소스", "conf": "assumed", "rag_should_fire": true}
+{"name": "들기름 350ml", "storage": "실온", "count": 1, "stored_category": "양념·소스", "gold_category": "양념·소스", "conf": "assumed", "rag_should_fire": true}
+{"name": "딸기잼", "storage": "실온", "count": 1, "stored_category": "양념·소스", "gold_category": "양념·소스", "conf": "assumed", "rag_should_fire": true}
+{"name": "몰리브유", "storage": "실온", "count": 1, "stored_category": "양념·소스", "gold_category": null, "conf": "garbage", "rag_should_fire": false}
+{"name": "물기름", "storage": "실온", "count": 1, "stored_category": "양념·소스", "gold_category": null, "conf": "garbage", "rag_should_fire": false}
+{"name": "미원 500g", "storage": "실온", "count": 1, "stored_category": "양념·소스", "gold_category": "양념·소스", "conf": "assumed", "rag_should_fire": true}
+{"name": "바질 페스토", "storage": "냉장", "count": 2, "stored_category": "양념·소스", "gold_category": "양념·소스", "conf": "assumed", "rag_should_fire": true}
+{"name": "볶음고추장", "storage": "실온", "count": 1, "stored_category": "양념·소스", "gold_category": "양념·소스", "conf": "assumed", "rag_should_fire": true}
+{"name": "설탕 1kg", "storage": "실온", "count": 1, "stored_category": "양념·소스", "gold_category": "양념·소스", "conf": "assumed", "rag_should_fire": true}
+{"name": "소금 500g", "storage": "실온", "count": 1, "stored_category": "양념·소스", "gold_category": "양념·소스", "conf": "assumed", "rag_should_fire": true}
+{"name": "식용유 1.8L", "storage": "실온", "count": 1, "stored_category": "양념·소스", "gold_category": "양념·소스", "conf": "assumed", "rag_should_fire": true}
+{"name": "식초", "storage": "실온", "count": 1, "stored_category": "양념·소스", "gold_category": "양념·소스", "conf": "assumed", "rag_should_fire": true}
+{"name": "올리브", "storage": "실온", "count": 1, "stored_category": "양념·소스", "gold_category": "양념·소스", "conf": "assumed", "rag_should_fire": true}
+{"name": "올리브 500ml", "storage": "실온", "count": 3, "stored_category": "양념·소스", "gold_category": "양념·소스", "conf": "assumed", "rag_should_fire": true}
+{"name": "올리브유", "storage": "실온", "count": 7, "stored_category": "양념·소스", "gold_category": "양념·소스", "conf": "assumed", "rag_should_fire": true}
+{"name": "올리브유 500ml", "storage": "실온", "count": 6, "stored_category": "양념·소스", "gold_category": "양념·소스", "conf": "assumed", "rag_should_fire": true}
+{"name": "의성마늘 비네나", "storage": "냉장", "count": 1, "stored_category": "양념·소스", "gold_category": "양념·소스", "conf": "assumed", "rag_should_fire": true}
+{"name": "진간장", "storage": "실온", "count": 6, "stored_category": "양념·소스", "gold_category": "양념·소스", "conf": "assumed", "rag_should_fire": true}
+{"name": "진간장 500ml", "storage": "실온", "count": 6, "stored_category": "양념·소스", "gold_category": "양념·소스", "conf": "assumed", "rag_should_fire": true}
+{"name": "참기름", "storage": "실온", "count": 6, "stored_category": "양념·소스", "gold_category": "양념·소스", "conf": "assumed", "rag_should_fire": true}
+{"name": "참기름 160ml", "storage": "실온", "count": 4, "stored_category": "양념·소스", "gold_category": "양념·소스", "conf": "assumed", "rag_should_fire": true}
+{"name": "참기름 350ml", "storage": "실온", "count": 1, "stored_category": "양념·소스", "gold_category": "양념·소스", "conf": "assumed", "rag_should_fire": true}
+{"name": "참깨", "storage": "실온", "count": 1, "stored_category": "양념·소스", "gold_category": "양념·소스", "conf": "assumed", "rag_should_fire": true}
+{"name": "초고추장 1kg", "storage": "실온", "count": 1, "stored_category": "양념·소스", "gold_category": "양념·소스", "conf": "assumed", "rag_should_fire": true}
+{"name": "카놀라유 1.8L", "storage": "실온", "count": 1, "stored_category": "양념·소스", "gold_category": "양념·소스", "conf": "assumed", "rag_should_fire": true}
+{"name": "칸장 1L", "storage": "실온", "count": 1, "stored_category": "양념·소스", "gold_category": "양념·소스", "conf": "assumed", "rag_should_fire": true}
+{"name": "케찹", "storage": "실온", "count": 6, "stored_category": "양념·소스", "gold_category": "양념·소스", "conf": "assumed", "rag_should_fire": true}
+{"name": "케찹 500g", "storage": "실온", "count": 5, "stored_category": "양념·소스", "gold_category": "양념·소스", "conf": "assumed", "rag_should_fire": true}
+{"name": "케첩", "storage": "실온", "count": 3, "stored_category": "양념·소스", "gold_category": "양념·소스", "conf": "assumed", "rag_should_fire": true}
+{"name": "콩기름 1.8L", "storage": "실온", "count": 1, "stored_category": "양념·소스", "gold_category": "양념·소스", "conf": "assumed", "rag_should_fire": true}
+{"name": "태양초고추장", "storage": "실온", "count": 1, "stored_category": "양념·소스", "gold_category": "양념·소스", "conf": "assumed", "rag_should_fire": true}
+{"name": "후추 그라인더", "storage": "실온", "count": 1, "stored_category": "양념·소스", "gold_category": "양념·소스", "conf": "assumed", "rag_should_fire": true}
+{"name": "계란", "storage": "냉장", "count": 2, "stored_category": "유제품·계란", "gold_category": "유제품·계란", "conf": "assumed", "rag_should_fire": false}
+{"name": "계란 15구", "storage": "냉장", "count": 3, "stored_category": "유제품·계란", "gold_category": "유제품·계란", "conf": "assumed", "rag_should_fire": true}
+{"name": "계란 15구 (중란)", "storage": "냉장", "count": 3, "stored_category": "유제품·계란", "gold_category": "유제품·계란", "conf": "assumed", "rag_should_fire": true}
+{"name": "계란(중란)", "storage": "냉장", "count": 5, "stored_category": "유제품·계란", "gold_category": "유제품·계란", "conf": "assumed", "rag_should_fire": true}
+{"name": "그리크요트 150g", "storage": "냉장", "count": 1, "stored_category": "유제품·계란", "gold_category": "유제품·계란", "conf": "assumed", "rag_should_fire": true}
+{"name": "그릭요거", "storage": "냉장", "count": 1, "stored_category": "유제품·계란", "gold_category": "유제품·계란", "conf": "assumed", "rag_should_fire": true}
+{"name": "그릭요거 150g", "storage": "냉장", "count": 1, "stored_category": "유제품·계란", "gold_category": "유제품·계란", "conf": "assumed", "rag_should_fire": true}
+{"name": "그릭요거트 150g", "storage": "냉장", "count": 4, "stored_category": "유제품·계란", "gold_category": "유제품·계란", "conf": "assumed", "rag_should_fire": true}
+{"name": "달걀", "storage": "냉장", "count": 4, "stored_category": "유제품·계란", "gold_category": "유제품·계란", "conf": "assumed", "rag_should_fire": false}
+{"name": "달걀 특란", "storage": "냉장", "count": 8, "stored_category": "유제품·계란", "gold_category": "유제품·계란", "conf": "assumed", "rag_should_fire": false}
+{"name": "달걀 특란 10구", "storage": "냉장", "count": 1, "stored_category": "유제품·계란", "gold_category": "유제품·계란", "conf": "assumed", "rag_should_fire": true}
+{"name": "달걀(10구) 특란", "storage": "냉장", "count": 2, "stored_category": "유제품·계란", "gold_category": "유제품·계란", "conf": "assumed", "rag_should_fire": false}
+{"name": "달걀(특란)", "storage": "냉장", "count": 1, "stored_category": "유제품·계란", "gold_category": "유제품·계란", "conf": "assumed", "rag_should_fire": true}
+{"name": "딸기맛우유", "storage": "냉장", "count": 1, "stored_category": "유제품·계란", "gold_category": "유제품·계란", "conf": "assumed", "rag_should_fire": true}
+{"name": "딸기요플레", "storage": "냉장", "count": 1, "stored_category": "유제품·계란", "gold_category": "유제품·계란", "conf": "assumed", "rag_should_fire": true}
+{"name": "무항생제 특란 (30구)", "storage": "냉장", "count": 1, "stored_category": "유제품·계란", "gold_category": "유제품·계란", "conf": "assumed", "rag_should_fire": true}
+{"name": "바나나맛우유", "storage": "냉장", "count": 1, "stored_category": "유제품·계란", "gold_category": "유제품·계란", "conf": "assumed", "rag_should_fire": true}
+{"name": "바나나맛우유 240ml", "storage": "냉장", "count": 2, "stored_category": "유제품·계란", "gold_category": "유제품·계란", "conf": "assumed", "rag_should_fire": true}
+{"name": "버터", "storage": "냉장", "count": 1, "stored_category": "유제품·계란", "gold_category": "유제품·계란", "conf": "assumed", "rag_should_fire": true}
+{"name": "버터 450g", "storage": "냉장", "count": 7, "stored_category": "유제품·계란", "gold_category": "유제품·계란", "conf": "assumed", "rag_should_fire": true}
+{"name": "불가리스 4", "storage": "냉장", "count": 2, "stored_category": "유제품·계란", "gold_category": "유제품·계란", "conf": "assumed", "rag_should_fire": true}
+{"name": "불가리스 딸기", "storage": "냉장", "count": 4, "stored_category": "유제품·계란", "gold_category": "유제품·계란", "conf": "assumed", "rag_should_fire": false}
+{"name": "불가리스 딸기 4", "storage": "냉장", "count": 2, "stored_category": "유제품·계란", "gold_category": "유제품·계란", "conf": "assumed", "rag_should_fire": false}
+{"name": "불가리스 딸기×4", "storage": "냉장", "count": 2, "stored_category": "유제품·계란", "gold_category": "유제품·계란", "conf": "assumed", "rag_should_fire": true}
+{"name": "삶은달걀", "storage": "냉장", "count": 4, "stored_category": "유제품·계란", "gold_category": "유제품·계란", "conf": "assumed", "rag_should_fire": true}
+{"name": "스트링치즈", "storage": "냉장", "count": 1, "stored_category": "유제품·계란", "gold_category": "유제품·계란", "conf": "assumed", "rag_should_fire": true}
+{"name": "요플레 4", "storage": "냉장", "count": 1, "stored_category": "유제품·계란", "gold_category": "유제품·계란", "conf": "assumed", "rag_should_fire": true}
+{"name": "요플레(딸기)", "storage": "냉장", "count": 6, "stored_category": "유제품·계란", "gold_category": "유제품·계란", "conf": "assumed", "rag_should_fire": true}
+{"name": "요플레(딸기) x 4", "storage": "냉장", "count": 1, "stored_category": "유제품·계란", "gold_category": "유제품·계란", "conf": "assumed", "rag_should_fire": true}
+{"name": "요플레(딸기)×4", "storage": "냉장", "count": 3, "stored_category": "유제품·계란", "gold_category": "유제품·계란", "conf": "assumed", "rag_should_fire": true}
+{"name": "우유", "storage": "냉장", "count": 6, "stored_category": "유제품·계란", "gold_category": "유제품·계란", "conf": "assumed", "rag_should_fire": false}
+{"name": "우유 1L", "storage": "냉장", "count": 12, "stored_category": "유제품·계란", "gold_category": "유제품·계란", "conf": "assumed", "rag_should_fire": true}
+{"name": "우유 1l", "storage": "냉장", "count": 1, "stored_category": "유제품·계란", "gold_category": "유제품·계란", "conf": "assumed", "rag_should_fire": true}
+{"name": "유정란", "storage": "냉장", "count": 1, "stored_category": "유제품·계란", "gold_category": "유제품·계란", "conf": "assumed", "rag_should_fire": true}
+{"name": "저방유 우유 1L", "storage": "냉장", "count": 1, "stored_category": "유제품·계란", "gold_category": "유제품·계란", "conf": "assumed", "rag_should_fire": true}
+{"name": "저지방 우유 1L", "storage": "냉장", "count": 4, "stored_category": "유제품·계란", "gold_category": "유제품·계란", "conf": "assumed", "rag_should_fire": true}
+{"name": "저지방우유", "storage": "냉장", "count": 2, "stored_category": "유제품·계란", "gold_category": "유제품·계란", "conf": "assumed", "rag_should_fire": true}
+{"name": "치즈", "storage": "냉장", "count": 1, "stored_category": "유제품·계란", "gold_category": "유제품·계란", "conf": "assumed", "rag_should_fire": true}
+{"name": "흑우유 1L", "storage": "냉장", "count": 1, "stored_category": "유제품·계란", "gold_category": "유제품·계란", "conf": "assumed", "rag_should_fire": true}
+{"name": "가브리살", "storage": "냉장", "count": 1, "stored_category": "육류", "gold_category": "육류", "conf": "assumed", "rag_should_fire": true}
+{"name": "가시오리", "stored_category": "육류", "storage": "냉장", "count": 1, "gold_category": null, "conf": "garbage", "rag_should_fire": false}
+{"name": "감자탕용 돼지등뼈", "storage": "냉장", "count": 1, "stored_category": "육류", "gold_category": "육류", "conf": "assumed", "rag_should_fire": true}
+{"name": "냉동 닭다리", "storage": "냉동", "count": 1, "stored_category": "육류", "gold_category": "육류", "conf": "assumed", "rag_should_fire": false}
+{"name": "닭가슴살", "storage": "냉장", "count": 5, "stored_category": "육류", "gold_category": "육류", "conf": "assumed", "rag_should_fire": false}
+{"name": "닭가슴살", "storage": "냉동", "count": 2, "stored_category": "육류", "gold_category": "육류", "conf": "assumed", "rag_should_fire": false}
+{"name": "닭날개 80g 4입", "storage": "냉동", "count": 1, "stored_category": "육류", "gold_category": "육류", "conf": "assumed", "rag_should_fire": true}
+{"name": "대왕 닭고 500g", "stored_category": "육류", "storage": "냉동", "count": 1, "gold_category": null, "conf": "garbage", "rag_should_fire": false}
+{"name": "돼지 목살", "storage": "냉장", "count": 1, "stored_category": "육류", "gold_category": "육류", "conf": "assumed", "rag_should_fire": false}
+{"name": "베이직 소시움 500g", "stored_category": "육류", "storage": "냉장", "count": 1, "gold_category": null, "conf": "garbage", "rag_should_fire": false}
+{"name": "생삼겹살", "storage": "냉장", "count": 1, "stored_category": "육류", "gold_category": "육류", "conf": "assumed", "rag_should_fire": true}
+{"name": "손실 삼겹살", "storage": "냉장", "count": 1, "stored_category": "육류", "gold_category": "육류", "conf": "assumed", "rag_should_fire": false}
+{"name": "순살 삼겹살", "storage": "냉장", "count": 1, "stored_category": "육류", "gold_category": "육류", "conf": "assumed", "rag_should_fire": false}
+{"name": "양다리훈합 닭다리", "stored_category": "육류", "storage": "냉장", "count": 1, "gold_category": null, "conf": "garbage", "rag_should_fire": false}
+{"name": "와셔마늘 비엔나 180g", "storage": "냉장", "count": 1, "stored_category": "육류", "gold_category": "가공·즉석식품", "conf": "high", "rag_should_fire": true}
+{"name": "왕정살 460g", "stored_category": "육류", "storage": "냉장", "count": 1, "gold_category": null, "conf": "garbage", "rag_should_fire": false}
+{"name": "의성마늘 비엔나 180g", "storage": "냉장", "count": 4, "stored_category": "육류", "gold_category": "가공·즉석식품", "conf": "high", "rag_should_fire": true}
+{"name": "지리산흑돼지애호", "stored_category": "육류", "storage": "냉장", "count": 1, "gold_category": null, "conf": "garbage", "rag_should_fire": false}
+{"name": "한돈 닭다리", "storage": "냉장", "count": 1, "stored_category": "육류", "gold_category": "육류", "conf": "assumed", "rag_should_fire": false}
+{"name": "한돈 왕정살", "storage": "냉장", "count": 1, "stored_category": "육류", "gold_category": "육류", "conf": "assumed", "rag_should_fire": true}
+{"name": "한우 국거리", "storage": "냉장", "count": 1, "stored_category": "육류", "gold_category": "육류", "conf": "assumed", "rag_should_fire": true}
+{"name": "한우 안심", "storage": "냉장", "count": 1, "stored_category": "육류", "gold_category": "육류", "conf": "assumed", "rag_should_fire": true}
+{"name": "한우지롱", "storage": "냉장", "count": 1, "stored_category": "육류", "gold_category": "육류", "conf": "assumed", "rag_should_fire": true}
+{"name": "햄바스틱 2", "storage": "냉장", "count": 1, "stored_category": "육류", "gold_category": "가공·즉석식품", "conf": "high", "rag_should_fire": true}
+{"name": "훈제닭피 460g", "storage": "냉동", "count": 1, "stored_category": "육류", "gold_category": "가공·즉석식품", "conf": "med", "rag_should_fire": true}
+{"name": "두유", "storage": "실온", "count": 1, "stored_category": "음료·주류", "gold_category": "음료·주류", "conf": "assumed", "rag_should_fire": true}
+{"name": "두유(베이지)", "storage": "실온", "count": 2, "stored_category": "음료·주류", "gold_category": "음료·주류", "conf": "assumed", "rag_should_fire": true}
+{"name": "두유(베지밀)", "storage": "실온", "count": 1, "stored_category": "음료·주류", "gold_category": "음료·주류", "conf": "assumed", "rag_should_fire": true}
+{"name": "딸기스 4", "storage": "냉장", "count": 1, "stored_category": "음료·주류", "gold_category": null, "conf": "garbage", "rag_should_fire": false}
+{"name": "망고로코", "storage": "실온", "count": 1, "stored_category": "음료·주류", "gold_category": "음료·주류", "conf": "assumed", "rag_should_fire": true}
+{"name": "물통 20L", "storage": "실온", "count": 1, "stored_category": "음료·주류", "gold_category": "음료·주류", "conf": "assumed", "rag_should_fire": true}
+{"name": "바나나맛우유", "storage": "냉장", "count": 4, "stored_category": "음료·주류", "gold_category": "음료·주류", "conf": "assumed", "rag_should_fire": true}
+{"name": "바나나우유", "storage": "냉장", "count": 2, "stored_category": "음료·주류", "gold_category": "음료·주류", "conf": "assumed", "rag_should_fire": true}
+{"name": "바나나우유 240ml", "storage": "냉장", "count": 4, "stored_category": "음료·주류", "gold_category": "음료·주류", "conf": "assumed", "rag_should_fire": true}
+{"name": "왕초차", "storage": "실온", "count": 1, "stored_category": "음료·주류", "gold_category": null, "conf": "garbage", "rag_should_fire": false}
+{"name": "자몽에이드", "storage": "실온", "count": 2, "stored_category": "음료·주류", "gold_category": "음료·주류", "conf": "assumed", "rag_should_fire": true}
+{"name": "갈릭", "storage": "냉장", "count": 1, "stored_category": "채소류", "gold_category": "채소류", "conf": "assumed", "rag_should_fire": true}
+{"name": "감자", "storage": "냉장", "count": 7, "stored_category": "채소류", "gold_category": "채소류", "conf": "assumed", "rag_should_fire": false}
+{"name": "감자", "storage": "실온", "count": 4, "stored_category": "채소류", "gold_category": "채소류", "conf": "assumed", "rag_should_fire": false}
+{"name": "감자 1kg", "storage": "실온", "count": 1, "stored_category": "채소류", "gold_category": "채소류", "conf": "assumed", "rag_should_fire": false}
+{"name": "감자 500g", "storage": "냉장", "count": 5, "stored_category": "채소류", "gold_category": "채소류", "conf": "assumed", "rag_should_fire": false}
+{"name": "갑자 500g", "stored_category": "채소류", "storage": "냉장", "count": 1, "gold_category": null, "conf": "garbage", "rag_should_fire": false}
+{"name": "고구마", "storage": "냉장", "count": 4, "stored_category": "채소류", "gold_category": "채소류", "conf": "assumed", "rag_should_fire": false}
+{"name": "고구마", "storage": "실온", "count": 1, "stored_category": "채소류", "gold_category": "채소류", "conf": "assumed", "rag_should_fire": false}
+{"name": "굴김치 1000g", "storage": "냉장", "count": 1, "stored_category": "채소류", "gold_category": "가공·즉석식품", "conf": "high", "rag_should_fire": true}
+{"name": "김치 500g", "storage": "냉장", "count": 1, "stored_category": "채소류", "gold_category": "가공·즉석식품", "conf": "high", "rag_should_fire": true}
+{"name": "깐마늘", "storage": "냉장", "count": 5, "stored_category": "채소류", "gold_category": "채소류", "conf": "assumed", "rag_should_fire": true}
+{"name": "깻잎", "storage": "냉장", "count": 9, "stored_category": "채소류", "gold_category": "채소류", "conf": "assumed", "rag_should_fire": false}
+{"name": "깻잎 20", "storage": "냉장", "count": 2, "stored_category": "채소류", "gold_category": "채소류", "conf": "assumed", "rag_should_fire": false}
+{"name": "나트리버섯", "stored_category": "채소류", "storage": "냉장", "count": 1, "gold_category": null, "conf": "garbage", "rag_should_fire": false}
+{"name": "날콩가리소 4", "stored_category": "채소류", "storage": "냉장", "count": 1, "gold_category": null, "conf": "garbage", "rag_should_fire": false}
+{"name": "냉동 브로콜리", "storage": "냉동", "count": 1, "stored_category": "채소류", "gold_category": "채소류", "conf": "assumed", "rag_should_fire": false}
+{"name": "냉동 브로콜리 500g", "storage": "냉동", "count": 6, "stored_category": "채소류", "gold_category": "채소류", "conf": "assumed", "rag_should_fire": false}
+{"name": "냉동 완두 500g", "storage": "냉동", "count": 1, "stored_category": "채소류", "gold_category": "채소류", "conf": "assumed", "rag_should_fire": true}
+{"name": "냉동 완두콩 500g", "storage": "냉동", "count": 2, "stored_category": "채소류", "gold_category": "채소류", "conf": "assumed", "rag_should_fire": true}
+{"name": "냉동 캘리포니아 믹스 4", "storage": "냉동", "count": 1, "stored_category": "채소류", "gold_category": "채소류", "conf": "assumed", "rag_should_fire": true}
+{"name": "너티버섯 200g", "storage": "냉장", "count": 1, "stored_category": "채소류", "gold_category": "채소류", "conf": "assumed", "rag_should_fire": true}
+{"name": "노란티버섯 200g", "stored_category": "채소류", "storage": "냉장", "count": 1, "gold_category": null, "conf": "garbage", "rag_should_fire": false}
+{"name": "느타리버섯 200g", "storage": "냉장", "count": 6, "stored_category": "채소류", "gold_category": "채소류", "conf": "assumed", "rag_should_fire": true}
+{"name": "당근", "storage": "냉장", "count": 4, "stored_category": "채소류", "gold_category": "채소류", "conf": "assumed", "rag_should_fire": false}
+{"name": "당근 10", "storage": "냉장", "count": 1, "stored_category": "채소류", "gold_category": "채소류", "conf": "assumed", "rag_should_fire": false}
+{"name": "대파", "storage": "냉장", "count": 10, "stored_category": "채소류", "gold_category": "채소류", "conf": "assumed", "rag_should_fire": false}
+{"name": "대파 1단", "storage": "냉장", "count": 5, "stored_category": "채소류", "gold_category": "채소류", "conf": "assumed", "rag_should_fire": false}
+{"name": "딸기버섯 200g", "stored_category": "채소류", "storage": "냉장", "count": 1, "gold_category": null, "conf": "garbage", "rag_should_fire": false}
+{"name": "맛있는 버섯", "stored_category": "채소류", "storage": "냉장", "count": 1, "gold_category": null, "conf": "garbage", "rag_should_fire": false}
+{"name": "맛있는오기버섯", "stored_category": "채소류", "storage": "냉장", "count": 1, "gold_category": null, "conf": "garbage", "rag_should_fire": false}
+{"name": "망측", "storage": "냉장", "count": 1, "stored_category": "채소류", "gold_category": "채소류", "conf": "assumed", "rag_should_fire": true}
+{"name": "목이버섯 80g", "storage": "냉장", "count": 1, "stored_category": "채소류", "gold_category": "채소류", "conf": "assumed", "rag_should_fire": true}
+{"name": "무 1개", "storage": "냉장", "count": 5, "stored_category": "채소류", "gold_category": "채소류", "conf": "assumed", "rag_should_fire": false}
+{"name": "미나리", "storage": "냉장", "count": 1, "stored_category": "채소류", "gold_category": "채소류", "conf": "assumed", "rag_should_fire": false}
+{"name": "미니 양배추", "storage": "냉장", "count": 3, "stored_category": "채소류", "gold_category": "채소류", "conf": "assumed", "rag_should_fire": false}
+{"name": "미니 파", "storage": "냉장", "count": 1, "stored_category": "채소류", "gold_category": "채소류", "conf": "assumed", "rag_should_fire": true}
+{"name": "미니양배추", "storage": "냉장", "count": 2, "stored_category": "채소류", "gold_category": "채소류", "conf": "assumed", "rag_should_fire": true}
+{"name": "미니파", "storage": "냉장", "count": 1, "stored_category": "채소류", "gold_category": "채소류", "conf": "assumed", "rag_should_fire": true}
+{"name": "방울토마토", "storage": "냉장", "count": 4, "stored_category": "채소류", "gold_category": "채소류", "conf": "assumed", "rag_should_fire": true}
+{"name": "방울토마토 500g", "storage": "냉장", "count": 1, "stored_category": "채소류", "gold_category": "채소류", "conf": "assumed", "rag_should_fire": true}
+{"name": "버섯", "storage": "냉장", "count": 1, "stored_category": "채소류", "gold_category": "채소류", "conf": "assumed", "rag_should_fire": false}
+{"name": "베이비 덩기패 460g", "storage": "냉장", "count": 1, "stored_category": "채소류", "gold_category": "가공·즉석식품", "conf": "med", "rag_should_fire": true}
+{"name": "베이비버섯 150g x 2", "storage": "냉장", "count": 1, "stored_category": "채소류", "gold_category": "채소류", "conf": "assumed", "rag_should_fire": true}
+{"name": "베이비버섯 300g", "storage": "냉장", "count": 1, "stored_category": "채소류", "gold_category": "채소류", "conf": "assumed", "rag_should_fire": true}
+{"name": "브로콜리", "storage": "냉장", "count": 10, "stored_category": "채소류", "gold_category": "채소류", "conf": "assumed", "rag_should_fire": false}
+{"name": "브로콜리 1", "storage": "냉장", "count": 8, "stored_category": "채소류", "gold_category": "채소류", "conf": "assumed", "rag_should_fire": false}
+{"name": "브로콜리 1개", "storage": "냉장", "count": 1, "stored_category": "채소류", "gold_category": "채소류", "conf": "assumed", "rag_should_fire": false}
+{"name": "새송이버섯", "storage": "냉장", "count": 1, "stored_category": "채소류", "gold_category": "채소류", "conf": "assumed", "rag_should_fire": true}
+{"name": "생콩나물", "storage": "냉장", "count": 1, "stored_category": "채소류", "gold_category": "채소류", "conf": "assumed", "rag_should_fire": true}
+{"name": "시금치", "storage": "냉장", "count": 5, "stored_category": "채소류", "gold_category": "채소류", "conf": "assumed", "rag_should_fire": false}
+{"name": "시금치 1단", "storage": "냉장", "count": 3, "stored_category": "채소류", "gold_category": "채소류", "conf": "assumed", "rag_should_fire": false}
+{"name": "애호박", "storage": "냉장", "count": 11, "stored_category": "채소류", "gold_category": "채소류", "conf": "assumed", "rag_should_fire": false}
+{"name": "애호박 1개", "storage": "냉장", "count": 6, "stored_category": "채소류", "gold_category": "채소류", "conf": "assumed", "rag_should_fire": false}
+{"name": "애호박 1팩", "storage": "냉장", "count": 1, "stored_category": "채소류", "gold_category": "채소류", "conf": "assumed", "rag_should_fire": false}
+{"name": "양념 beef버섯", "stored_category": "채소류", "storage": "냉장", "count": 1, "gold_category": null, "conf": "garbage", "rag_should_fire": false}
+{"name": "양념 브로콜리 500g", "storage": "냉장", "count": 1, "stored_category": "채소류", "gold_category": "채소류", "conf": "assumed", "rag_should_fire": false}
+{"name": "양념 소고기 버섯", "stored_category": "채소류", "storage": "냉장", "count": 1, "gold_category": null, "conf": "garbage", "rag_should_fire": false}
+{"name": "양배추", "storage": "냉장", "count": 6, "stored_category": "채소류", "gold_category": "채소류", "conf": "assumed", "rag_should_fire": false}
+{"name": "양배추 1통", "storage": "냉장", "count": 1, "stored_category": "채소류", "gold_category": "채소류", "conf": "assumed", "rag_should_fire": false}
+{"name": "양파", "storage": "냉장", "count": 16, "stored_category": "채소류", "gold_category": "채소류", "conf": "assumed", "rag_should_fire": false}
+{"name": "양파", "storage": "실온", "count": 6, "stored_category": "채소류", "gold_category": "채소류", "conf": "assumed", "rag_should_fire": false}
+{"name": "양파 1kg", "storage": "냉장", "count": 3, "stored_category": "채소류", "gold_category": "채소류", "conf": "assumed", "rag_should_fire": false}
+{"name": "양파 1kg", "storage": "실온", "count": 1, "stored_category": "채소류", "gold_category": "채소류", "conf": "assumed", "rag_should_fire": false}
+{"name": "양파 350g", "storage": "실온", "count": 1, "stored_category": "채소류", "gold_category": "채소류", "conf": "assumed", "rag_should_fire": false}
+{"name": "양파 500g", "storage": "냉장", "count": 6, "stored_category": "채소류", "gold_category": "채소류", "conf": "assumed", "rag_should_fire": false}
+{"name": "어린잎채소", "storage": "냉장", "count": 6, "stored_category": "채소류", "gold_category": "채소류", "conf": "assumed", "rag_should_fire": false}
+{"name": "어린잎채소 100g", "storage": "냉장", "count": 6, "stored_category": "채소류", "gold_category": "채소류", "conf": "assumed", "rag_should_fire": false}
+{"name": "오미 3잉", "stored_category": "채소류", "storage": "냉장", "count": 1, "gold_category": null, "conf": "garbage", "rag_should_fire": false}
+{"name": "오이", "storage": "냉장", "count": 12, "stored_category": "채소류", "gold_category": "채소류", "conf": "assumed", "rag_should_fire": false}
+{"name": "오이 3", "storage": "냉장", "count": 7, "stored_category": "채소류", "gold_category": "채소류", "conf": "assumed", "rag_should_fire": false}
+{"name": "오이 3입", "storage": "냉장", "count": 1, "stored_category": "채소류", "gold_category": "채소류", "conf": "assumed", "rag_should_fire": true}
+{"name": "오이지 3", "stored_category": "채소류", "storage": "냉장", "count": 1, "gold_category": null, "conf": "garbage", "rag_should_fire": false}
+{"name": "의성마늘", "storage": "냉장", "count": 1, "stored_category": "채소류", "gold_category": "채소류", "conf": "assumed", "rag_should_fire": true}
+{"name": "정부자", "stored_category": "채소류", "storage": "냉장", "count": 1, "gold_category": null, "conf": "garbage", "rag_should_fire": false}
+{"name": "종합 채소 묶음", "stored_category": "채소류", "storage": "냉장", "count": 1, "gold_category": null, "conf": "garbage", "rag_should_fire": false}
+{"name": "쪽파", "storage": "냉장", "count": 5, "stored_category": "채소류", "gold_category": "채소류", "conf": "assumed", "rag_should_fire": false}
+{"name": "청양고추", "storage": "냉장", "count": 5, "stored_category": "채소류", "gold_category": "채소류", "conf": "assumed", "rag_should_fire": true}
+{"name": "콩고추", "storage": "냉장", "count": 1, "stored_category": "채소류", "gold_category": "채소류", "conf": "assumed", "rag_should_fire": true}
+{"name": "콩나물", "storage": "냉장", "count": 2, "stored_category": "채소류", "gold_category": "채소류", "conf": "assumed", "rag_should_fire": false}
+{"name": "트리버섯", "stored_category": "채소류", "storage": "냉장", "count": 1, "gold_category": null, "conf": "garbage", "rag_should_fire": false}
+{"name": "파프리카", "storage": "냉장", "count": 8, "stored_category": "채소류", "gold_category": "채소류", "conf": "assumed", "rag_should_fire": false}
+{"name": "파프리카 (적/황)", "storage": "냉장", "count": 1, "stored_category": "채소류", "gold_category": "채소류", "conf": "assumed", "rag_should_fire": false}
+{"name": "파프리카 1kg", "storage": "냉장", "count": 1, "stored_category": "채소류", "gold_category": "채소류", "conf": "assumed", "rag_should_fire": false}
+{"name": "파프리카 3색", "storage": "냉장", "count": 1, "stored_category": "채소류", "gold_category": "채소류", "conf": "assumed", "rag_should_fire": false}
+{"name": "파프리카(2/중)", "storage": "냉장", "count": 1, "stored_category": "채소류", "gold_category": "채소류", "conf": "assumed", "rag_should_fire": false}
+{"name": "파프리카(적/황)", "storage": "냉장", "count": 6, "stored_category": "채소류", "gold_category": "채소류", "conf": "assumed", "rag_should_fire": false}
+{"name": "팬이베릇", "stored_category": "채소류", "storage": "냉장", "count": 1, "gold_category": null, "conf": "garbage", "rag_should_fire": false}
+{"name": "팽이버섯", "storage": "냉장", "count": 4, "stored_category": "채소류", "gold_category": "채소류", "conf": "assumed", "rag_should_fire": true}
+{"name": "팽이버섯 150g", "storage": "냉장", "count": 1, "stored_category": "채소류", "gold_category": "채소류", "conf": "assumed", "rag_should_fire": true}
+{"name": "팽이버섯 150g×2", "storage": "냉장", "count": 3, "stored_category": "채소류", "gold_category": "채소류", "conf": "assumed", "rag_should_fire": true}
+{"name": "팽이버섯 500g", "storage": "냉장", "count": 1, "stored_category": "채소류", "gold_category": "채소류", "conf": "assumed", "rag_should_fire": true}
+{"name": "표고버섯", "storage": "냉장", "count": 7, "stored_category": "채소류", "gold_category": "채소류", "conf": "assumed", "rag_should_fire": true}
+{"name": "햇빛 20", "stored_category": "채소류", "storage": "냉장", "count": 1, "gold_category": null, "conf": "garbage", "rag_should_fire": false}
+{"name": "햇잎 20", "stored_category": "채소류", "storage": "냉장", "count": 2, "gold_category": null, "conf": "garbage", "rag_should_fire": false}

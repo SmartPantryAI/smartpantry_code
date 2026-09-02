@@ -1,0 +1,109 @@
+{"name": "닭갈비", "storage": "실온", "category_name": "가공·즉석식품", "true_days": 7, "conf": "low", "note": "냉장 밀키트로 가정(데이터 storage=실온은 오분류 가능)"}
+{"name": "덜알", "storage": "실온", "category_name": "가공·즉석식품", "true_days": null, "conf": "exclude", "note": "OCR 훼손 품명"}
+{"name": "멸치볶음", "storage": "실온", "category_name": "가공·즉석식품", "true_days": 30, "conf": "low", "note": "포장 밑반찬, 냉장 가정"}
+{"name": "비엔나", "storage": "냉장", "category_name": "가공·즉석식품", "true_days": 45, "conf": "med", "note": "진공포장 소시지 참고값"}
+{"name": "손두부찌개", "storage": "냉장", "category_name": "가공·즉석식품", "true_days": 7, "conf": "med", "note": "냉장 밀키트"}
+{"name": "순두부찌개", "storage": "냉장", "category_name": "가공·즉석식품", "true_days": 7, "conf": "med", "note": "냉장 밀키트"}
+{"name": "원지", "storage": "실온", "category_name": "가공·즉석식품", "true_days": null, "conf": "exclude", "note": "OCR 훼손 품명"}
+{"name": "의성마늘 비엔나", "storage": "냉장", "category_name": "가공·즉석식품", "true_days": 45, "conf": "med", "note": "진공포장 소시지 참고값"}
+{"name": "즉석 콩나물국 1인분", "storage": "실온", "category_name": "가공·즉석식품", "true_days": 365, "conf": "med", "note": "레토르트 즉석국"}
+{"name": "참치캔", "storage": "실온", "category_name": "가공·즉석식품", "true_days": 730, "conf": "high", "note": "통조림(실제 3~5년, 지표용 730으로 절사)"}
+{"name": "참치캔(중)", "storage": "실온", "category_name": "가공·즉석식품", "true_days": 730, "conf": "high", "note": "통조림(실제 3~5년, 지표용 730으로 절사)"}
+{"name": "컵밥 닭갈비", "storage": "실온", "category_name": "가공·즉석식품", "true_days": 180, "conf": "med", "note": "상온 컵밥"}
+{"name": "컵밥닭갈비", "storage": "실온", "category_name": "가공·즉석식품", "true_days": 180, "conf": "med", "note": "상온 컵밥"}
+{"name": "탕수", "storage": "냉동", "category_name": "가공·즉석식품", "true_days": 365, "conf": "low", "note": "냉동 탕수육 가정, 품명 불명확"}
+{"name": "파이벅", "storage": "냉동", "category_name": "가공·즉석식품", "true_days": null, "conf": "exclude", "note": "OCR 훼손 품명"}
+{"name": "햇반", "storage": "실온", "category_name": "가공·즉석식품", "true_days": 270, "conf": "high", "note": "즉석밥 소비기한 참고값"}
+{"name": "스파게티면", "storage": "실온", "category_name": "곡류·면류", "true_days": 730, "conf": "high", "note": "건면 소비기한 참고값"}
+{"name": "오트밀", "storage": "실온", "category_name": "곡류·면류", "true_days": 365, "conf": "med", "note": "포장 시리얼/오트밀"}
+{"name": "감귤", "storage": "실온", "category_name": "과일류", "true_days": 14, "conf": "med", "note": ""}
+{"name": "김귤", "storage": "실온", "category_name": "과일류", "true_days": 14, "conf": "low", "note": "OCR: 귤"}
+{"name": "바나나", "storage": "실온", "category_name": "과일류", "true_days": 7, "conf": "high", "note": ""}
+{"name": "바나나 송이", "storage": "실온", "category_name": "과일류", "true_days": 7, "conf": "high", "note": ""}
+{"name": "바나나 한 송이", "storage": "실온", "category_name": "과일류", "true_days": 7, "conf": "high", "note": ""}
+{"name": "사과(소)", "storage": "실온", "category_name": "과일류", "true_days": 21, "conf": "med", "note": "실온"}
+{"name": "청포도", "storage": "실온", "category_name": "과일류", "true_days": 7, "conf": "high", "note": ""}
+{"name": "냉동 완두콩", "storage": "냉동", "category_name": "두부·콩류", "true_days": 365, "conf": "med", "note": "냉동 채소"}
+{"name": "두부", "storage": "냉장", "category_name": "두부·콩류", "true_days": 14, "conf": "high", "note": "두부 소비기한 참고값"}
+{"name": "두부(찌개용)", "storage": "냉장", "category_name": "두부·콩류", "true_days": 14, "conf": "high", "note": ""}
+{"name": "마른멸치", "storage": "실온", "category_name": "수산물", "true_days": 180, "conf": "med", "note": "건어물"}
+{"name": "고구마빵", "storage": "실온", "category_name": "스낵·과자", "true_days": 10, "conf": "med", "note": "실온 유통 양산빵 — 짧다"}
+{"name": "바니니 몽이", "storage": "실온", "category_name": "스낵·과자", "true_days": null, "conf": "exclude", "note": "OCR 훼손 품명"}
+{"name": "새우깡", "storage": "실온", "category_name": "스낵·과자", "true_days": 180, "conf": "high", "note": "스낵 소비기한 참고값"}
+{"name": "양파링", "storage": "실온", "category_name": "스낵·과자", "true_days": 180, "conf": "high", "note": ""}
+{"name": "오감자", "storage": "실온", "category_name": "스낵·과자", "true_days": 180, "conf": "high", "note": "감자스낵 소비기한 참고값"}
+{"name": "오트밀바", "storage": "실온", "category_name": "스낵·과자", "true_days": 180, "conf": "med", "note": ""}
+{"name": "초코송이", "storage": "실온", "category_name": "스낵·과자", "true_days": 180, "conf": "med", "note": ""}
+{"name": "들기름", "storage": "실온", "category_name": "양념·소스", "true_days": 365, "conf": "high", "note": "참기름/들기름 소비기한 참고값"}
+{"name": "들기름 160ml", "storage": "실온", "category_name": "양념·소스", "true_days": 365, "conf": "high", "note": ""}
+{"name": "딸기잼", "storage": "실온", "category_name": "양념·소스", "true_days": 270, "conf": "med", "note": "잼류"}
+{"name": "물기름", "storage": "실온", "category_name": "양념·소스", "true_days": 365, "conf": "low", "note": "OCR: 들기름 추정"}
+{"name": "바질 페스토", "storage": "냉장", "category_name": "양념·소스", "true_days": 90, "conf": "low", "note": "개봉 전 냉장"}
+{"name": "올리브", "storage": "실온", "category_name": "양념·소스", "true_days": 180, "conf": "low", "note": "병조림 올리브"}
+{"name": "올리브유", "storage": "실온", "category_name": "양념·소스", "true_days": 540, "conf": "med", "note": "식용유 소비기한 참고값(미개봉)"}
+{"name": "의성마늘 비네나", "storage": "냉장", "category_name": "양념·소스", "true_days": 30, "conf": "low", "note": "OCR: 비엔나"}
+{"name": "진간장", "storage": "실온", "category_name": "양념·소스", "true_days": 600, "conf": "med", "note": "간장 소비기한 참고값"}
+{"name": "참기름", "storage": "실온", "category_name": "양념·소스", "true_days": 365, "conf": "high", "note": ""}
+{"name": "케찹", "storage": "실온", "category_name": "양념·소스", "true_days": 365, "conf": "med", "note": "케첩"}
+{"name": "케첩", "storage": "실온", "category_name": "양념·소스", "true_days": 365, "conf": "med", "note": ""}
+{"name": "태양초고추장", "storage": "실온", "category_name": "양념·소스", "true_days": 730, "conf": "med", "note": "고추장 소비기한 참고값"}
+{"name": "계란", "storage": "냉장", "category_name": "유제품·계란", "true_days": 30, "conf": "high", "note": "계란 소비기한 참고값"}
+{"name": "계란(중란)", "storage": "냉장", "category_name": "유제품·계란", "true_days": 30, "conf": "high", "note": ""}
+{"name": "달걀", "storage": "냉장", "category_name": "유제품·계란", "true_days": 30, "conf": "high", "note": ""}
+{"name": "달걀 특란", "storage": "냉장", "category_name": "유제품·계란", "true_days": 30, "conf": "high", "note": ""}
+{"name": "달걀(10구) 특란", "storage": "냉장", "category_name": "유제품·계란", "true_days": 30, "conf": "high", "note": ""}
+{"name": "딸기맛우유", "storage": "냉장", "category_name": "유제품·계란", "true_days": 16, "conf": "med", "note": "가공유"}
+{"name": "딸기요플레", "storage": "냉장", "category_name": "유제품·계란", "true_days": 14, "conf": "med", "note": "발효유"}
+{"name": "무항생제 특란 (30구)", "storage": "냉장", "category_name": "유제품·계란", "true_days": 30, "conf": "high", "note": ""}
+{"name": "바나나맛우유", "storage": "냉장", "category_name": "유제품·계란", "true_days": 16, "conf": "med", "note": "가공유"}
+{"name": "삶은달걀", "storage": "냉장", "category_name": "유제품·계란", "true_days": 15, "conf": "low", "note": "포장 조리란 가정"}
+{"name": "요플레(딸기)", "storage": "냉장", "category_name": "유제품·계란", "true_days": 14, "conf": "med", "note": "발효유"}
+{"name": "저지방우유", "storage": "냉장", "category_name": "유제품·계란", "true_days": 14, "conf": "high", "note": "우유 소비기한 참고값"}
+{"name": "감자탕용 돼지등뼈", "storage": "냉장", "category_name": "육류", "true_days": 5, "conf": "high", "note": "돼지고기 — '감자' 키워드 오매칭 주의"}
+{"name": "냉동 닭다리", "storage": "냉동", "category_name": "육류", "true_days": 180, "conf": "med", "note": "냉동육"}
+{"name": "손실 삼겹살", "storage": "냉장", "category_name": "육류", "true_days": 5, "conf": "high", "note": "OCR: 순살 삼겹살"}
+{"name": "순살 삼겹살", "storage": "냉장", "category_name": "육류", "true_days": 5, "conf": "high", "note": ""}
+{"name": "양다리훈합 닭다리", "storage": "냉장", "category_name": "육류", "true_days": 5, "conf": "low", "note": "OCR 훼손"}
+{"name": "한우 안심", "storage": "냉장", "category_name": "육류", "true_days": 7, "conf": "med", "note": "냉장 쇠고기"}
+{"name": "두유", "storage": "실온", "category_name": "음료·주류", "true_days": 180, "conf": "med", "note": "멸균두유"}
+{"name": "두유(베이지)", "storage": "실온", "category_name": "음료·주류", "true_days": 180, "conf": "med", "note": ""}
+{"name": "두유(베지밀)", "storage": "실온", "category_name": "음료·주류", "true_days": 180, "conf": "med", "note": ""}
+{"name": "망고로코", "storage": "실온", "category_name": "음료·주류", "true_days": 180, "conf": "low", "note": "제품 불명확"}
+{"name": "바나나맛우유", "storage": "냉장", "category_name": "음료·주류", "true_days": 16, "conf": "med", "note": "가공유(가공유는 냉장 16일)"}
+{"name": "바나나우유", "storage": "냉장", "category_name": "음료·주류", "true_days": 16, "conf": "med", "note": "가공유(냉장)"}
+{"name": "감자", "storage": "냉장", "category_name": "채소류", "true_days": 21, "conf": "high", "note": "뿌리채소"}
+{"name": "감자", "storage": "실온", "category_name": "채소류", "true_days": 21, "conf": "high", "note": "뿌리채소"}
+{"name": "고구마", "storage": "냉장", "category_name": "채소류", "true_days": 21, "conf": "high", "note": ""}
+{"name": "고구마", "storage": "실온", "category_name": "채소류", "true_days": 21, "conf": "high", "note": ""}
+{"name": "깐마늘", "storage": "냉장", "category_name": "채소류", "true_days": 21, "conf": "med", "note": ""}
+{"name": "당근", "storage": "냉장", "category_name": "채소류", "true_days": 14, "conf": "med", "note": ""}
+{"name": "대파", "storage": "냉장", "category_name": "채소류", "true_days": 10, "conf": "med", "note": ""}
+{"name": "무 1개", "storage": "냉장", "category_name": "채소류", "true_days": 21, "conf": "med", "note": ""}
+{"name": "미니 파", "storage": "냉장", "category_name": "채소류", "true_days": 10, "conf": "med", "note": ""}
+{"name": "미니양배추", "storage": "냉장", "category_name": "채소류", "true_days": 14, "conf": "med", "note": ""}
+{"name": "미니파", "storage": "냉장", "category_name": "채소류", "true_days": 10, "conf": "med", "note": ""}
+{"name": "버섯", "storage": "냉장", "category_name": "채소류", "true_days": 7, "conf": "high", "note": ""}
+{"name": "브로콜리", "storage": "냉장", "category_name": "채소류", "true_days": 7, "conf": "med", "note": ""}
+{"name": "새송이버섯", "storage": "냉장", "category_name": "채소류", "true_days": 7, "conf": "high", "note": ""}
+{"name": "생콩나물", "storage": "냉장", "category_name": "채소류", "true_days": 4, "conf": "high", "note": ""}
+{"name": "시금치", "storage": "냉장", "category_name": "채소류", "true_days": 5, "conf": "high", "note": ""}
+{"name": "애호박", "storage": "냉장", "category_name": "채소류", "true_days": 10, "conf": "med", "note": ""}
+{"name": "애호박 1개", "storage": "냉장", "category_name": "채소류", "true_days": 10, "conf": "med", "note": ""}
+{"name": "애호박 1팩", "storage": "냉장", "category_name": "채소류", "true_days": 10, "conf": "med", "note": ""}
+{"name": "양배추", "storage": "냉장", "category_name": "채소류", "true_days": 14, "conf": "med", "note": ""}
+{"name": "양파", "storage": "냉장", "category_name": "채소류", "true_days": 21, "conf": "high", "note": ""}
+{"name": "양파", "storage": "실온", "category_name": "채소류", "true_days": 21, "conf": "high", "note": ""}
+{"name": "어린잎채소", "storage": "냉장", "category_name": "채소류", "true_days": 5, "conf": "high", "note": ""}
+{"name": "오이", "storage": "냉장", "category_name": "채소류", "true_days": 10, "conf": "med", "note": ""}
+{"name": "의성마늘", "storage": "냉장", "category_name": "채소류", "true_days": 21, "conf": "med", "note": ""}
+{"name": "쪽파", "storage": "냉장", "category_name": "채소류", "true_days": 10, "conf": "med", "note": ""}
+{"name": "청양고추", "storage": "냉장", "category_name": "채소류", "true_days": 14, "conf": "med", "note": ""}
+{"name": "콩고추", "storage": "냉장", "category_name": "채소류", "true_days": 14, "conf": "low", "note": "고추류로 가정"}
+{"name": "콩나물", "storage": "냉장", "category_name": "채소류", "true_days": 4, "conf": "high", "note": ""}
+{"name": "파프리카", "storage": "냉장", "category_name": "채소류", "true_days": 14, "conf": "med", "note": ""}
+{"name": "파프리카 3색", "storage": "냉장", "category_name": "채소류", "true_days": 14, "conf": "med", "note": ""}
+{"name": "파프리카(2/중)", "storage": "냉장", "category_name": "채소류", "true_days": 14, "conf": "med", "note": ""}
+{"name": "파프리카(적/황)", "storage": "냉장", "category_name": "채소류", "true_days": 14, "conf": "med", "note": ""}
+{"name": "팬이베릇", "storage": "냉장", "category_name": "채소류", "true_days": 7, "conf": "low", "note": "OCR: 팽이버섯"}
+{"name": "팽이버섯", "storage": "냉장", "category_name": "채소류", "true_days": 7, "conf": "high", "note": ""}
+{"name": "표고버섯", "storage": "냉장", "category_name": "채소류", "true_days": 7, "conf": "high", "note": ""}

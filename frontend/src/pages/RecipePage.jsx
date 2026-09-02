@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { Clock, CheckCircle2, RefreshCw, ChevronDown, ChevronUp, AlertCircle, Heart, X } from 'lucide-react';
 import FoodIcon from '../components/FoodIcon';
-import { formatPantryQuantity, parseQuantityWithUnit } from '../utils/quantityFormat';
+import { formatPantryQuantity } from '../utils/quantityFormat';
 import { convertQuantity } from '../utils/unitConvert';
 
 const FOOD_EMOJIS = [
@@ -34,7 +34,7 @@ const FOOD_KEYWORD_EMOJIS = [
 ];
 
 const getRecipeEmoji = (recipe, idx) => {
-  const text = [recipe?.name, ...(recipe?.used_ingredients || [])].join(' ');
+  const text = [recipe?.name, ...(recipe?.used_ingredients || []).map(i => i.name)].join(' ');
   const matched = FOOD_KEYWORD_EMOJIS.find(({ keywords }) =>
     keywords.some(k => text.includes(k))
   );
@@ -45,8 +45,10 @@ const CookModal = ({ recipe, pantryItems, onClose, onConfirm }) => {
   const [usages, setUsages] = useState(() => {
     const found = [];
     for (const ing of (recipe.used_ingredients || [])) {
-      const trimmedIng = ing.trim();
-      const parsedName = trimmedIng.split(/[\s\d(（]/)[0];
+      // 서버가 recipe_ingredients 원본을 구조화 객체로 내려주므로 문자열 재파싱은 하지 않는다.
+      const parsedName = ing.name;
+      const parsedQty  = ing.amount;
+      const parsedUnit = ing.unit;
       const pantryItem = pantryItems.find(p =>
         p.item_name.includes(parsedName) || parsedName.includes(p.item_name)
       );
@@ -56,16 +58,6 @@ const CookModal = ({ recipe, pantryItems, onClose, onConfirm }) => {
       // 펜트리에 단위가 비어있는(레거시 데이터 등) 경우 '개'로 취급한다 - 화면 표시뿐 아니라
       // 환산 기준 단위(targetUnit)도 이 값과 일치시켜야 convertQuantity가 null을 반환하지 않는다.
       const pantryUnit = pantryItem.unit || '개';
-      // 레시피 문구에 명시된 사용량(예: "1/4개", "2큰술")을 참고해 기본값을 프리필.
-      // 재료명 뒤에 남는 "(적/황)" 같은 괄호 설명은 수량 파싱을 방해하므로 먼저 제거한다.
-      const rest = trimmedIng.slice(parsedName.length)
-        .replace(/[(（][^()（）]*[)）]/g, '')
-        .trim();
-      // "돼지고기 앞다리살 300g"처럼 이름과 수량 사이에 부위/설명어가 끼어 있으면 숫자가
-      // 맨 앞에 오지 않으므로, 처음 등장하는 숫자부터 잘라내 파싱한다.
-      const numIdx = rest.search(/\d/);
-      const qtyText = numIdx >= 0 ? rest.slice(numIdx) : rest;
-      const { qty: parsedQty, unit: parsedUnit } = parseQuantityWithUnit(qtyText);
       // 단위 토큰이 없으면 펜트리 단위와 동일하다고 가정한다(기존 동작과 호환).
       const convertedQty = (parsedQty !== null && Number.isFinite(parsedQty) && parsedQty > 0)
         ? convertQuantity({
@@ -75,18 +67,19 @@ const CookModal = ({ recipe, pantryItems, onClose, onConfirm }) => {
             ingredientName: parsedName,
           })
         : null;
-      // 단위 환산이 불가능하면(예: 개수 ↔ 무게) 기존처럼 보유량 전체를 기본값으로 둔다.
-      const initialQty = (convertedQty !== null && Number.isFinite(convertedQty) && convertedQty > 0)
-        ? Math.min(convertedQty, maxQty)
-        : maxQty;
+      // 단위 환산이 불가능하면(예: 개수 ↔ 무게) 자동으로 전량을 차감하지 않는다 -
+      // 재고 오차를 막기 위해 0으로 시작하고 사용자가 직접 입력하도록 경고를 띄운다.
+      const convertFailed = !(convertedQty !== null && Number.isFinite(convertedQty) && convertedQty > 0);
+      const initialQty = convertFailed ? 0 : Math.min(convertedQty, maxQty);
 
       found.push({
-        label:          ing,
+        label:          `${parsedQty ?? ''}${parsedUnit ?? ''} ${parsedName}`.trim(),
         name:           parsedName,
         pantry_item_id: pantryItem.id,
         used_qty:       initialQty,
         max_qty:        maxQty,
         unit:           pantryUnit,
+        convertFailed,
       });
     }
     return found;
@@ -116,6 +109,9 @@ const CookModal = ({ recipe, pantryItems, onClose, onConfirm }) => {
                 <p className="text-sm font-bold text-gray-800">{u.label}</p>
                 <span className="text-[10px] text-gray-400 font-bold">보유 {formatPantryQuantity(u.max_qty, u.unit)}</span>
               </div>
+              {u.convertFailed && (
+                <p className="text-[11px] font-bold text-amber-600">⚠️ 자동 환산 불가 — 직접 입력해주세요</p>
+              )}
               <div className="flex items-center gap-2">
                 {/* 수량 입력 - 펜트리에 저장된 고유 단위(u.unit) 기준으로만 입력. 단위 환산은 하지 않음 */}
                 {u.unit === '개' ? (
@@ -170,8 +166,10 @@ const RecipeCard = ({ recipe, idx, isBookmarked, onToggleSave, onCook, expandedI
     <div className="h-36 bg-gradient-to-br from-gray-800 to-gray-600 flex items-center justify-center relative">
       <span className="text-6xl">{getRecipeEmoji(recipe, idx)}</span>
       <div className="absolute top-4 left-4 bg-white/90 backdrop-blur-md px-3 py-1 rounded-2xl flex items-center gap-1.5 shadow-sm">
-        <div className="w-1.5 h-1.5 bg-blue-500 rounded-full animate-pulse" />
-        <span className="text-[11px] font-black text-blue-600">AI 추천</span>
+        <div className={`w-1.5 h-1.5 rounded-full animate-pulse ${recipe.source === 'llm' ? 'bg-purple-500' : 'bg-blue-500'}`} />
+        <span className={`text-[11px] font-black ${recipe.source === 'llm' ? 'text-purple-600' : 'text-blue-600'}`}>
+          {recipe.source === 'llm' ? 'AI 창작 레시피' : 'AI 추천'}
+        </span>
       </div>
       <button
         onClick={onToggleSave}
@@ -203,7 +201,7 @@ const RecipeCard = ({ recipe, idx, isBookmarked, onToggleSave, onCook, expandedI
             {recipe.used_ingredients.map((ing, i) => (
               <div key={i} className="flex items-center gap-1 bg-white px-2.5 py-1 rounded-full border border-gray-100 text-[10px] font-bold text-gray-500">
                 <CheckCircle2 size={10} className="text-green-500" />
-                {ing}
+                {ing.amount ?? ''}{ing.unit ?? ''} {ing.name}
               </div>
             ))}
             {recipe.missing_ingredients?.map((ing, i) => (
@@ -377,10 +375,17 @@ const RecipePage = () => {
           priorityIngredients: priorityItems ? [...priorityItems] : [],
         }),
       });
+      if (!res.ok) {
+        showToast('로그인이 만료됐거나 서비스에 일시적인 문제가 있어요. 잠시 후 다시 시도해주세요.');
+        setRecipes([]);
+        setFetched(true);
+        return;
+      }
       const data = await res.json();
       setRecipes(data.recipes || []);
       setFetched(true);
     } catch {
+      showToast('네트워크 오류로 추천을 불러오지 못했어요. 잠시 후 다시 시도해주세요.');
       setRecipes([]);
     } finally {
       setLoading(false);
